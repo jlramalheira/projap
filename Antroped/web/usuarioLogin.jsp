@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
+        <meta charset="UTF-8">
         <link type="text/css" rel="stylesheet" href="css/styles.css" />
         <link href='http://fonts.googleapis.com/css?family=Advent+Pro|Capriola' rel='stylesheet' type='text/css'>
         <script src="js/jquery-1.8.0.min.js" type="text/javascript"></script>
