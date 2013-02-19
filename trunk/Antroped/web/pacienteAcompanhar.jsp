@@ -27,7 +27,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
+        <meta charset="UTF-8">
         <title>Antroped</title>
 
         <link type="text/css" rel="stylesheet" href="css/styles.css"/>

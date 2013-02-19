@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
+        <meta charset="UTF-8">
         <title>Detalhes da medida</title>
         <link type="text/css" rel="stylesheet" href="CSS/styles.css"/>
     </head>

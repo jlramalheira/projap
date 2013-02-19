@@ -66,6 +66,7 @@ public class ServletMedidas extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession(true);
         String operacao = request.getParameter("operacao");
 
@@ -93,6 +94,7 @@ public class ServletMedidas extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession(true);
         Paciente paciente = (Paciente) session.getAttribute("paciente");
         if ((paciente == null)) {
