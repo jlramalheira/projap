@@ -1,0 +1,442 @@
+@charset "UTF-8";
+/*
+  Nome: Styles.css
+  Descrição: Arquivo de stylesheet para o Projeto
+  Data: 03 de outubro de 2012
+*/
+/*CSS RESET
+  ============================================================================*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    font-family: inherit;
+    vertical-align: baseline;
+}
+:focus {
+    outline: 0;
+}
+body {
+    line-height: 1;
+    color: black;
+    background: white;
+}
+ol, ul {
+    list-style: none;
+}
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+caption, th, td {
+    text-align: left;
+    font-weight: normal;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: "";
+}
+blockquote, q {
+    quotes: "" "";
+}
+/*MAIN
+  ============================================================================*/
+body{
+    font-size: 1em;
+    font-family: Helvetica, Arial, sans-serif;
+    background-color: #cfe6e3;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    -o-font-smoothing: antialiased;
+    -ms-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+.container{
+    width: 960px;
+    height: 100%;
+    margin: 0 auto;
+    min-height: 400px;
+    box-shadow: rgba(255,255,255,0.5) 0 0 50px;
+}
+/*CONTENT
+  ============================================================================*/
+.main{
+    width: available;
+    min-height: 300px;
+    padding: 15px 15px;
+    background-color: #fafafa;
+}
+section.dadospaciente{
+    width: available;
+    margin: 0 600px 0 0;
+    font: normal normal normal 1em Helvetica, Arial, sans-serif;
+}
+
+section.dadospaciente .linkeditar{
+    color: #699075;
+}
+
+section.dadospaciente ul li{
+    margin: 0 0 8px 0;
+}
+
+section.dadospaciente h2{
+    color: #65A87A;
+    font: normal normal normal 18pt "Capriola", Helvetica, Arial, sans-serif;
+    margin: 0 0 10px 0;
+}
+section.dadospaciente span{
+    display: inline-block;
+    margin: 0 10px 0 0;
+    text-align: left;
+    font-weight: bold;
+}
+a.button {
+    display: inline-block;
+    width: 80px;
+    padding: 5px 0;
+    border: #7B9E85 solid 1px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top: none;
+    background-color: #9bcfab;
+    color: #3C5E46;
+    text-align: center;
+    text-decoration: none;
+    font: normal normal bold 10pt Helvetica, Arial, sans-serif;    
+}
+a.button:hover{
+    color: #699075;
+    background-color: #c3e6cd;
+    border-color: #65A87A;
+}
+
+/*Tabelas
+  ============================================================================*/
+table.tabela{
+    display: block;
+    float: right;    
+    background-color: rgba(0,255,0,0.1);
+    border-top: #9bcfab dotted 1px;
+}
+table.tabela thead{
+    background-color: rgba(0, 200, 0, 0.1);
+}
+table.tabela thead th{
+    color: #699075;
+    padding: 5px;        
+    text-align: center;
+    font-weight: bold;
+    vertical-align: middle;
+}
+table.tabela td{
+    padding: 5px;
+    border-bottom: #9bcfab dotted 1px;
+    vertical-align: middle;
+}
+table.tabela tfoot{
+    background-color: #fafafa;
+}
+table.tabelamedidas{
+    margin: 0 0 15px 0;
+    width: 600px;
+    font-size: 10.5pt;
+}
+table.tabelamedidas thead th{        
+    width: 100px;
+}
+table.tabelamedidas thead th.data{
+    width: 75px;
+}
+table.tabelamedidas thead th.peso{
+    width: 60px;
+}
+table.tabelamedidas thead th.idade{
+    width: 165px;
+}
+table.tabelamedidas thead th.imc{
+    width: 75px;
+}
+
+table.tabelapaciente{
+    float: right;
+    width: 520px;
+    background-color: rgba(0,255,0,0.1);
+}
+table.tabelapaciente #colunaNome {
+    width: 360px;
+}
+/*Formularios
+  ============================================================================*/
+form.formulario{
+    padding: 15px;
+    background-color: #c3e6cd;
+    font-size: 0.938em;
+}
+.formulario legend{
+    color: #65A87A;
+    font: normal normal normal 18pt "Capriola", Helvetica, Arial, sans-serif;
+    margin: 0 0 10px 0;
+}
+.formulario label{
+    display: inline-block;
+    margin: 10px 0 5px 0;
+    color: #3C5E46;
+}
+.formulario .radiolabel{
+    width: 100px;
+}
+.formulario input[type="text"]{
+    width: 248px;
+    padding: 5px;
+    margin: 0;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 1em;
+    border: #7B9E85 solid 1px;
+    border-radius: 3px;
+    color: #3C5E46;
+}
+.formulario input[type="radio"]{
+    padding: 0;
+    margin: 2px;
+}
+.formulario .button{
+    float:right;
+    color: #666;
+    font-family: "Capriola";
+    font-size: 12pt;
+}
+.formulario select{
+    padding: 2px;
+    margin: 0;        
+}
+.formularionovopaciente{
+    width: 365px;
+}
+.formularionovopaciente input[type="text"]{
+    width: 350px;
+}
+.formularionovopaciente .button{
+    padding: 10px 25px;
+    margin: 10px 0 0 0;
+}
+.formularionovopaciente .estatura{
+    display: inline-block;
+}
+.formularionovopaciente .estatura input[type="text"]{
+    width: 167px;
+}
+.formularionovopaciente .button{
+    width: 125px;
+    margin: 10px 0 0 10px;
+}
+.formulariodadospaciente{
+    display: none;
+    width: 555px;
+    float: right;
+}
+.formulariodadospaciente .button{
+    clear: right;
+    margin: 10px 0 0 0;
+    width: 125px;
+    height: 50px;
+}
+.formulariodadospaciente input[type="text"]{
+    width: 400px;
+}
+
+.formulariologin{
+    float: none;
+    width: 210px;
+}
+.formulariologin label{
+    color: #3C5E46;
+}
+.formulariologin .erro{
+    color: #bf150e;
+}
+.formulariologin .button{
+    display: block;
+    float: none;
+    margin: 15px auto 0 auto;
+    width: 100px;
+    height: 50px;
+}
+.formulariologin input[type="text"]{
+    width: 200px;
+    padding: 5px;
+    border: #7B9E85 solid 1px;
+    border-radius: 3px;
+}
+.formulariologin input[type="password"]{
+    width: 200px;
+    padding: 5px;
+    border: #7B9E85 solid 1px;
+    border-radius: 3px;
+}
+
+.formulariocadastro{
+    float: none;
+    width: 300px;
+}
+.formulariocadastro label{
+    color: #3C5E46;
+}
+.formulariocadastro .erro{
+    color: #bf150e;
+}
+.formulariocadastro .button{
+    display: block;
+    float: none;
+    margin: 15px auto 0 auto;
+    width: 100px;
+    height: 50px;
+}
+.formulariocadastro input[type="text"]{
+    width: 290px;
+    padding: 5px;
+    border: #7B9E85 solid 1px;
+    border-radius: 3px;
+}
+.formulariocadastro input[type="password"]{
+    width: 290px;
+    padding: 5px;
+    border: #7B9E85 solid 1px;
+    border-radius: 3px;
+}
+.botao {
+    float: right;
+    clear: both;
+    padding: 10px 20px;
+    color: #666;
+    font-family: "Capriola";
+    font-size: 12pt;
+}
+#novaMedida{
+    margin-top: 30px;
+}
+.relatorio {
+    text-align: justify;
+    line-height: 2em;
+    text-indent: 50px;
+}
+/*Avaliação
+  ============================================================================*/
+section.avaliacao{
+    height: 200px;
+    width: 100%;
+    padding: 15px 0;
+    margin: 10px 0;
+    border-bottom: #65A87A dotted 1px;
+    border-top: #3C5E46 dotted 1px;
+}
+section.avaliacao h1{
+    color: #65A87A;
+    font: normal normal normal 18pt "Capriola", Helvetica, Arial, sans-serif;
+    margin: 0 0 10px 0;
+}
+
+/*Gráficos e Abas
+  ============================================================================*/
+.graficos{
+    height: 675px;
+}
+.grafico{
+    float:left;
+    width:960px;
+    height:640px;
+    position: relative;
+    clear: left;
+}
+.hint {
+    border: 1px solid #333;
+    font-family: Arial, Helvetica, sans-serif;
+    color:#333;
+    font-size: 12px;
+    padding: 3px;
+    position: absolute;
+    display: none;
+    background: #FFF;
+}
+div.wrap{
+    float:left;
+    position:relative;
+    margin: 0 0 40px -15px;
+    clear:left;
+}
+.wrap .pane{
+    background:#fff;
+    display:none;
+
+    border:1px solid #999;
+    border-top:0;
+    border-left:0;
+    font-size:14px;
+    font-size:18px;
+    color:#456;
+
+    background-image:none;
+}
+.wrap .pane p{
+    font-size:38px;
+    margin:-10px 0 -20px 0;
+    text-align:right;
+    color:#578;
+}
+ul.tabs li{
+    margin: 0 0 0 15px;
+}
+
+/*HEADER
+  ============================================================================*/
+header{
+    width: available;
+    height: 100px;
+    background-color: #c3e6cd;
+    padding: 10px 15px;
+}
+header h1{
+    float: left;
+    margin: 15px 0 0 0;
+    color: #FFF;
+    font: normal normal normal 3em "Capriola", sans-serif;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+header .sair{
+    float: right;
+}
+header a{
+    color: #699075;
+    font-weight: bold;
+    margin-left: 20px;
+    text-decoration: none;
+    float: right;
+}
+
+header a img {
+    margin-left: 5px; 
+}
+
+
+/*FOOTER
+  ============================================================================*/
+footer{
+    width: available;
+    height: 150px;
+    padding: 10px;
+    background-color: #addebc;
+}
+
