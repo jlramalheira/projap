@@ -136,7 +136,7 @@
                         drawLineTroughCircle(pontosEstatura519, stageEstatura519);
                         drawLineTroughCircle(pontosImc519, stageImc519);
                     });
-        </script>        
+        </script>
         <!-- Codigo do jquery do botao submit, a, button -->
         <script type="text/javascript">
             $(function() {
@@ -147,7 +147,7 @@
         <!-- Janela popup para mais detalhes do paciente -->
         <script type="text/javascript">
             function abrePopUp(id){
-                window.open('medidaMostrar.jsp?id='+id,'page','toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=500,height=500');  
+                window.open('medidaMostrar.jsp?id='+id,'page','toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=500,height=500');
             }
         </script>
         <!-- Script tabela jquery -->
@@ -183,28 +183,28 @@
             }
             $(function(){
                 if(<%= (session.getAttribute("dado") != null) ? "true" : "false"%>){
-                    escondeTabela();  
+                    escondeTabela();
                 }
                 $("#datepicker").mask("99/99/9999");
-                
-                $("#peso").keyup(function() {  
-                    var valor = $("#peso").val().replace(/[^0-9.]+/g,'');  
-                    $("#peso").val(valor);  
+
+                $("#peso").keyup(function() {
+                    var valor = $("#peso").val().replace(/[^0-9.]+/g,'');
+                    $("#peso").val(valor);
                 });
-                
-                $("#altura").keyup(function() {  
-                    var valor = $("#altura").val().replace(/[^0-9.]+/g,'');  
-                    $("#altura").val(valor);  
+
+                $("#altura").keyup(function() {
+                    var valor = $("#altura").val().replace(/[^0-9.]+/g,'');
+                    $("#altura").val(valor);
                 });
-                
-                $("#perimetrocefalico").keyup(function() {  
-                    var valor = $("#perimetrocefalico").val().replace(/[^0-9.]+/g,'');  
-                    $("#perimetrocefalico").val(valor);  
+
+                $("#perimetrocefalico").keyup(function() {
+                    var valor = $("#perimetrocefalico").val().replace(/[^0-9.]+/g,'');
+                    $("#perimetrocefalico").val(valor);
                 });
             });
         </script>
         <!--Muda o texto conforme as abas são selecionadas-->
-        <script type="text/javascript">    
+        <script type="text/javascript">
             function mudaTexto(tab){
                 if (tab=='peso05'){
                     $('.relatorio').html('<%=dados.size() > 0 ? dados.get(0).getTexto("peso05", paciente.getSexo()) : "Não existe dado para ser avaliado"%>');
@@ -220,7 +220,7 @@
                     $('.relatorio').html('imc519');
                 }else if(tab=='pc05'){
                     $('.relatorio').html('pc05');
-                }                                  
+                }
             }
         </script>
     </head>
@@ -237,7 +237,7 @@
             <!-- MAIN -->
             <div class="main">
                 <!-- FORMULARIO -->
-                <form name="form" action="ServletMedidas" method="POST" 
+                <form name="form" action="ServletMedidas" method="POST"
                       class="formulariodadospaciente formulario"
                       id="formularioNovaMedida" onsubmit="return cancelaCadastro();">
                     <fieldset>
@@ -245,8 +245,8 @@
                         <input type="submit" value="Cadastrar" name="operacao"
                                class="button enviar" onclick="this.form.cancelar.value='Cancelar'"/>
                         <input type="submit" value="Cancelar" name="cancelar"
-                               class="button cancelar" 
-                               onclick=" this.value = ' Cancelar '"/>                        
+                               class="button cancelar"
+                               onclick=" this.value = ' Cancelar '"/>
                         <input type="hidden" name="paciente" value="<%=paciente.getSexo()%>" />
 
                         <label for="datepicker">Data:</label><br/>
@@ -288,7 +288,7 @@
                                value="<%=(session.getAttribute("dado") == null)
                                        ? ""
                                        : ((Medida) session.getAttribute("dado")).getPerimetroCefalico()%>"/>
-                    </fieldset>                    
+                    </fieldset>
                 </form>
 
 
@@ -334,21 +334,21 @@
                         <% }
                             if ((Integer) session.getAttribute("pagina") > 1) {
                         %>
-                        <a href="ServletPagina?change=ant" class="button">Próximo</a>                
+                        <a href="ServletPagina?change=ant" class="button">Próximo</a>
                         <%}
-                            }%> 
+                            }%>
                     </th>
                     </tfoot>
                 </table>
-                <% }%> 
-                <button type="button" id="novaMedida" 
+                <% }%>
+                <button type="button" id="novaMedida"
                         onclick="escondeTabela()"
                         class="botao">
                     Nova medida
                 </button>
 
 
-                <!-- DADOS DO PACIENTE -->  
+                <!-- DADOS DO PACIENTE -->
                 <section class="dadospaciente">
                     <h2>Dados do paciente:</h2>
                     <ul>
@@ -384,7 +384,7 @@
                             <%=paciente.CalculaEstaturaAlvo()%> cm +/- 10cm
                         </li>
                         <li>
-                            <span><a href="ServletPaciente?id=<%= paciente.getId()%>&operacao=editar" class="linkeditar">Editar</a></span><br/>
+                            <span><a href="ServletPaciente?id=<%=paciente.getId()%>&operacao=editar" class="linkeditar">Editar</a></span><br/>
                         </li>
                     </ul>
                 </section>
@@ -393,7 +393,7 @@
                     <h1><strong>Avaliação do Gráfico</strong></h1>
                     <p class="relatorio"><script>mudaTexto('peso05')</script></p>
                 </section>
-                
+
                 <!-- GRÁFICOS -->
                 <section class="graficos">
                     <div class="wrap">
@@ -444,14 +444,14 @@
                                 <div id="containerPc05"></div>
                             </div>
                         </div>
-                    </div> 
+                    </div>
                 </section>
             </div>
             <!-- FOOTER -->
             <footer>
             </footer>
         </div>
-        
+
     </body>
     <%}%>
 </html>
