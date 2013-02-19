@@ -68,7 +68,7 @@ public class ServletUsuario extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession(true);
         String operacao = request.getParameter("operacao");
-        
+
         if (operacao.equalsIgnoreCase("sair")) {
             session.invalidate();
             response.sendRedirect("usuarioLogin.jsp");
@@ -102,7 +102,7 @@ public class ServletUsuario extends HttpServlet {
 
             List<Usuario> usuarios = (new DaoUsuario().listByLogin(login));
 
-            
+
             if (!usuarios.isEmpty()) {
                 session.setAttribute("mensagem", "O usuário já cadastrado!");
 

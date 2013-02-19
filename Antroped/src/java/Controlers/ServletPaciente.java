@@ -38,7 +38,6 @@ public class ServletPaciente extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
             /* TODO output your page here. You may use following sample code. */
@@ -153,7 +152,7 @@ public class ServletPaciente extends HttpServlet {
             new Dao<Paciente>(Paciente.class).insert(paciente);
             session.setAttribute("paciente", paciente);
             response.sendRedirect("pacienteAcompanhar.jsp");
-            
+
         } else if (operacao.equalsIgnoreCase("editar")) {
             Paciente paciente = (Paciente) session.getAttribute("editando");
             paciente.setNome(nome);
