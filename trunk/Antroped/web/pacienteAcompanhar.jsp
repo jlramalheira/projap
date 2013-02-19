@@ -42,7 +42,187 @@
         <script src="js/jquery-ui-1.8.23.custom.min.js" type="text/javascript"></script>
         <script src="js/jquery.tools.min.js" type="text/javascript"></script>
         <script src="js/jquery.dataTables.js" type="text/javascript"></script>
-        <script src="js/jquery.maskedinput-1.3.min.js" type="text/javascript"></script>        
+        <script src="js/jquery.maskedinput-1.3.min.js" type="text/javascript"></script>
+        <!-- Script das tabs -->
+        <script type="text/javascript">
+            // perform JavaScript after the document is scriptable.
+            $(function() {
+                $("ul.tabs").tabs("> .pane");
+            });
+        </script>
+        <!-- Script que desenha os pontos e passa as linhas -->
+        <script type="text/javascript">
+            $(document).ready(function () {
+                pontosPeso05 = [];
+                pontosEstatura05 = [];
+                pontosImc05 = [];
+                pontosPc05 = [];
+                pontosPeso519 = [];
+                pontosEstatura519 = [];
+                pontosImc519 = [];
+                //nao consigo acessar o paciente dentro deste for, por isso fiz um hidden no formulario e pego o valor dele
+            <% for (Medida d : dados) {
+                    if ((d.getIdade() >= 0 && d.getIdade() < 1826) && (d.getPeso() >= 1 && d.getPeso() <= 25)) {%>
+                            pontosPeso05.push(drawCircle(<%=(d.getIdade())%>, <%=d.getPeso()%>, 3, '000', '000', 1,"<%=d.getHint()%>", stagePeso05, 'graficoPeso05', document.form.paciente.value));
+            <% }%>
+                    if (document.form.paciente.value == 'Masculino'){
+            <%
+                if ((d.getIdade() >= 730 && d.getIdade() < 1826) && (d.getAltura() >= 80 && d.getAltura() <= 120)) {%>
+                            pontosEstatura05.push(drawCircle(<%=(d.getIdade())%>, <%=(d.getAltura())%>, 3, '000', '000', 1, "<%=d.getHint()%>", stageEstatura05, 'graficoEstatura05', document.form.paciente.value));
+            <% }%>
+                    } else {
+            <%
+                if ((d.getIdade() >= 0 && d.getIdade() < 1826) && (d.getAltura() >= 43 && d.getAltura() <= 122)) {%>
+                            pontosEstatura05.push(drawCircle(<%=(d.getIdade())%>, <%=(d.getAltura())%>, 3, '000', '000', 1, "<%=d.getHint()%>", stageEstatura05, 'graficoEstatura05', document.form.paciente.value));
+            <% }%>
+                    }
+            <%
+                if ((d.getIdade() >= 0 && d.getIdade() < 1826) && ((d.getPeso() / ((d.getAltura() / 100) * (d.getAltura() / 100))) >= 9.6 && ((d.getPeso() / ((d.getAltura() / 100) * (d.getAltura() / 100)))) <= 21.2)) {%>
+                        pontosImc05.push(drawCircle(<%=(d.getIdade())%>, <%=(d.getPeso() / ((d.getAltura() / 100) * (d.getAltura() / 100)))%>, 3, '000', '000', 1, "<%=d.getHint()%>", stageImc05, 'graficoImc05', document.form.paciente.value));
+            <% }%>
+                    if (document.form.paciente.value == 'Masculino') {
+            <%
+                if ((d.getIdade() >= 0 && d.getIdade() < 1826) && (d.getPerimetroCefalico() >= 32 && d.getPerimetroCefalico() <= 54.5)) {%>
+                            pontosPc05.push(drawCircle(<%=(d.getIdade())%>, <%=d.getPerimetroCefalico()%>, 3, '000', '000', 1, "<%=d.getHint()%>", stagePc05, 'graficoPc05', document.form.paciente.value));
+            <% }%>
+                    } else {
+            <%
+                if ((d.getIdade() >= 0 && d.getIdade() < 1826) && (d.getPerimetroCefalico() >= 31 && d.getPerimetroCefalico() <= 53.5)) {%>
+                            pontosPc05.push(drawCircle(<%=(d.getIdade())%>, <%=d.getPerimetroCefalico()%>, 3, '000', '000', 1, "<%=d.getHint()%>", stagePc05, 'graficoPc05', document.form.paciente.value));
+            <% }%>
+                    }
+                    if (document.form.paciente.value == 'Masculino'){
+            <%
+                if ((d.getIdade() >= 1825 && d.getIdade() < 6936) && (d.getPeso() >= 13 && d.getPeso() <= 45)) {%>
+                            pontosPeso519.push(drawCircle(<%=(d.getIdade())%>, <%=d.getPeso()%>, 3, '000', '000', 1, "<%=d.getHint()%>", stagePeso519, 'graficoPeso519', document.form.paciente.value));
+            <% }%>
+                    } else {
+            <%
+                if ((d.getIdade() >= 1825 && d.getIdade() < 6936) && (d.getPeso() >= 13 && d.getPeso() <= 47)) {%>
+                            pontosPeso519.push(drawCircle(<%=(d.getIdade())%>, <%=d.getPeso()%>, 3, '000', '000', 1, "<%=d.getHint()%>", stagePeso519, 'graficoPeso519', document.form.paciente.value));
+            <% }%>
+                    }
+                    if (document.form.paciente.value == 'Masculino'){
+            <%
+                if ((d.getIdade() >= 1825 && d.getIdade() < 6936) && (d.getAltura() >= 1 && d.getAltura() <= 195)) {%>
+                            pontosEstatura519.push(drawCircle(<%=(d.getIdade())%>, <%=d.getAltura()%>, 3, '000', '000', 1, "<%=d.getHint()%>", stageEstatura519, 'graficoEstatura519', document.form.paciente.value));
+            <% }%>
+                    } else {
+            <%
+                if ((d.getIdade() >= 1825 && d.getIdade() < 6936) && (d.getAltura() >= 105 && d.getAltura() <= 180)) {%>
+                            pontosEstatura519.push(drawCircle(<%=(d.getIdade())%>, <%=d.getAltura()%>, 3, '000', '000', 1,"<%=d.getHint()%>", stageEstatura519, 'graficoEstatura519', document.form.paciente.value));
+            <% }%>
+                    }
+                    if (document.form.paciente.value == 'Masculino'){
+            <%
+                if ((d.getIdade() >= 1825 && d.getIdade() < 6936) && ((d.getPeso() / ((d.getAltura() / 100) * (d.getAltura() / 100))) >= 12 && ((d.getPeso() / ((d.getAltura() / 100) * (d.getAltura() / 100)))) <= 30)) {%>
+                            pontosImc519.push(drawCircle(<%=(d.getIdade())%>, <%=(d.getPeso() / ((d.getAltura() / 100) * (d.getAltura() / 100)))%>, 3, '000', '000', 1, "<%=d.getHint()%>", stageImc519, 'graficoImc519', document.form.paciente.value));
+            <% }%>
+                    } else {
+            <%
+                if ((d.getIdade() >= 1825 && d.getIdade() < 6936) && ((d.getPeso() / ((d.getAltura() / 100) * (d.getAltura() / 100))) >= 12 && ((d.getPeso() / ((d.getAltura() / 100) * (d.getAltura() / 100)))) <= 29.5)) {%>
+                            pontosImc519.push(drawCircle(<%=(d.getIdade())%>, <%=(d.getPeso() / ((d.getAltura() / 100) * (d.getAltura() / 100)))%>, 3, '000', '000', 1, "<%=d.getHint()%>", stageImc519, 'graficoImc519', document.form.paciente.value));
+            <% }%>
+                    }
+            <%
+                }%>
+
+                        drawLineTroughCircle(pontosPeso05, stagePeso05);
+                        drawLineTroughCircle(pontosEstatura05, stageEstatura05);
+                        drawLineTroughCircle(pontosImc05, stageImc05);
+                        drawLineTroughCircle(pontosPc05, stagePc05);
+
+                        drawLineTroughCircle(pontosPeso519, stagePeso519);
+                        drawLineTroughCircle(pontosEstatura519, stageEstatura519);
+                        drawLineTroughCircle(pontosImc519, stageImc519);
+                    });
+        </script>        
+        <!-- Codigo do jquery do botao submit, a, button -->
+        <script type="text/javascript">
+            $(function() {
+                $( "input:submit, a, button, reset", "#formulario" ).button();
+                $( "a", "#formulario" ).click(function() { return false; });
+            });
+        </script>
+        <!-- Janela popup para mais detalhes do paciente -->
+        <script type="text/javascript">
+            function abrePopUp(id){
+                window.open('medidaMostrar.jsp?id='+id,'page','toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=500,height=500');  
+            }
+        </script>
+        <!-- Script tabela jquery -->
+        <script type="text/javascript">
+            function() {
+                $('#dataTable').dataTable();
+            };
+        </script>
+        <!--Calendario -->
+        <script type="text/javascript">
+            $(function() {
+                $( "#datepicker" ).datepicker();
+            });
+        </script>
+        <!--Mostra o formulario de nova medida-->
+        <script type="text/javascript">
+            function escondeTabela(){
+                $("#dataTable").css({display:"none"});
+                $("#formularioNovaMedida").css({display:"block"});
+                $("#novaMedida").css({display:"none"});
+            };
+            function mostraTabela(){
+                $("#dataTable").css({display:"block"});
+                $("#formularioNovaMedida").css({display:"none"});
+                $("#novaMedida").css({display:"block"})
+                resetForm();
+            }
+            function resetForm(){
+                document.getElementById("datepicker").value = "";
+                document.getElementById("peso").value = "";
+                document.getElementById("altura").value = "";
+                document.getElementById("perimetrocefalico").value = "";
+            }
+            $(function(){
+                if(<%= (session.getAttribute("dado") != null) ? "true" : "false"%>){
+                    escondeTabela();  
+                }
+                $("#datepicker").mask("99/99/9999");
+                
+                $("#peso").keyup(function() {  
+                    var valor = $("#peso").val().replace(/[^0-9.]+/g,'');  
+                    $("#peso").val(valor);  
+                });
+                
+                $("#altura").keyup(function() {  
+                    var valor = $("#altura").val().replace(/[^0-9.]+/g,'');  
+                    $("#altura").val(valor);  
+                });
+                
+                $("#perimetrocefalico").keyup(function() {  
+                    var valor = $("#perimetrocefalico").val().replace(/[^0-9.]+/g,'');  
+                    $("#perimetrocefalico").val(valor);  
+                });
+            });
+        </script>
+        <!--Muda o texto conforme as abas são selecionadas-->
+        <script type="text/javascript">    
+            function mudaTexto(tab){
+                if (tab=='peso05'){
+                    $('.relatorio').html('<%=dados.size() > 0 ? dados.get(0).getTexto("peso05", paciente.getSexo()) : "Não existe dado para ser avaliado"%>');
+                }else if(tab=='peso519'){
+                    $('.relatorio').html('peso519');
+                }else if(tab=='estatura05'){
+                    $('.relatorio').html('<%=(dados.size() > 0 && (dados.get(0).getIdade() > 630)) ? dados.get(0).getTexto("estatura05", paciente.getSexo()) : "Não existe dado para ser avaliado"%>');
+                }else if(tab=='estatura519'){
+                    $('.relatorio').html('estatura519');
+                }else if(tab=='imc05'){
+                    $('.relatorio').html('<%=dados.size() > 0 ? dados.get(0).getTexto("imc05", paciente.getSexo()) : "Não existe dado para ser avaliado"%>');
+                }else if(tab=='imc519'){
+                    $('.relatorio').html('imc519');
+                }else if(tab=='pc05'){
+                    $('.relatorio').html('pc05');
+                }                                  
+            }
+        </script>
     </head>
     <body>
         <div class="container">
@@ -271,186 +451,7 @@
             <footer>
             </footer>
         </div>
-        <!-- Script das tabs -->
-        <script type="text/javascript">
-            // perform JavaScript after the document is scriptable.
-            $(function() {
-                $("ul.tabs").tabs("> .pane");
-            });
-        </script>
-        <!-- Script que desenha os pontos e passa as linhas -->
-        <script type="text/javascript">
-            $(document).ready(function () {
-                pontosPeso05 = [];
-                pontosEstatura05 = [];
-                pontosImc05 = [];
-                pontosPc05 = [];
-                pontosPeso519 = [];
-                pontosEstatura519 = [];
-                pontosImc519 = [];
-                //nao consigo acessar o paciente dentro deste for, por isso fiz um hidden no formulario e pego o valor dele
-            <% for (Medida d : dados) {
-                    if ((d.getIdade() >= 0 && d.getIdade() < 1826) && (d.getPeso() >= 1 && d.getPeso() <= 25)) {%>
-                            pontosPeso05.push(drawCircle(<%=(d.getIdade())%>, <%=d.getPeso()%>, 3, '000', '000', 1,"<%=d.getHint()%>", stagePeso05, 'graficoPeso05', document.form.paciente.value));
-            <% }%>
-                    if (document.form.paciente.value == 'Masculino'){
-            <%
-                if ((d.getIdade() >= 730 && d.getIdade() < 1826) && (d.getAltura() >= 80 && d.getAltura() <= 120)) {%>
-                            pontosEstatura05.push(drawCircle(<%=(d.getIdade())%>, <%=(d.getAltura())%>, 3, '000', '000', 1, "<%=d.getHint()%>", stageEstatura05, 'graficoEstatura05', document.form.paciente.value));
-            <% }%>
-                    } else {
-            <%
-                if ((d.getIdade() >= 0 && d.getIdade() < 1826) && (d.getAltura() >= 43 && d.getAltura() <= 122)) {%>
-                            pontosEstatura05.push(drawCircle(<%=(d.getIdade())%>, <%=(d.getAltura())%>, 3, '000', '000', 1, "<%=d.getHint()%>", stageEstatura05, 'graficoEstatura05', document.form.paciente.value));
-            <% }%>
-                    }
-            <%
-                if ((d.getIdade() >= 0 && d.getIdade() < 1826) && ((d.getPeso() / ((d.getAltura() / 100) * (d.getAltura() / 100))) >= 9.6 && ((d.getPeso() / ((d.getAltura() / 100) * (d.getAltura() / 100)))) <= 21.2)) {%>
-                        pontosImc05.push(drawCircle(<%=(d.getIdade())%>, <%=(d.getPeso() / ((d.getAltura() / 100) * (d.getAltura() / 100)))%>, 3, '000', '000', 1, "<%=d.getHint()%>", stageImc05, 'graficoImc05', document.form.paciente.value));
-            <% }%>
-                    if (document.form.paciente.value == 'Masculino') {
-            <%
-                if ((d.getIdade() >= 0 && d.getIdade() < 1826) && (d.getPerimetroCefalico() >= 32 && d.getPerimetroCefalico() <= 54.5)) {%>
-                            pontosPc05.push(drawCircle(<%=(d.getIdade())%>, <%=d.getPerimetroCefalico()%>, 3, '000', '000', 1, "<%=d.getHint()%>", stagePc05, 'graficoPc05', document.form.paciente.value));
-            <% }%>
-                    } else {
-            <%
-                if ((d.getIdade() >= 0 && d.getIdade() < 1826) && (d.getPerimetroCefalico() >= 31 && d.getPerimetroCefalico() <= 53.5)) {%>
-                            pontosPc05.push(drawCircle(<%=(d.getIdade())%>, <%=d.getPerimetroCefalico()%>, 3, '000', '000', 1, "<%=d.getHint()%>", stagePc05, 'graficoPc05', document.form.paciente.value));
-            <% }%>
-                    }
-                    if (document.form.paciente.value == 'Masculino'){
-            <%
-                if ((d.getIdade() >= 1825 && d.getIdade() < 6936) && (d.getPeso() >= 13 && d.getPeso() <= 45)) {%>
-                            pontosPeso519.push(drawCircle(<%=(d.getIdade())%>, <%=d.getPeso()%>, 3, '000', '000', 1, "<%=d.getHint()%>", stagePeso519, 'graficoPeso519', document.form.paciente.value));
-            <% }%>
-                    } else {
-            <%
-                if ((d.getIdade() >= 1825 && d.getIdade() < 6936) && (d.getPeso() >= 13 && d.getPeso() <= 47)) {%>
-                            pontosPeso519.push(drawCircle(<%=(d.getIdade())%>, <%=d.getPeso()%>, 3, '000', '000', 1, "<%=d.getHint()%>", stagePeso519, 'graficoPeso519', document.form.paciente.value));
-            <% }%>
-                    }
-                    if (document.form.paciente.value == 'Masculino'){
-            <%
-                if ((d.getIdade() >= 1825 && d.getIdade() < 6936) && (d.getAltura() >= 1 && d.getAltura() <= 195)) {%>
-                            pontosEstatura519.push(drawCircle(<%=(d.getIdade())%>, <%=d.getAltura()%>, 3, '000', '000', 1, "<%=d.getHint()%>", stageEstatura519, 'graficoEstatura519', document.form.paciente.value));
-            <% }%>
-                    } else {
-            <%
-                if ((d.getIdade() >= 1825 && d.getIdade() < 6936) && (d.getAltura() >= 105 && d.getAltura() <= 180)) {%>
-                            pontosEstatura519.push(drawCircle(<%=(d.getIdade())%>, <%=d.getAltura()%>, 3, '000', '000', 1,"<%=d.getHint()%>", stageEstatura519, 'graficoEstatura519', document.form.paciente.value));
-            <% }%>
-                    }
-                    if (document.form.paciente.value == 'Masculino'){
-            <%
-                if ((d.getIdade() >= 1825 && d.getIdade() < 6936) && ((d.getPeso() / ((d.getAltura() / 100) * (d.getAltura() / 100))) >= 12 && ((d.getPeso() / ((d.getAltura() / 100) * (d.getAltura() / 100)))) <= 30)) {%>
-                            pontosImc519.push(drawCircle(<%=(d.getIdade())%>, <%=(d.getPeso() / ((d.getAltura() / 100) * (d.getAltura() / 100)))%>, 3, '000', '000', 1, "<%=d.getHint()%>", stageImc519, 'graficoImc519', document.form.paciente.value));
-            <% }%>
-                    } else {
-            <%
-                if ((d.getIdade() >= 1825 && d.getIdade() < 6936) && ((d.getPeso() / ((d.getAltura() / 100) * (d.getAltura() / 100))) >= 12 && ((d.getPeso() / ((d.getAltura() / 100) * (d.getAltura() / 100)))) <= 29.5)) {%>
-                            pontosImc519.push(drawCircle(<%=(d.getIdade())%>, <%=(d.getPeso() / ((d.getAltura() / 100) * (d.getAltura() / 100)))%>, 3, '000', '000', 1, "<%=d.getHint()%>", stageImc519, 'graficoImc519', document.form.paciente.value));
-            <% }%>
-                    }
-            <%
-                }%>
-
-                        drawLineTroughCircle(pontosPeso05, stagePeso05);
-                        drawLineTroughCircle(pontosEstatura05, stageEstatura05);
-                        drawLineTroughCircle(pontosImc05, stageImc05);
-                        drawLineTroughCircle(pontosPc05, stagePc05);
-
-                        drawLineTroughCircle(pontosPeso519, stagePeso519);
-                        drawLineTroughCircle(pontosEstatura519, stageEstatura519);
-                        drawLineTroughCircle(pontosImc519, stageImc519);
-                    });
-        </script>        
-        <!-- Codigo do jquery do botao submit, a, button -->
-        <script type="text/javascript">
-            $(function() {
-                $( "input:submit, a, button, reset", "#formulario" ).button();
-                $( "a", "#formulario" ).click(function() { return false; });
-            });
-        </script>
-        <!-- Janela popup para mais detalhes do paciente -->
-        <script type="text/javascript">
-            function abrePopUp(id){
-                window.open('medidaMostrar.jsp?id='+id,'page','toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=500,height=500');  
-            }
-        </script>
-        <!-- Script tabela jquery -->
-        <script type="text/javascript">
-            function() {
-                $('#dataTable').dataTable();
-            };
-        </script>
-        <!--Calendario -->
-        <script type="text/javascript">
-            $(function() {
-                $( "#datepicker" ).datepicker();
-            });
-        </script>
-        <!--Mostra o formulario de nova medida-->
-        <script type="text/javascript">
-            function escondeTabela(){
-                $("#dataTable").css({display:"none"});
-                $("#formularioNovaMedida").css({display:"block"});
-                $("#novaMedida").css({display:"none"});
-            };
-            function mostraTabela(){
-                $("#dataTable").css({display:"block"});
-                $("#formularioNovaMedida").css({display:"none"});
-                $("#novaMedida").css({display:"block"})
-                resetForm();
-            }
-            function resetForm(){
-                document.getElementById("datepicker").value = "";
-                document.getElementById("peso").value = "";
-                document.getElementById("altura").value = "";
-                document.getElementById("perimetrocefalico").value = "";
-            }
-            $(function(){
-                if(<%= (session.getAttribute("dado") != null) ? "true" : "false"%>){
-                    escondeTabela();  
-                }
-                $("#datepicker").mask("99/99/9999");
-                
-                $("#peso").keyup(function() {  
-                    var valor = $("#peso").val().replace(/[^0-9.]+/g,'');  
-                    $("#peso").val(valor);  
-                });
-                
-                $("#altura").keyup(function() {  
-                    var valor = $("#altura").val().replace(/[^0-9.]+/g,'');  
-                    $("#altura").val(valor);  
-                });
-                
-                $("#perimetrocefalico").keyup(function() {  
-                    var valor = $("#perimetrocefalico").val().replace(/[^0-9.]+/g,'');  
-                    $("#perimetrocefalico").val(valor);  
-                });
-            });
-        </script>
-        <!--Muda o texto conforme as abas são selecionadas-->
-        <script type="text/javascript">    
-            function mudaTexto(tab){
-                if (tab=='peso05'){
-                    $('.relatorio').html('<%=dados.size() > 0 ? dados.get(0).getTexto("peso05", paciente.getSexo()) : "Não existe dado para ser avaliado"%>');
-                }else if(tab=='peso519'){
-                    $('.relatorio').html('peso519');
-                }else if(tab=='estatura05'){
-                    $('.relatorio').html('<%=(dados.size() > 0 && (dados.get(0).getIdade() > 630)) ? dados.get(0).getTexto("estatura05", paciente.getSexo()) : "Não existe dado para ser avaliado"%>');
-                }else if(tab=='estatura519'){
-                    $('.relatorio').html('estatura519');
-                }else if(tab=='imc05'){
-                    $('.relatorio').html('<%=dados.size() > 0 ? dados.get(0).getTexto("imc05", paciente.getSexo()) : "Não existe dado para ser avaliado"%>');
-                }else if(tab=='imc519'){
-                    $('.relatorio').html('imc519');
-                }else if(tab=='pc05'){
-                    $('.relatorio').html('pc05');
-                }                                  
-            }
-        </script>
+        
     </body>
     <%}%>
 </html>
