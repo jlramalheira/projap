@@ -319,8 +319,8 @@
                                 out.print("<td align=\"center\">" + d.getEstaturaPosicao() + " cm</td>");
                                 out.print("<td align=\"center\">" + d.getPerimetroCefalico() + " cm</td>");
                                 out.print("<td align=\"center\">" + d.getIMC() + "</td>");
-                                out.print("<td align=\"center\"><a href=\"Armazenamento?op=edit&id=" + d.getId() + "\"> <img hint=\"Editar\" src=img/editIcon.png /> </a></td>");
-                                out.print("<td align=\"center\"><a href=\"Armazenamento?op=remove&id=" + d.getId() + "\"> <img hint=\"Deletar\" src=img/deleteIco.png /> </a></td>");
+                                out.print("<td align=\"center\"><a href=\"ServletMedidas?operacao=editar&id=" + d.getId() + "\"> <img hint=\"Editar\" src=img/editIcon.png /> </a></td>");
+                                out.print("<td align=\"center\"><a href=\"ServletMedidas?operacao=deletar&id=" + d.getId() + "\"> <img hint=\"Deletar\" src=img/deleteIco.png /> </a></td>");
                                 out.print("<td align=\"center\"><a href=\"#\" onclick=\"abrePopUp(" + d.getId() + ")\"> <img hint=\"Detalhes\" src=img/plusIco.png /> </a></td>");
                                 out.print("</tr>");
                             }
