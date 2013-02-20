@@ -59,7 +59,6 @@ public class Dao<T> {
     }
     
     public List<T> listByUsuario(Usuario usuario) {
-        System.out.print("SELECT e FROM "+classe.getSimpleName()+" e WHERE e.usuario.id ="+usuario.getId());
         return em.createQuery("SELECT e FROM "+classe.getSimpleName()+" e WHERE e.usuario.id ="+usuario.getId()).getResultList();
     }
     

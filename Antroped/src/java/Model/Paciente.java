@@ -19,6 +19,7 @@ import javax.persistence.Temporal;
  */
 @Entity
 public class Paciente implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -83,9 +84,25 @@ public class Paciente implements Serializable {
     public void setEstaturaPai(int estaturaPai) {
         this.estaturaPai = estaturaPai;
     }
-    
+
     public String getNomeMae() {
         return nomeMae;
+    }
+
+    public String getPrimeiroNomeMae() {
+        String primeiroNomeMae = this.nomeMae;
+        if (this.nomeMae.indexOf(" ") != -1) {
+            primeiroNomeMae = this.nomeMae.substring(0, this.nomeMae.indexOf(" "));
+        }
+        return primeiroNomeMae;
+    }
+
+    public String getPrimeiroNomePai() {
+        String primeiroNomePai = this.nomePai;
+        if (this.nomePai.indexOf(" ") != -1) {
+            primeiroNomePai = this.nomePai.substring(0, this.nomePai.indexOf(" "));
+        }
+        return primeiroNomePai;
     }
 
     public void setNomeMae(String nomeMae) {
@@ -148,23 +165,23 @@ public class Paciente implements Serializable {
     public String toString() {
         return "Controle.Paciente[ id=" + id + " ]";
     }
-    
-    public double CalculaEstaturaAlvo(){
+
+    public double CalculaEstaturaAlvo() {
         double estaturaAlvo = 0;
-        if (this.getSexo().equals("Masculino")){
-            estaturaAlvo = (this.getEstaturaPai()+this.getEstaturaMae()+13)/2;
+        if (this.getSexo().equals("Masculino")) {
+            estaturaAlvo = (this.getEstaturaPai() + this.getEstaturaMae() + 13) / 2;
         } else {
-            estaturaAlvo = (this.getEstaturaPai()+this.getEstaturaMae()-13)/2;
+            estaturaAlvo = (this.getEstaturaPai() + this.getEstaturaMae() - 13) / 2;
         }
         return estaturaAlvo;
     }
-    
+
     public String idadeToExtenso() {
         String data = "";
         int idade = Util.Util.getDiferencaDatas(this.getDataNascimento(), Calendar.getInstance().getTime());
-        int anos = (int)(idade/365);
-        int meses = (int) ((idade%365)/30);
-        int dias = (int) ((idade%365)%30)-(meses/2+1);
+        int anos = (int) (idade / 365);
+        int meses = (int) ((idade % 365) / 30);
+        int dias = (int) ((idade % 365) % 30) - (meses / 2 + 1);
         if (anos > 0) {
             data += anos;
             if (anos == 1) {
@@ -200,6 +217,5 @@ public class Paciente implements Serializable {
             }
         }
         return data;
-    }    
-    
+    }
 }
