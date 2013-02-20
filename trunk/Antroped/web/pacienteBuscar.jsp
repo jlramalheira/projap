@@ -1,7 +1,8 @@
 <%--
-    Document   : index
-    Created on : 24/09/2012, 19:24:29
-    Author     : JoaoLuiz
+    Document   : pacienteBuscar
+    Created on : 20/02/2013, 17:34:15
+    Author     : Joao Luiz e Max
+    Description: Pagina que contem opcoes para uma busca avancada dos pacientes
 --%>
 <%@page import="Model.Usuario"%>
 <%@page import="Model.Paciente"%>
@@ -37,12 +38,15 @@
             <!-- MAIN -->
             <div class="main">
                 <form action="ServletPaciente" method="GET" name="formpesquisaPaciente">
-                    <input type="search" name="pesquisar" id="pesquisar" value=""
-                           placeholder="Digite o nome de um paciente" />
+                    <label for="pesquisar">Nome Paciente:</label>
+                    <input type="search" name="pesquisar" id="pesquisar" value="" />
+                    <label for="pesquisarNomeMae">Nome M
+                        <input type="search" name="pesquisarNomeMae" id="pesquisarNomeMae" value="" />
+                    <p><input type="search" name="pesquisarNomePai" id="pesquisarNomePai" value="" />
+                    <p>Masculino<input type="radio" name="pesquisarSexo" value="Masculino" /></p>
                     <input type="submit" name="operacao" value="Pesquisar">
                 </form>
                 <a href="pacienteCadastrar.jsp">Adicionar Novo</a>
-                <a href="pacienteBuscar.jsp">Busca Avancada</a>
             </div>
             <!-- FOOTER -->
             <footer>

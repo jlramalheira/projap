@@ -5,6 +5,7 @@
 package Controlers;
 
 import Dao.Dao;
+import Dao.DaoPaciente;
 import Model.Medida;
 import Model.Paciente;
 import Model.Usuario;
@@ -12,6 +13,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -69,7 +71,12 @@ public class ServletPaciente extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession(true);
-        int id = Integer.parseInt(request.getParameter("id"));
+        
+        int id = 0;
+        if (request.getParameter("id")!=null){
+            id = Integer.parseInt(request.getParameter("id"));
+        }
+        Usuario usuario = (Usuario)session.getAttribute("usuario");
         String operacao = request.getParameter("operacao");
 
         if (operacao.equalsIgnoreCase("deletar")) {
@@ -80,18 +87,25 @@ public class ServletPaciente extends HttpServlet {
             new Dao<Paciente>(Paciente.class).remove(id);
 
             response.sendRedirect("usuarioIndex.jsp");
-        }
-        if (operacao.equalsIgnoreCase("mostrar")) {
+        } else if (operacao.equalsIgnoreCase("mostrar")) {
             Paciente paciente = new Dao<Paciente>(Paciente.class).get(id);
 
             session.setAttribute("paciente", paciente);
             response.sendRedirect("pacienteAcompanhar.jsp");
-        }
-        if (operacao.equalsIgnoreCase("editar")) {
+        } else if (operacao.equalsIgnoreCase("editar")) {
             Paciente paciente = new Dao<Paciente>(Paciente.class).get(id);
 
             session.setAttribute("pacienteEditando", paciente);
             response.sendRedirect("usuarioIndex.jsp");
+        } else if (operacao.equalsIgnoreCase("pesquisar")){
+            String nome = request.getParameter("pesquisar");
+            
+            List<Paciente> pacientesPesquisa = new DaoPaciente().listByNomeUsuario(nome,usuario);
+            
+            session.setAttribute("pacientesPesquisa", pacientesPesquisa);
+            RequestDispatcher rd = request.getRequestDispatcher("pacienteListar.jsp");
+            
+            rd.forward(request, response);            
         }
     }
 
