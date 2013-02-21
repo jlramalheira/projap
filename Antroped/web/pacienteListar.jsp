@@ -46,14 +46,17 @@
                     <td><%=p.getSexo()%></td>
                     <td><%=p.getPrimeiroNomeMae()%></td>
                     <td><%=p.getPrimeiroNomePai()%></td>
-                    <td><a href=\"ServletPaciente?id=<%=p.getId()%>&operacao=mostrar\"> <img hint=\"Deletar\" src=img/lookIco.png /></a></td>
-                    <td><a href=\"ServletPaciente?id=<%=p.getId()%>&operacao=deletar\"> <img hint=\"Deletar\" src=img/deleteIco.png /> </a></td>
+                    <td><a href="ServletPaciente?id=<%=p.getId()%>&operacao=mostrar"> <img hint="Deletar" src=img/lookIco.png /></a></td>
+                    <td><a href="ServletPaciente?id=<%=p.getId()%>&operacao=deletar"> <img hint="Deletar" src=img/deleteIco.png /> </a></td>
                 </tr>
                 <% }%>
             </tbody>
         </table>
+
+        <%} else {//caso nao encontra nenhum usuario com os parametros fornecidos%>
+        <h1>Não existe nenhum paciente com esses dados</h1>
+        <% }%>
         <a href="pacienteCadastrar.jsp">Adicionar Novo</a>
-        <%}%>
         <%
             session.removeAttribute("pacientesPesquisa");
         %>

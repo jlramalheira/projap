@@ -39,11 +39,16 @@
             <div class="main">
                 <form action="ServletPaciente" method="GET" name="formpesquisaPaciente">
                     <label for="pesquisar">Nome Paciente:</label>
-                    <input type="search" name="pesquisar" id="pesquisar" value="" />
-                    <label for="pesquisarNomeMae">Nome M
-                        <input type="search" name="pesquisarNomeMae" id="pesquisarNomeMae" value="" />
-                    <p><input type="search" name="pesquisarNomePai" id="pesquisarNomePai" value="" />
-                    <p>Masculino<input type="radio" name="pesquisarSexo" value="Masculino" /></p>
+                    <input type="search" name="pesquisar" id="pesquisar" value="" /><br/>
+                    <label for="pesquisarNomeMae">Nome Mãe: </label>
+                    <input type="search" name="pesquisarNomeMae" id="pesquisarNomeMae" value="" /><br/>
+                    <label for="pesquisarNomePai">Nome Pai:</label>
+                    <input type="search" name="pesquisarNomePai" id="pesquisarNomePai" value="" /><br/>
+                    <label>Sexo:</label><br/>
+                    <input type="radio" name="pesquisarSexo" value="Masculino" id="sexom" checked="checked"/>
+                    <label for="sexom" class="radiolabel">Masculino</label>                        
+                    <input type="radio" name="pesquisarSexo" value="Feminino" id="sexof" />
+                    <label for="sexof" class="radiolabel">Feminino</label><br/>
                     <input type="submit" name="operacao" value="Pesquisar">
                 </form>
                 <a href="pacienteCadastrar.jsp">Adicionar Novo</a>

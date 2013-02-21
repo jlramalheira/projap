@@ -130,7 +130,7 @@ function convertDadoMascPixelsX(kx, grafico){
         return (72+(797/1825)*kx);
     }
     if (grafico == 'graficoEstatura05'){
-        return (72+(797/1095)*(kx-730));
+        return (72+(797/1825)*(kx));
     } 
     if (grafico == 'graficoImc05'){
         return (72+(797/1825)*(kx));
@@ -155,7 +155,7 @@ function convertDadoMascPixelsY(ky, grafico){
         return (27+555-(555/24)*(ky-1));
     }
     if (grafico == 'graficoEstatura05'){
-        return (27+555-(555/40)*(ky-80));
+        return (27+555-(555/79)*(ky-43));
     } 
     if (grafico == 'graficoImc05'){
         return (27+555-(555/(11.8))*(ky-9.6));

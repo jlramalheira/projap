@@ -98,9 +98,25 @@ public class ServletPaciente extends HttpServlet {
             session.setAttribute("pacienteEditando", paciente);
             response.sendRedirect("usuarioIndex.jsp");
         } else if (operacao.equalsIgnoreCase("pesquisar")){
-            String nome = request.getParameter("pesquisar");
+            String nomePaciente = "";
+            String nomePai = "";
+            String nomeMae = "";
+            String sexo = "";
             
-            List<Paciente> pacientesPesquisa = new DaoPaciente().listByNomeUsuario(nome,usuario);
+            if (request.getParameter("pesquisar")!= null){
+                nomePaciente = request.getParameter("pesquisar");
+            }
+            if (request.getParameter("pesquisarNomeMae")!= null){
+                nomeMae = request.getParameter("pesquisarNomeMae");
+            }
+            if (request.getParameter("pesquisarNomePai")!= null){
+                nomePai = request.getParameter("pesquisarNomePai");
+            }
+            if (request.getParameter("pesquisarSexo")!= null){
+                sexo = request.getParameter("pesquisarSexo");
+            }
+            
+            List<Paciente> pacientesPesquisa = new DaoPaciente().listByAll(nomePaciente,nomePai,nomeMae, sexo, usuario);
             
             session.setAttribute("pacientesPesquisa", pacientesPesquisa);
             RequestDispatcher rd = request.getRequestDispatcher("pacienteListar.jsp");
