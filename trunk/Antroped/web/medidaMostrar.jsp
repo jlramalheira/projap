@@ -29,7 +29,7 @@
         <h1>Peso/Idade: </h1>
         <p><%=dado.getTexto("peso05", dado.getPaciente().getSexo()) %></p><br/>
         <h1>Estatura/Idade: </h1>
-        <p><%=(dado.getIdade() > 630) ? dado.getTexto("estatura05", dado.getPaciente().getSexo()) : "Não existe dado para ser avaliado"%></p><br/>
+        <p><%=dado.getTexto("estatura05", dado.getPaciente().getSexo())%></p><br/>
         <h1>IMC: </h1>
         <p><%=dado.getTexto("imc05", dado.getPaciente().getSexo()) %></p><br/>
     </body>

@@ -21,17 +21,17 @@ public class Util {
     
     //public static double DESVIO_PADRAO_MASC_IMC05 = 0.9902626022190686;
     //public static double DESVIO_PADRAO_FEM_IMC05 = 0.9902626022190686;
-    public static double DESVIO_PADRAO_MASC_IMC05 = 0.735846;
-    public static double DESVIO_PADRAO_FEM_IMC05 = 0.606226;
+    public static double DESVIO_PADRAO_MASC_IMC05 = 0.990262;
+    public static double DESVIO_PADRAO_FEM_IMC05 = 0.998723;
     
     public static double DESVIO_PADRAO_MASC_PESO05 = 0.979605;
-    public static double DESVIO_PADRAO_FEM_PESO05 = 0;
+    public static double DESVIO_PADRAO_FEM_PESO05 = 0.987985;
     
     public static double DESVIO_PADRAO_MASC_ESTATURA05 = 0.978690;
-    public static double DESVIO_PADRAO_FEM_ESTATURA05 = 0;
+    public static double DESVIO_PADRAO_FEM_ESTATURA05 = 0.983478;
     
-    public static double DESVIO_PADRAO_MASC_PC05 = 0.825044;
-    public static double DESVIO_PADRAO_FEM_PC05 = 0;
+    public static double DESVIO_PADRAO_MASC_PC05 = 0.925044;
+    public static double DESVIO_PADRAO_FEM_PC05 = 0.934567;
     
     
     public static String TEXTO_IMC05_MAGREZAACENTUADA = "De acordo com a Organização Mundial de Saúde (OMS) e conforme a última medida antropométrica, a criança encontra-se em Magreza Acentuada. Obs: Este até pode ser um biotipo familiar, no entanto, há um maior de risco de estar relacionado a alguma doença.";

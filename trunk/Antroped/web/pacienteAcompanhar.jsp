@@ -67,7 +67,7 @@
             <% }%>
                     if (document.form.paciente.value == 'Masculino'){
             <%
-                if ((d.getIdade() >= 730 && d.getIdade() < 1826) && (d.getAltura() >= 80 && d.getAltura() <= 120)) {%>
+                if ((d.getIdade() >= 0 && d.getIdade() < 1826) && (d.getAltura() >= 43 && d.getAltura() <= 122)) {%>
                             pontosEstatura05.push(drawCircle(<%=(d.getIdade())%>, <%=(d.getAltura())%>, 3, '000', '000', 1, "<%=d.getHint()%>", stageEstatura05, 'graficoEstatura05', document.form.paciente.value));
             <% }%>
                     } else {
@@ -211,7 +211,7 @@
                 }else if(tab=='peso519'){
                     $('.relatorio').html('peso519');
                 }else if(tab=='estatura05'){
-                    $('.relatorio').html('<%=(dados.size() > 0 && (dados.get(0).getIdade() > 630)) ? dados.get(0).getTexto("estatura05", paciente.getSexo()) : "Não existe dado para ser avaliado"%>');
+                    $('.relatorio').html('<%=dados.size() > 0 ? dados.get(0).getTexto("estatura05", paciente.getSexo()) : "Não existe dado para ser avaliado"%>');
                 }else if(tab=='estatura519'){
                     $('.relatorio').html('estatura519');
                 }else if(tab=='imc05'){
