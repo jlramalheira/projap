@@ -1,11 +1,10 @@
-<%@page import="Model.Usuario"%>
+<%-- 
+    Document   : usuarioRecuperarLoginSenha
+    Created on : 20/02/2013, 23:44:53
+    Author     : JoaoLuiz
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
-    Usuario usuario = (Usuario) session.getAttribute("usuario");
-    if ((usuario != null)) {
-        response.sendRedirect("usuarioIndex.jsp");
-    }
-%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,24 +22,21 @@
             </header>
             <!-- MAIN -->
             <div class="main">
-                <form name="form" action="ServletUsuario" method="POST" class="formulario formulariologin">
+                <form name="form" action="ServletUsuario" method="POST" class="formulario formulariorecuperar">
                     <fieldset>
-                        <legend>Login:</legend>
+                        <legend>Recuperar Login e Senha:</legend>
                         <%
                             if (session.getAttribute("mensagem") != null) {
                                 out.print("<p class=\"erro\">" + session.getAttribute("mensagem") + "</p>");
                                 session.removeAttribute("mensagem");
                             }
                         %>
-                        <label for="login">Login:</label><br/>
-                        <input type="text" name="login" id="login"/><br/>
-                        <label for="senha">Senha:</label><br/>
-                        <input type="password" name="senha" id="senha"/><br/>                        
-                        <input type="submit" id="login" 
+                        <label for="email">Email:</label><br/>
+                        <input type="text" name="email" id="email"/><br/>                     
+                        <input type="submit" id="recuperar" 
                                name="operacao"
-                               value="Login"
+                               value="Recuperar"
                                class="button" />
-                        <a href="ServletUsuario?operacao=esqueceuSenha">Esqueceu login/senha?</a>
                     </fieldset>
                 </form>
             </div>
@@ -50,3 +46,4 @@
         </div>
     </body>
 </html>
+

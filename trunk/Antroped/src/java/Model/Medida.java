@@ -33,13 +33,15 @@ public class Medida implements Serializable {
     private double altura;
     private double perimetroCefalico;
     private String posicao;
+    private double idadeOssea;
+    private double previsaoEstatura;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date data;
 
     public Medida() {
     }
 
-    public Medida(String posicao, Date data, Paciente paciente, int idade, double peso, double perimetroEncefalico, double altura) {
+    public Medida(String posicao, Date data, Paciente paciente, int idade, double peso, double perimetroEncefalico, double altura, double idadeOssea) {
         this.paciente = paciente;
         this.peso = peso;
         this.idade = idade;
@@ -47,6 +49,7 @@ public class Medida implements Serializable {
         this.altura = altura;
         this.data = data;
         this.posicao = posicao;
+        this.idadeOssea = idadeOssea;
     }
 
     public double getScoreZ(String grafico, String sexo) {
@@ -126,6 +129,22 @@ public class Medida implements Serializable {
 
     public void setPerimetroCefalico(double perimetroCefalico) {
         this.perimetroCefalico = perimetroCefalico;
+    }
+
+    public double getIdadeOssea() {
+        return idadeOssea;
+    }
+
+    public void setIdadeOssea(double idadeOssea) {
+        this.idadeOssea = idadeOssea;
+    }
+
+    public double getPrevisaoEstatura() {
+        return previsaoEstatura;
+    }
+
+    public void setPrevisaoEstatura(double previsaoEstatura) {
+        this.previsaoEstatura = previsaoEstatura;
     }
 
     public String getPosicao() {

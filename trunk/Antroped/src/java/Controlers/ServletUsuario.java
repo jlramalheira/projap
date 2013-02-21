@@ -9,6 +9,8 @@ import Model.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,7 +37,7 @@ public class ServletUsuario extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         PrintWriter out = response.getWriter();
         try {
             /* TODO output your page here. You may use following sample code. */
@@ -72,8 +74,8 @@ public class ServletUsuario extends HttpServlet {
         if (operacao.equalsIgnoreCase("sair")) {
             session.invalidate();
             response.sendRedirect("usuarioLogin.jsp");
-        } else {
-            response.sendRedirect("usuarioIndex.jsp");
+        } else if (operacao.equalsIgnoreCase("esqueceuSenha")) {
+            response.sendRedirect("usuarioRecuperarLoginSenha.jsp");
         }
     }
 
@@ -100,7 +102,7 @@ public class ServletUsuario extends HttpServlet {
             String login = request.getParameter("login");
             String senha = request.getParameter("senha");
 
-            List<Usuario> usuarios = (new DaoUsuario().listByLogin(login));
+            List<Usuario> usuarios = (new DaoUsuario().listByLoginEmail(login, email));
 
 
             if (!usuarios.isEmpty()) {
@@ -120,14 +122,37 @@ public class ServletUsuario extends HttpServlet {
             String senha = request.getParameter("senha");
             if ((new DaoUsuario().listByLogin(login)).isEmpty()) {
                 session.setAttribute("mensagem", "Login incorreto");
+
+                response.sendRedirect("usuarioLogin.jsp");
             } else {
                 Usuario usuario = (new DaoUsuario().listByLogin(login)).get(0);
                 if ((usuario != null) && (usuario.getSenha().equals(senha))) {
                     session.setAttribute("usuario", usuario);
+                    response.sendRedirect("usuarioIndex.jsp");
                 } else {
                     session.setAttribute("mensagem", "Senha incorreta");
+                    response.sendRedirect("usuarioLogin.jsp");
                 }
-                response.sendRedirect("usuarioIndex.jsp");
+            }
+        } else if (operacao.equalsIgnoreCase("recuperar")) {
+            String email = request.getParameter("email");
+
+            if (!(new DaoUsuario().listByEmail(email).isEmpty())) {
+                Usuario usuario = new DaoUsuario().listByEmail(email).get(0);
+                try {
+                    Email.sendEmail(email, "Recuperação de Login e Senha",
+                            "Olá " + usuario.getNome() + ", \n\n"
+                            + "Seu Login no sistema Antroped é: " + usuario.getLogin()
+                            + " \nSua senha é: " + usuario.getSenha() + " \n\n"
+                            + "Atenciosamente,\nAntroped.");
+                } catch (Exception ex) {
+                    Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                session.setAttribute("mensagem", "Email de recuperação enviado com sucesso");
+                response.sendRedirect("usuarioLogin.jsp");
+            } else {
+                session.setAttribute("mensagem", "Usuario não cadastrado");
+                response.sendRedirect("usuarioRecuperarLoginSenha.jsp");
             }
         }
 
