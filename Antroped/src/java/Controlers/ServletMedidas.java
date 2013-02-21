@@ -104,6 +104,7 @@ public class ServletMedidas extends HttpServlet {
         double peso = 0;
         double perimetroCefalico = 0;
         double altura = 0;
+        double idadeOssea = 0;
         String posicao = "";
         Date data = new Date();
 
@@ -122,11 +123,14 @@ public class ServletMedidas extends HttpServlet {
         if (!request.getParameter("data").isEmpty()) {
             data = Util.Util.stringToDate(request.getParameter("data"));
         }
+        if (!request.getParameter("idadeOssea").isEmpty()) {
+            idadeOssea = Double.parseDouble(request.getParameter("idadeOssea"));
+        }
         int total = Util.Util.getDiferencaDatas(paciente.getDataNascimento(), data);
 
         if (operacao.equalsIgnoreCase("cadastrar")) {
 
-            new Dao<Medida>(Medida.class).insert(new Medida(posicao, data, paciente, total, peso, perimetroCefalico, altura));
+            new Dao<Medida>(Medida.class).insert(new Medida(posicao, data, paciente, total, peso, perimetroCefalico, altura, idadeOssea));
 
         } else if (operacao.equalsIgnoreCase("editar")) {
             Medida dado = (Medida) session.getAttribute("dado");

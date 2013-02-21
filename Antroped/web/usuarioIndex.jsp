@@ -30,9 +30,12 @@
             <!-- HEADER -->
             <header>
                 <h1>Antropometria</h1>
-                <p class="sair">
-                    <a href="ServletUsuario?operacao=sair" title="Sair">Sair<img src="img/exitIco.png" /></a>
-                </p>
+                <div class="usuario">
+                    <p>Olá,</p>
+                    <p><%=usuario.getNome()%> </p>
+                    <p><a href="ServletUsuario?operacao=sair" title="Sair">Sair</a></p>
+                </div>
+
             </header>
             <!-- MAIN -->
             <div class="main">

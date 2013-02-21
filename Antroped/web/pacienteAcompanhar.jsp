@@ -207,19 +207,19 @@
         <script type="text/javascript">
             function mudaTexto(tab){
                 if (tab=='peso05'){
-                    $('.relatorio').html('<%=dados.size() > 0 ? dados.get(0).getTexto("peso05", paciente.getSexo()) : "Não existe dado para ser avaliado"%>');
+                    $('.relatorio').html('<%=dados.size() > 0 ? dados.get(0).getTexto("peso05", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
                 }else if(tab=='peso519'){
-                    $('.relatorio').html('peso519');
+                    $('.relatorio').html('Não há nenhuma avaliação disponível para este tipo de gráfico.');
                 }else if(tab=='estatura05'){
-                    $('.relatorio').html('<%=dados.size() > 0 ? dados.get(0).getTexto("estatura05", paciente.getSexo()) : "Não existe dado para ser avaliado"%>');
+                    $('.relatorio').html('<%=dados.size() > 0 ? dados.get(0).getTexto("estatura05", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
                 }else if(tab=='estatura519'){
-                    $('.relatorio').html('estatura519');
+                    $('.relatorio').html('Não há nenhuma avaliação disponível para este tipo de gráfico.');
                 }else if(tab=='imc05'){
-                    $('.relatorio').html('<%=dados.size() > 0 ? dados.get(0).getTexto("imc05", paciente.getSexo()) : "Não existe dado para ser avaliado"%>');
+                    $('.relatorio').html('<%=dados.size() > 0 ? dados.get(0).getTexto("imc05", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
                 }else if(tab=='imc519'){
-                    $('.relatorio').html('imc519');
+                    $('.relatorio').html('Não há nenhuma avaliação disponível para este tipo de gráfico.');
                 }else if(tab=='pc05'){
-                    $('.relatorio').html('pc05');
+                    $('.relatorio').html('Não há nenhuma avaliação disponível para este tipo de gráfico.');
                 }
             }
         </script>
@@ -263,8 +263,8 @@
                                        : ((Medida) session.getAttribute("dado")).getPeso()%>"/>
                         <br/>
 
-                        <label for="altura">Altura (cm):</label><br/>
-                        <input type="text" name="altura" id="altura"
+                        <label for="estatura">Estatura (cm):</label><br/>
+                        <input type="text" name="altura" id="estatura"
                                value="<%=(session.getAttribute("dado") == null)
                                        ? ""
                                        : ((Medida) session.getAttribute("dado")).getAltura()%>"/>
@@ -288,6 +288,13 @@
                                value="<%=(session.getAttribute("dado") == null)
                                        ? ""
                                        : ((Medida) session.getAttribute("dado")).getPerimetroCefalico()%>"/>
+                        <br/>
+                        <label for="peso">Idade Óssea:</label><br/>
+                        <input type="text" name="idadeOssea" id="idadeOssea"
+                               value="<%=(session.getAttribute("dado") == null)
+                                       ? ""
+                                       : ((Medida) session.getAttribute("dado")).getIdadeOssea()%>"/>
+                        <br/>
                     </fieldset>
                 </form>
 
@@ -300,28 +307,32 @@
                             <th class="data">Data</th>
                             <th class="idade">Idade</th>
                             <th class="peso">Peso</th>
-                            <th class="altura">Altura</th>
+                            <th class="altura">Estatura</th>
+                            <th class="imc">IMC</th>
                             <th class="perimetrocefalico">Perímetro<br/>
                                 Cefalico</th>
-                            <th class="imc">IMC</th>
+                            <th class="idadeossea">Idade Óssea </th>
+                            <th class="previsaoestatura">Previsão de Estatura (B-P)</th>
                             <th colspan="3">Opções</th>
                         </tr>
                     </thead>
                     <tbody>
                         <%
                             for (Medida d : pag) {
-                                out.print("<tr class=\"gradeA\">");
-                                out.print("<td align=\"center\">" + Util.Util.dateToString(d.getData()) + "</td>");
-                                out.print("<td align=\"center\">");
+                                out.print("<tr>");
+                                out.print("<td>" + Util.Util.dateToString(d.getData()) + "</td>");
+                                out.print("<td>");
                                 out.print(d.idadeToExtenso());
                                 out.print("</td>");
-                                out.print("<td align=\"center\">" + d.getPeso() + " kg</td>");
-                                out.print("<td align=\"center\">" + d.getEstaturaPosicao() + " cm</td>");
-                                out.print("<td align=\"center\">" + d.getPerimetroCefalico() + " cm</td>");
-                                out.print("<td align=\"center\">" + d.getIMC() + "</td>");
-                                out.print("<td align=\"center\"><a href=\"ServletMedidas?operacao=editar&id=" + d.getId() + "\"> <img hint=\"Editar\" src=img/editIcon.png /> </a></td>");
-                                out.print("<td align=\"center\"><a href=\"ServletMedidas?operacao=deletar&id=" + d.getId() + "\"> <img hint=\"Deletar\" src=img/deleteIco.png /> </a></td>");
-                                out.print("<td align=\"center\"><a href=\"#\" onclick=\"abrePopUp(" + d.getId() + ")\"> <img hint=\"Detalhes\" src=img/plusIco.png /> </a></td>");
+                                out.print("<td>" + d.getPeso() + " kg</td>");
+                                out.print("<td>" + d.getEstaturaPosicao() + " cm</td>");
+                                out.print("<td>" + d.getIMC() + " Kg/m²</td>");
+                                out.print("<td>" + d.getPerimetroCefalico() + " cm</td>");
+                                out.print("<td>"+ d.getIdadeOssea()+"</td>");
+                                out.print("<td> - </td>");
+                                out.print("<td><a href=\"ServletMedidas?operacao=editar&id=" + d.getId() + "\"> <img hint=\"Editar\" src=img/editIcon.png /> </a></td>");
+                                out.print("<td><a href=\"ServletMedidas?operacao=deletar&id=" + d.getId() + "\"> <img hint=\"Deletar\" src=img/deleteIco.png /> </a></td>");
+                                out.print("<td><a href=\"#\" onclick=\"abrePopUp(" + d.getId() + ")\"> <img hint=\"Detalhes\" src=img/plusIco.png /> </a></td>");
                                 out.print("</tr>");
                             }
                         %>
@@ -412,36 +423,43 @@
                         <div class="pane">
                             <div id="graficoPeso05" class="grafico" style="<%=(paciente.getSexo().equals("Masculino") ? "background-image: url('img/peso05masc.png');" : "background-image: url('img/peso05fem.png');")%>">
                                 <div id="containerPeso05"></div>
+                                <p>Fonte: OMS (2006)</p>
                             </div>
                         </div>
                         <div class="pane">
                             <div id="graficoPeso519" class="grafico" style="<%=(paciente.getSexo().equals("Masculino") ? "background-image: url('img/peso519masc.png');" : "background-image: url('img/peso519fem.png');")%>">
                                 <div id="containerPeso519"></div>
+                                <p>Fonte: OMS (2006)</p>
                             </div>
                         </div>
                         <div class="pane">
                             <div id="graficoEstatura05" class="grafico" style="<%=(paciente.getSexo().equals("Masculino") ? "background-image: url('img/estatura05masc.png');" : "background-image: url('img/estatura05fem.png');")%>">
                                 <div id="containerEstatura05"></div>
+                                <p>Fonte: OMS (2006)</p>
                             </div>
                         </div>
                         <div class="pane">
                             <div id="graficoEstatura519" class="grafico" style="<%=(paciente.getSexo().equals("Masculino") ? "background-image: url('img/estatura519masc.png');" : "background-image: url('img/estatura519fem.png');")%>">
                                 <div id="containerEstatura519"></div>
+                                <p>Fonte: OMS (2006)</p>
                             </div>
                         </div>
                         <div class="pane">
                             <div id="graficoImc05" class="grafico" style="<%=(paciente.getSexo().equals("Masculino") ? "background-image: url('img/imc05masc.png');" : "background-image: url('img/imc05fem.png');")%>">
                                 <div id="containerImc05"></div>
+                                <p>Fonte: OMS (2006)</p>
                             </div>
                         </div>
                         <div class="pane">
                             <div id="graficoImc519" class="grafico" style="<%=(paciente.getSexo().equals("Masculino") ? "background-image: url('img/imc519masc.png');" : "background-image: url('img/imc519fem.png');")%>">
                                 <div id="containerImc519"></div>
+                                <p>Fonte: OMS (2006)</p>
                             </div>
                         </div>
                         <div class="pane">
                             <div id="graficoPc05" class="grafico" style="<%=(paciente.getSexo().equals("Masculino") ? "background-image: url('img/pc05masc.png');" : "background-image: url('img/pc05fem.png');")%>" >
                                 <div id="containerPc05"></div>
+                                <p>Fonte: OMS (2006)</p>
                             </div>
                         </div>
                     </div>
