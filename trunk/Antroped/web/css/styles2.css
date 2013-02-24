@@ -1,0 +1,465 @@
+@charset "UTF-8";
+/*
+    Document   : styles2
+    Created on : 21/02/2013, 11:01:33
+    Author     : Max
+    Description: Arquivo de stylesheet para o Projeto
+*/
+/*FONTES
+  ============================================================================*/
+@font-face {
+    font-family: "Segoe";
+    src: url("fonts/segoeui.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Segoe Italic";
+    src: url("fonts/segoeuii.ttf");
+    font-weight: normal;
+    font-style: italic;
+}
+@font-face {
+    font-family: "Segoe Light";
+    src: url("fonts/segoeuil.ttf");
+    font-weight: lighter;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Segoe Bold";
+    src: url("fonts/seguisb.ttf");
+    font-weight: bold;
+    font-style: normal;
+}
+/*CSS RESET
+  ============================================================================*/
+html, body {
+    width: 100%;
+    height: 100%;
+}
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    font-family: inherit;
+    vertical-align: baseline;
+}
+:focus {
+    outline: 0;
+}
+body {
+    line-height: 1;
+    color: black;
+    background: white;
+}
+ol, ul {
+    list-style: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+caption, th, td {
+    text-align: left;
+    font-weight: normal;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: "";
+}
+blockquote, q {
+    quotes: "" "";
+}
+a{
+    color: inherit;
+    text-decoration: none;
+}
+a:hover{
+    color: inherit;
+    text-decoration: underline;
+}
+/*ESTRUTURAL
+  ============================================================================*/
+html, body {
+    background-color: #e5e2eb;
+    font-size: 12pt;
+    font-family: "Segoe Light";
+}
+div.container {
+    width: 960px;
+    background-color: #fff;
+    margin: 0 auto;
+}
+*::selection{
+    background-color: #9987b7;
+    color: #fff;
+}
+
+/*HEADER
+  ============================================================================*/
+header {
+    width: 920px;
+    height: 80px;
+    background-color: #76619a;
+    padding: 20px;
+}
+    header a.logo{
+        display: block;
+        float: left;
+        margin-top: 5px;
+    }
+    header .user{
+        display: block;
+        float: right;
+        width: 180px;
+        height: 60px;
+        padding: 10px;
+        background-color: #614c85;
+        color: #fff;
+        font: normal normal normal 0.688em "Segoe Light", sans-serif;
+    }
+        header .user .photo{
+            display:block;
+            float: right;
+            width: 60px;
+            height: 60px;
+            background-color: #9987b7;
+        }
+        header .user .welcome{
+            height: 45px;
+            overflow: hidden;
+            margin: 0 70px 0 0;
+            line-height: 1.3em;
+        }
+        header .user .logout{
+            margin: 3px 0 0 0;
+            font-family: "Segoe Bold";
+        }
+
+/*MAIN
+  ============================================================================*/
+div.main{
+    width: available;
+    min-height: 500px;
+    padding: 20px;
+}
+/*Navigation
+  ============================================================================*/
+div.main nav{
+    width: 100%;
+    color: #5a5662;
+    font: normal normal normal 0.750em "Segoe Bold", sans-serif;
+}
+div.main nav .current{
+    color: #76619a;
+    font-family: "Segoe";
+}
+/*Botões
+  ============================================================================*/
+.control button{
+    width: 100%;
+    height: 65px;
+    margin: 0 0 20px 0;
+    padding: 0 0 0 40px;
+    background-color: #76619a;
+    background-repeat: no-repeat;
+    border: none;
+    color: #fff;
+    font: normal normal normal 1em "Segoe Light", sans-serif;
+    cursor: pointer;
+}
+    .control button:hover{
+        background-color: #9987b7;
+    }
+    .control button:active{
+        background-color: #614c85;
+    }
+
+/*Paciente
+  ============================================================================*/
+div.main section.paciente {
+    width: 100%;
+    height: 150px;
+    margin: 15px 0 0 0;
+    overflow: hidden;
+    line-height: 1.2em;
+}
+    div.main section.paciente h1.name{
+        font-size: 1.875em;
+        margin: 0 0 15px 0;
+    }
+    div.main section.paciente section.data, section.mother, section.father{
+        display: block;
+        float: left;
+        width: 220px;
+    }
+        div.main section.paciente section span.label{
+            font-family: "Segoe";
+        }
+        div.main section.paciente section span.minor{
+            font-size: 0.688em;
+            color: #555;
+        }
+        div.main section.paciente section .margin{
+            margin: 5px 0 0 0;
+        }
+    div.main section.paciente .control{
+        float: right;
+        width: 150px;
+    }
+        div.main section.paciente .control button.edit{
+            background-image: url("images/pacienteEdit.svg");
+            background-size: 24%;
+            background-position: 13px center;
+        }
+        div.main section.paciente .control button.newMedida{
+            background-image: url("images/medidaNew.svg");
+            background-size: 25%;
+            background-position: 10px center;
+        }
+/*Tabela
+  ============================================================================*/
+table.medidas {
+    width: 100%;
+    margin: 20px 0 20px 0;
+}
+    table.medidas thead tr{
+        height: 40px;
+        background-color: #76619a;
+        color: #fff;
+    }
+        table.medidas thead th{
+            vertical-align: middle;
+            text-align: center;
+            font: normal normal normal 0.875em "Segoe", sans-serif;
+            line-height: 0.75em;
+        }
+        table.medidas thead th .minor{
+            color: #d1cadc;
+            font-size: 0.688em;
+        }
+    table.medidas tbody tr{
+        height: 40px;
+        color: #454150;
+    }
+        table.medidas tbody tr.even{
+            background-color: #e5e2eb;
+        }
+        table.medidas tbody tr.odd{
+            background-color: #d1cadc;
+        }
+    table.medidas tbody td{
+        vertical-align: middle;
+        text-align: center;
+        font: normal normal normal 0.875em "Segoe", sans-serif;
+        border-left: #b9b1c8 solid 1px;
+        border-right: #b9b1c8 solid 1px;
+    }
+        table.medidas tbody td img{
+            vertical-align: middle;
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            margin: 0 2px
+        }
+    table.medidas .data{
+        border-left: none;
+    }
+    table.medidas .opcoes{
+        border-right: none;
+        width: 110px;
+    }
+    table.medidas .idade{
+        text-align: left;
+        text-indent: 10px;
+    }
+/*Controle de Tabela e Gráficos
+  ============================================================================*/
+.tableControl {
+    display: block;
+    float: right;
+    width: 200px;
+    height: 120px;
+    background-color: #614c85;
+    padding: 10px;
+    margin: 0;
+    font: normal normal normal 0.875em "Segoe", sans-serif;
+    color: #ffffff;
+}
+    .tableControl button{
+        display: block;
+        float: left;
+        width: 95px;
+        height: 30px;
+        padding: 0;
+        font-family: "Segoe";
+    }
+    .tableControl button.antigas{
+        margin: 0 10px 0 0;
+        padding: 0 5px 0 0;
+    }
+    .tableControl button.recentes{
+        padding: 0 0 0 5px;
+    }
+form.graphControl{
+    display: block;
+    float: left;
+    width: 100%;
+    height: 90px;
+    margin: 0 0 0 0;
+}
+    form.graphControl legend{
+        margin:0;
+        font-family: "Segoe Bold"
+    }
+/*Avaliação do Gráfico
+  ============================================================================*/
+section.avaliacao{
+    width: 680px;
+    height: 140px;
+    overflow: hidden;
+}
+    section.avaliacao h1{
+        margin: 0px;
+        color: #614c85;
+        font: normal normal normal 1.2em "Segoe", sans-serif;
+    }
+    section.avaliacao p{
+        text-align: justify;
+        text-indent: 50px;
+        line-height: 1.5em;
+    }
+/*Gráficos
+  ============================================================================*/
+section.graficos{
+
+}
+section.graficos ul.tabs{
+    width: 100%;
+    height: 50px;
+    margin: 20px 0 0 0;
+    background-color: #d1cadc;
+    color: #454150;
+    font: normal normal normal 0.813em "Segoe", sans-serif;
+}
+    section.graficos ul.tabs li{
+        display: inline-block;
+        float: left;
+        width: 175px;
+        height: 35px;
+        padding: 15px 0 0 0;
+        text-align: center;
+        cursor: pointer;
+    }
+    section.graficos ul.tabs li:hover{
+        background-color: #e5e2eb;
+    }
+    section.graficos ul.tabs li.current{
+        background-color: #76619a;
+        color: #fff;
+    }
+section.graficos hr.bar{
+    width: 100%;
+    height: 5px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background-color: #76619a;
+}
+section.graficos div.grafico{
+    width: 960px;
+    height: 630px;
+    margin: 0 0 0 -20px;
+    background: #76619a url("../img/peso05masc.png") no-repeat scroll bottom center;
+}
+section.graficos .minor{
+    color: #5a5662;
+    font: normal normal normal 0.750em "Segoe Bold", sans-serif;
+}
+/*FORMULÁRIOS
+  ============================================================================*/
+form.form {
+    width: 880px;
+    padding: 20px;
+    margin: 20px 0;
+    background-color: #e5e2eb;
+    color: #454150;
+}
+    form.form div.col{
+        float: left;
+        margin: 0 30px 0 0;
+    }
+    form.form legend{
+        font: normal normal normal 1.313em "Segoe", sans;
+    }
+    form.form label{
+        font: normal normal normal 1em "Segoe", sans-serif;
+    }
+    form.form input[type="text"]{
+        width: 300px;
+        padding: 5px;
+        border: none;
+        margin: 5px 0 10px 0;
+        color: #614c85;
+        font: normal normal normal 0.875em "Segoe", sans-serif;
+    }
+    form.form div.buttons{
+        float: right;
+        width: 150px;
+    }
+    form.form div.buttons input[type="submit"], button{
+        width: 150px;
+        height: 65px;
+        margin: 0 0 20px 0;
+        padding: 0 0 0 40px;
+        border: none;
+        background-color: #76619a;
+        background-repeat: no-repeat;
+        color: #fff;
+        font: normal normal normal 1em "Segoe Light", sans-serif;
+        cursor: pointer;
+    }
+    form.form div.buttons input[type="submit"]:hover, button:hover{
+        background-color: #9987b7;
+    }
+    form.form div.buttons input[type="submit"]:active, button:active{
+        background-color: #614c85;
+    }
+    form.form div.buttons .confirm{
+        background-image: url("images/formConfirm.svg");
+        background-size: 20%;
+        background-position: 20px center;
+    }
+    form.form div.buttons .cancel{
+        background-image: url("images/formCancel.svg");
+        background-size: 20%;
+        background-position: 20px center;
+    }
+/*Nova Medida
+  ============================================================================*/
+form#medidaNewForm {
+    display: none;
+    height: 240px;
+}
+
+/*FOOTER
+  ============================================================================*/
+footer{
+    width: 100%;
+    height: 150px;
+    background-color: #76619a;
+}
+
+
+
