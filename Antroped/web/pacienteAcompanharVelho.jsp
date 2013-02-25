@@ -206,6 +206,7 @@
         <!--Muda o texto conforme as abas são selecionadas-->
         <script type="text/javascript">
             function mudaTexto(tab){
+                alert(tab);
                 if (tab=='peso05'){
                     $('.relatorio').html('<%=dados.size() > 0 ? dados.get(0).getTexto("peso05", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
                 }else if(tab=='peso519'){
@@ -325,7 +326,7 @@
                                 out.print(d.idadeToExtenso());
                                 out.print("</td>");
                                 out.print("<td>" + d.getPeso() + " kg</td>");
-                                out.print("<td>" + d.getEstaturaPosicao() + " cm</td>");
+                                out.print("<td>" + d.getAltura() + " cm</td>");
                                 out.print("<td>" + d.getIMC() + " Kg/m²</td>");
                                 out.print("<td>" + d.getPerimetroCefalico() + " cm</td>");
                                 out.print("<td>"+ d.getIdadeOssea()+"</td>");

@@ -1,7 +1,7 @@
 /*
  * Name: interface.js
  * Date: 23/02/2013
- * Author: Max
+ * Author: Max e João Luiz
  * Description: Arquivo de javascript utilizado para a manipulação da interface
  *              do projeto Antroped.
  */
@@ -46,12 +46,15 @@ function selectGrafico(tab){
             switch (id){
                 case "tabPeso" :
                     image = "peso519masc.png"
+                    mudaTexto('peso519');
                     break;
                 case "tabEstatura" :
                     image = "estatura519masc.png";
+                    mudaTexto('estatura519');
                     break;
                 case "tabIMC" :
                     image = "imc519masc.png";
+                    mudaTexto('imc519');
                     break;
                 case "tabPerimetroCefalico" :
                     hideGraficoPerimetroCefalico(id);
@@ -64,15 +67,19 @@ function selectGrafico(tab){
             switch (id){
                 case "tabPeso" :
                     image = "peso05masc.png"
+                    mudaTexto('peso05');
                     break;
                 case "tabEstatura" :
                     image = "estatura05masc.png";
+                    mudaTexto('estatura05');
                     break;
                 case "tabIMC" :
                     image = "imc05masc.png";
+                    mudaTexto('imc05');
                     break;
                 case "tabPerimetroCefalico" :
                     image = "pc05masc.png";
+                    mudaTexto('pc05');
                     break;
                 default:
                     image = "";
