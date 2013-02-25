@@ -236,17 +236,17 @@ public class Medida implements Serializable {
         String hint = "Data: " + Util.Util.dateToString(this.getData()) + "<br/>"
                 + "Idade: " + this.idadeToExtenso() + "<br/>"
                 + "Peso: " + this.getPeso() + " kg<br/>"
-                + "Altura: " + this.getEstaturaPosicao() + " cm<br/>"
+                + "Altura: " + this.getAltura() + " "+this.getPosicaoAbreviado()+" cm<br/>"
                 + "IMC: " + this.getIMC();
         return hint;
     }
 
-    public String getEstaturaPosicao() {
-        String estaturaposicao = this.getAltura() + "";
+    public String getPosicaoAbreviado() {
+        String estaturaposicao = "";
         if (this.getPosicao().equalsIgnoreCase("decubito")) {
-            estaturaposicao += " (D)";
+            estaturaposicao += "(D)";
         } else {
-            estaturaposicao += " (O)";
+            estaturaposicao += "(O)";
         }
         return estaturaposicao;
     }

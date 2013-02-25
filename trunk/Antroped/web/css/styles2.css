@@ -271,7 +271,11 @@ table.medidas {
             display: inline-block;
             width: 25px;
             height: 25px;
-            margin: 0 2px
+            margin: 0 2px;
+        }
+        
+        table.medidas tbody td .minor{
+            font-size: 0.688em;
         }
     table.medidas .data{
         border-left: none;
