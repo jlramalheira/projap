@@ -344,6 +344,11 @@ section.avaliacao{
         text-indent: 50px;
         line-height: 1.5em;
     }
+.report{
+    text-align: justify;
+    line-height: 2em;
+    text-indent: 50px;
+}
 /*Gráficos
   ============================================================================*/
 section.graficos{

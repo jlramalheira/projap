@@ -36,6 +36,25 @@
         <script src="js/jquery-1.8.0.min.js" type="text/javascript"></script>
         <script src="js/interface.js" type="text/javascript"></script>
         <title>Acompanhamento do Paciente</title>
+        <script type="text/javascript">
+            function mudaTexto(tab){
+                if (tab=='peso05'){
+                    $('.report').html('<%=dados.size() > 0 ? dados.get(0).getTexto("peso05", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
+                }else if(tab=='peso519'){
+                    $('.report').html('Não há nenhuma avaliação disponível para este tipo de gráfico.');
+                }else if(tab=='estatura05'){
+                    $('.report').html('<%=dados.size() > 0 ? dados.get(0).getTexto("estatura05", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
+                }else if(tab=='estatura519'){
+                    $('.report').html('Não há nenhuma avaliação disponível para este tipo de gráfico.');
+                }else if(tab=='imc05'){
+                    $('.report').html('<%=dados.size() > 0 ? dados.get(0).getTexto("imc05", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
+                }else if(tab=='imc519'){
+                    $('.report').html('Não há nenhuma avaliação disponível para este tipo de gráfico.');
+                }else if(tab=='pc05'){
+                    $('.report').html('Não há nenhuma avaliação disponível para este tipo de gráfico.');
+                }
+            }
+        </script>
     </head>
     <body>
         <div class="container">
@@ -187,8 +206,7 @@
                 <%-- Avaliação do Gráfico --%>
                 <section class="avaliacao">
                     <h1>Avaliação do Gráfico</h1>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec justo enim, cursus at faucibus nec, condimentum feugiat felis. Pellentesque mi mi, vehicula a imperdiet id, varius rutrum justo. Quisque leo nunc, euismod fringilla imperdiet et, sagittis et nibh.
+                    <p class="report"><script>mudaTexto('peso05')</script>
                     </p>
                 </section>
                 <%-- Gráficos --%>
