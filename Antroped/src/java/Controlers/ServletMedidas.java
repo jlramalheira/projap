@@ -53,7 +53,6 @@ public class ServletMedidas extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP
      * <code>GET</code> method.
@@ -103,7 +102,7 @@ public class ServletMedidas extends HttpServlet {
         String operacao = request.getParameter("operacao");
         double peso = 0;
         double perimetroCefalico = 0;
-        double altura = 0;
+        double estatura = 0;
         double idadeOssea = 0;
         String posicao = "";
         Date data = new Date();
@@ -114,8 +113,8 @@ public class ServletMedidas extends HttpServlet {
         if (!request.getParameter("perimetroCefalico").isEmpty()) {
             perimetroCefalico = Double.parseDouble(request.getParameter("perimetroCefalico"));
         }
-        if (!request.getParameter("altura").isEmpty()) {
-            altura = Double.parseDouble(request.getParameter("altura"));
+        if (!request.getParameter("estatura").isEmpty()) {
+            estatura = Double.parseDouble(request.getParameter("estatura"));
         }
         if (!request.getParameter("posicao").isEmpty()) {
             posicao = request.getParameter("posicao");
@@ -127,16 +126,19 @@ public class ServletMedidas extends HttpServlet {
             idadeOssea = Double.parseDouble(request.getParameter("idadeOssea"));
         }
         int total = Util.Util.getDiferencaDatas(paciente.getDataNascimento(), data);
-
+        System.out.println("************************");
+        System.out.println("aqui");
         if (operacao.equalsIgnoreCase("cadastrar")) {
 
-            new Dao<Medida>(Medida.class).insert(new Medida(posicao, data, paciente, total, peso, perimetroCefalico, altura, idadeOssea));
+            System.out.println("aqui");
+            new Dao<Medida>(Medida.class).insert(new Medida(posicao, data, paciente, total, peso, perimetroCefalico, estatura, idadeOssea));
+            System.out.println("aqui");
 
         } else if (operacao.equalsIgnoreCase("editar")) {
             Medida dado = (Medida) session.getAttribute("dado");
             dado.setPeso(peso);
             dado.setPerimetroCefalico(perimetroCefalico);
-            dado.setAltura(altura);
+            dado.setAltura(estatura);
             dado.setPosicao(posicao);
             dado.setData(data);
             dado.setIdade(total);
