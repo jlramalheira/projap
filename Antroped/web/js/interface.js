@@ -167,7 +167,7 @@ var stagePeso519;
 var stageEstatura519;
 var stageImc519;
 
-$(document).ready(function () {
+function init(){
     stagePeso05 = new Kinetic.Stage({
         container: "grafico",
         width: 960,
@@ -189,22 +189,21 @@ $(document).ready(function () {
         height: 640
     });
     stagePeso519 = new Kinetic.Stage({
-        container: "containerPeso519",
+        container: "grafico",
         width: 960,
         height: 640
     });
     stageEstatura519 = new Kinetic.Stage({
-        container: "containerEstatura519",
+        container: "grafico",
         width: 960,
         height: 640
     });
     stageImc519 = new Kinetic.Stage({
-        container: "containerImc519",
+        container: "grafico",
         width: 960,
         height: 640
     });    
-});
-
+}
 function drawCircle (kx, ky, kradius, kfill, kstroke, kstrokeWidth, khint, stage, grafico, sexo) {
     shape = new Kinetic.Layer();
     if (sexo == 'Masculino'){        
@@ -227,12 +226,7 @@ function drawCircle (kx, ky, kradius, kfill, kstroke, kstrokeWidth, khint, stage
             strokeWidth: kstrokeWidth,
             hint: 'hint-'+hintCount
         });
-        alert(stage);
-        alert(grafico);
-        alert(sexo);
-        alert(kx);
-        alert(ky);
-        alert(khint);
+        
     }
     
     html = '<div id="hint-'+hintCount+'" class="hint">'+khint+'</div>';
@@ -255,9 +249,11 @@ function drawCircle (kx, ky, kradius, kfill, kstroke, kstrokeWidth, khint, stage
         hint = $('.hint#'+this.attrs['hint']);
         hint.fadeOut(100);
     });        
-    
+
+    alert(stage)
     shape.add(circle);
     stage.add(shape);
+    alert(1);
     
     hintCount ++;
     return circle;

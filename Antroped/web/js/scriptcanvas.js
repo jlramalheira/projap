@@ -13,6 +13,7 @@ $(document).ready(function () {
         width: 960,
         height: 640
     });
+    alert(stagePeso05)
     stageEstatura05 = new Kinetic.Stage({
         container: "containerEstatura05",
         width: 960,

@@ -53,7 +53,6 @@
         <!-- Script que desenha os pontos e passa as linhas -->
         <script type="text/javascript">
             $(document).ready(function () {
-                alert(1);
                 pontosPeso05 = [];
                 pontosEstatura05 = [];
                 pontosImc05 = [];
@@ -207,7 +206,6 @@
         <!--Muda o texto conforme as abas são selecionadas-->
         <script type="text/javascript">
             function mudaTexto(tab){
-                alert(tab);
                 if (tab=='peso05'){
                     $('.relatorio').html('<%=dados.size() > 0 ? dados.get(0).getTextoAtual("peso05", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
                 }else if(tab=='peso519'){
