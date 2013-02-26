@@ -38,8 +38,8 @@
         <script src="js/kinetic-v3.10.0.min.js" type="text/javascript"></script>
         <script src="js/interface.js" type="text/javascript"></script>
         <script type="text/javascript">
-             function grafico(){
-                     init();
+            function grafico(){
+                init();
                 pontosPeso05 = [];
                 pontosEstatura05 = [];
                 pontosImc05 = [];
@@ -50,7 +50,7 @@
             <% for (Medida d : dados) {
                     if ((d.getIdade() >= 0 && d.getIdade() < 1826) && (d.getPeso() >= 1 && d.getPeso() <= 25)) {%>
                             pontosPeso05.push(drawCircle(<%=(d.getIdade())%>, <%=d.getPeso()%>, 3, '000', '000', 1,"<%=d.getHint()%>", stagePeso05, 'graficoPeso05', 'Masculino'));
-        alert(1);
+                            alert(1);
             <% }%>
                     if (true){
             <%
@@ -114,16 +114,16 @@
             <%
                 }%>
 
-                drawLineTroughCircle(pontosPeso05, stagePeso05);
-                drawLineTroughCircle(pontosEstatura05, stageEstatura05);
-                drawLineTroughCircle(pontosImc05, stageImc05);
-                drawLineTroughCircle(pontosPc05, stagePc05);
+                        drawLineTroughCircle(pontosPeso05, stagePeso05);
+                        drawLineTroughCircle(pontosEstatura05, stageEstatura05);
+                        drawLineTroughCircle(pontosImc05, stageImc05);
+                        drawLineTroughCircle(pontosPc05, stagePc05);
 
-                drawLineTroughCircle(pontosPeso519, stagePeso519);
-                drawLineTroughCircle(pontosEstatura519, stageEstatura519);
-                drawLineTroughCircle(pontosImc519, stageImc519);
-                
-            }
+                        drawLineTroughCircle(pontosPeso519, stagePeso519);
+                        drawLineTroughCircle(pontosEstatura519, stageEstatura519);
+                        drawLineTroughCircle(pontosImc519, stageImc519);
+
+                    }
         </script>
         <script type="text/javascript">
             function mudaTexto(tab){
@@ -307,18 +307,41 @@
                         <li id="tabPerimetroCefalico" onclick="showGrafico(this)">Gráfico do Per. Cefálico</li>
                     </ul>
                     <hr class="bar" />
-                    <div class="grafico" id="grafico">
+                    <div class="pane" id="pane">
+                        <div id="graficoPeso05" class="grafico" style="<%=(paciente.getSexo().equals("Masculino") ? "background-image: url('img/peso05masc.png');" : "background-image: url('img/peso05fem.png');")%>">
 
+                        </div>
+
+                        <div id="graficoPeso519" class="grafico" style="<%=(paciente.getSexo().equals("Masculino") ? "background-image: url('img/peso519masc.png');" : "background-image: url('img/peso519fem.png');")%>">
+
+                        </div>
+                        <div id="graficoEstatura05" class="grafico" style="<%=(paciente.getSexo().equals("Masculino") ? "background-image: url('img/estatura05masc.png');" : "background-image: url('img/estatura05fem.png');")%>">
+
+                        </div>
+                        <div id="graficoEstatura519" class="grafico" style="<%=(paciente.getSexo().equals("Masculino") ? "background-image: url('img/estatura519masc.png');" : "background-image: url('img/estatura519fem.png');")%>">
+
+                        </div>
+                        <div id="graficoImc05" class="grafico" style="<%=(paciente.getSexo().equals("Masculino") ? "background-image: url('img/imc05masc.png');" : "background-image: url('img/imc05fem.png');")%>">
+
+                        </div>
+                        <div id="graficoImc519" class="grafico" style="<%=(paciente.getSexo().equals("Masculino") ? "background-image: url('img/imc519masc.png');" : "background-image: url('img/imc519fem.png');")%>">
+
+                        </div>
+                        <div id="graficoPc05" class="grafico" style="<%=(paciente.getSexo().equals("Masculino") ? "background-image: url('img/pc05masc.png');" : "background-image: url('img/pc05fem.png');")%>" >
+                        </div>
                     </div>
                     <hr class="bar" />
                     <p class="minor">Fonte: OMS (2006)</p>
                 </section>
-                <script>grafico()</script>
+
             </div>
             <footer>
-            
+
             </footer>
         </div>
+        <script type="text/javascript" >
+            grafico()
+        </script>
     </body>
 </html>
 <%}%>
