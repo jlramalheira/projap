@@ -388,7 +388,7 @@ section.graficos hr.bar{
 }
 section.graficos div.grafico{
     width: 960px;
-    height: 630px;
+    height: 640px;
     margin: 0 0 0 -20px;
     background: #76619a url("../img/peso05masc.png") no-repeat scroll bottom center;
 }

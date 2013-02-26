@@ -208,15 +208,15 @@
             function mudaTexto(tab){
                 alert(tab);
                 if (tab=='peso05'){
-                    $('.relatorio').html('<%=dados.size() > 0 ? dados.get(0).getTexto("peso05", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
+                    $('.relatorio').html('<%=dados.size() > 0 ? dados.get(0).getTextoAtual("peso05", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
                 }else if(tab=='peso519'){
                     $('.relatorio').html('Não há nenhuma avaliação disponível para este tipo de gráfico.');
                 }else if(tab=='estatura05'){
-                    $('.relatorio').html('<%=dados.size() > 0 ? dados.get(0).getTexto("estatura05", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
+                    $('.relatorio').html('<%=dados.size() > 0 ? dados.get(0).getTextoAtual("estatura05", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
                 }else if(tab=='estatura519'){
                     $('.relatorio').html('Não há nenhuma avaliação disponível para este tipo de gráfico.');
                 }else if(tab=='imc05'){
-                    $('.relatorio').html('<%=dados.size() > 0 ? dados.get(0).getTexto("imc05", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
+                    $('.relatorio').html('<%=dados.size() > 0 ? dados.get(0).getTextoAtual("imc05", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
                 }else if(tab=='imc519'){
                     $('.relatorio').html('Não há nenhuma avaliação disponível para este tipo de gráfico.');
                 }else if(tab=='pc05'){

@@ -79,39 +79,77 @@ public class Medida implements Serializable {
         }
     }
 
-    public String getTexto(String grafico, String sexo) {
+    public String getTextoAtual(String grafico, String sexo) {
         String texto = "";
         if (grafico.equals("imc05")) {
             if (this.getScoreZ(grafico, sexo) < -3) {
-                texto = Util.Util.TEXTO_IMC05_MAGREZAACENTUADA;
+                texto = Util.Util.TEXTO_IMC05_MAGREZAACENTUADA_ATUAL;
             } else if (this.getScoreZ(grafico, sexo) >= -3 && this.getScoreZ(grafico, sexo) < -2) {
-                texto = Util.Util.TEXTO_IMC05_MAGREZA;
+                texto = Util.Util.TEXTO_IMC05_MAGREZA_ATUAL;
             } else if (this.getScoreZ(grafico, sexo) >= -2 && this.getScoreZ(grafico, sexo) <= 1) {
-                texto = Util.Util.TEXTO_IMC05_EUTROFIA;
+                texto = Util.Util.TEXTO_IMC05_EUTROFIA_ATUAL;
             } else if (this.getScoreZ(grafico, sexo) > 1 && this.getScoreZ(grafico, sexo) <= 2) {
-                texto = Util.Util.TEXTO_IMC05_RISCOSOBREPESO;
+                texto = Util.Util.TEXTO_IMC05_RISCOSOBREPESO_ATUAL;
             } else if (this.getScoreZ(grafico, sexo) > 2 && this.getScoreZ(grafico, sexo) <= 3) {
-                texto = Util.Util.TEXTO_IMC05_SOBREPESO;
+                texto = Util.Util.TEXTO_IMC05_SOBREPESO_ATUAL;
             } else if (this.getScoreZ(grafico, sexo) > 3) {
-                texto = Util.Util.TEXTO_IMC05_OBESIDADE;
+                texto = Util.Util.TEXTO_IMC05_OBESIDADE_ATUAL;
             }
         } else if (grafico.equals("peso05")) {
             if (this.getScoreZ(grafico, sexo) < -3) {
-                texto = Util.Util.TEXTO_PESO05_MUITOBAIXO;
+                texto = Util.Util.TEXTO_PESO05_MUITOBAIXO_ATUAL;
             } else if (this.getScoreZ(grafico, sexo) >= -3 && this.getScoreZ(grafico, sexo) < -2) {
-                texto = Util.Util.TEXTO_PESO05_BAIXO;
+                texto = Util.Util.TEXTO_PESO05_BAIXO_ATUAL;
             } else if (this.getScoreZ(grafico, sexo) >= -2 && this.getScoreZ(grafico, sexo) <= 2) {
-                texto = Util.Util.TEXTO_PESO05_ADEQUADO;
+                texto = Util.Util.TEXTO_PESO05_ADEQUADO_ATUAL;
             } else if (this.getScoreZ(grafico, sexo) > 2) {
-                texto = Util.Util.TEXTO_PESO05_ELEVADO;
+                texto = Util.Util.TEXTO_PESO05_ELEVADO_ATUAL;
             }
         } else if (grafico.equals("estatura05")) {
             if (this.getScoreZ(grafico, sexo) < -3) {
-                texto = Util.Util.TEXTO_ESTATURA05_MUITOBAIXA;
+                texto = Util.Util.TEXTO_ESTATURA05_MUITOBAIXA_ATUAL;
             } else if (this.getScoreZ(grafico, sexo) >= -3 && this.getScoreZ(grafico, sexo) < -2) {
-                texto = Util.Util.TEXTO_ESTATURA05_BAIXA;
+                texto = Util.Util.TEXTO_ESTATURA05_BAIXA_ATUAL;
             } else if (this.getScoreZ(grafico, sexo) >= -2) {
-                texto = Util.Util.TEXTO_ESTATURA05_ADEQUADA;
+                texto = Util.Util.TEXTO_ESTATURA05_ADEQUADA_ATUAL;
+            } 
+        }
+        return texto;
+    }
+    
+    public String getTextoEspecifico(String grafico, String sexo) {
+        String texto = "";
+        if (grafico.equals("imc05")) {
+            if (this.getScoreZ(grafico, sexo) < -3) {
+                texto = Util.Util.TEXTO_IMC05_MAGREZAACENTUADA_ESPECIFICA;
+            } else if (this.getScoreZ(grafico, sexo) >= -3 && this.getScoreZ(grafico, sexo) < -2) {
+                texto = Util.Util.TEXTO_IMC05_MAGREZA_ESPECIFICA;
+            } else if (this.getScoreZ(grafico, sexo) >= -2 && this.getScoreZ(grafico, sexo) <= 1) {
+                texto = Util.Util.TEXTO_IMC05_EUTROFIA_ESPECIFICA;
+            } else if (this.getScoreZ(grafico, sexo) > 1 && this.getScoreZ(grafico, sexo) <= 2) {
+                texto = Util.Util.TEXTO_IMC05_RISCOSOBREPESO_ESPECIFICA;
+            } else if (this.getScoreZ(grafico, sexo) > 2 && this.getScoreZ(grafico, sexo) <= 3) {
+                texto = Util.Util.TEXTO_IMC05_SOBREPESO_ESPECIFICA;
+            } else if (this.getScoreZ(grafico, sexo) > 3) {
+                texto = Util.Util.TEXTO_IMC05_OBESIDADE_ESPECIFICA;
+            }
+        } else if (grafico.equals("peso05")) {
+            if (this.getScoreZ(grafico, sexo) < -3) {
+                texto = Util.Util.TEXTO_PESO05_MUITOBAIXO_ESPECIFICA;
+            } else if (this.getScoreZ(grafico, sexo) >= -3 && this.getScoreZ(grafico, sexo) < -2) {
+                texto = Util.Util.TEXTO_PESO05_BAIXO_ESPECIFICA;
+            } else if (this.getScoreZ(grafico, sexo) >= -2 && this.getScoreZ(grafico, sexo) <= 2) {
+                texto = Util.Util.TEXTO_PESO05_ADEQUADO_ESPECIFICA;
+            } else if (this.getScoreZ(grafico, sexo) > 2) {
+                texto = Util.Util.TEXTO_PESO05_ELEVADO_ESPECIFICA;
+            }
+        } else if (grafico.equals("estatura05")) {
+            if (this.getScoreZ(grafico, sexo) < -3) {
+                texto = Util.Util.TEXTO_ESTATURA05_MUITOBAIXA_ESPECIFICA;
+            } else if (this.getScoreZ(grafico, sexo) >= -3 && this.getScoreZ(grafico, sexo) < -2) {
+                texto = Util.Util.TEXTO_ESTATURA05_BAIXA_ESPECIFICA;
+            } else if (this.getScoreZ(grafico, sexo) >= -2) {
+                texto = Util.Util.TEXTO_ESTATURA05_ADEQUADA_ESPECIFICA;
             } 
         }
         return texto;
