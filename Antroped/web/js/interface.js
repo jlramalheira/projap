@@ -152,6 +152,11 @@ function toggleGrafico(){
     }
     selectGrafico(tab);
 }
+/* Inicializa os gráficos assim que o documento estiver carregado*/
+$(document).ready(function(){
+    toggleGrafico();
+})
+
 /*Script de pontos do grafico */
 var hintCount = 0;
 var stagePeso05;
