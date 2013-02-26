@@ -53,6 +53,7 @@
         <!-- Script que desenha os pontos e passa as linhas -->
         <script type="text/javascript">
             $(document).ready(function () {
+                alert(1);
                 pontosPeso05 = [];
                 pontosEstatura05 = [];
                 pontosImc05 = [];
