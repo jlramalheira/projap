@@ -16,7 +16,7 @@
 <%@page import="Model.Medida"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<%
+<%    
     Paciente paciente = (Paciente) session.getAttribute("paciente");
     if ((paciente == null)) {
         response.sendRedirect("usuarioIndex.jsp");
@@ -34,6 +34,7 @@
         <meta charset="utf-8">
         <title>Acompanhamento do Paciente</title>
         <link href="css/styles2.css" type="text/css" rel="stylesheet"/>
+
         <script src="js/jquery-1.8.0.min.js" type="text/javascript"></script>
         <script src="js/kinetic-v3.10.0.min.js" type="text/javascript"></script>
         <script src="js/interface.js" type="text/javascript"></script>
@@ -50,68 +51,67 @@
             <% for (Medida d : dados) {
                     if ((d.getIdade() >= 0 && d.getIdade() < 1826) && (d.getPeso() >= 1 && d.getPeso() <= 25)) {%>
                             pontosPeso05.push(drawCircle(<%=(d.getIdade())%>, <%=d.getPeso()%>, 3, '000', '000', 1,"<%=d.getHint()%>", stagePeso05, 'graficoPeso05', 'Masculino'));
-                            alert(1);
             <% }%>
-                    if (true){
-            <%
+                    if ($("#pacienteSexo").text() == 'Masculino'){
+            <%                
                 if ((d.getIdade() >= 0 && d.getIdade() < 1826) && (d.getAltura() >= 43 && d.getAltura() <= 122)) {%>
                             pontosEstatura05.push(drawCircle(<%=(d.getIdade())%>, <%=(d.getAltura())%>, 3, '000', '000', 1, "<%=d.getHint()%>", stageEstatura05, 'graficoEstatura05', 'Masculino'));
             <% }%>
                     } else {
-            <%
+            <%                
                 if ((d.getIdade() >= 0 && d.getIdade() < 1826) && (d.getAltura() >= 43 && d.getAltura() <= 122)) {%>
                             pontosEstatura05.push(drawCircle(<%=(d.getIdade())%>, <%=(d.getAltura())%>, 3, '000', '000', 1, "<%=d.getHint()%>", stageEstatura05, 'graficoEstatura05', 'Feminino'));
             <% }%>
                     }
-            <%
+            <%                
                 if ((d.getIdade() >= 0 && d.getIdade() < 1826) && ((d.getPeso() / ((d.getAltura() / 100) * (d.getAltura() / 100))) >= 9.6 && ((d.getPeso() / ((d.getAltura() / 100) * (d.getAltura() / 100)))) <= 21.2)) {%>
                         pontosImc05.push(drawCircle(<%=(d.getIdade())%>, <%=(d.getPeso() / ((d.getAltura() / 100) * (d.getAltura() / 100)))%>, 3, '000', '000', 1, "<%=d.getHint()%>", stageImc05, 'graficoImc05', 'Masculino'));
             <% }%>
-                    if (true) {
-            <%
+                    if ($("#pacienteSexo").text() == 'Masculino') {
+            <%                
                 if ((d.getIdade() >= 0 && d.getIdade() < 1826) && (d.getPerimetroCefalico() >= 32 && d.getPerimetroCefalico() <= 54.5)) {%>
                             pontosPc05.push(drawCircle(<%=(d.getIdade())%>, <%=d.getPerimetroCefalico()%>, 3, '000', '000', 1, "<%=d.getHint()%>", stagePc05, 'graficoPc05', 'Masculino'));
             <% }%>
                     } else {
-            <%
+            <%                
                 if ((d.getIdade() >= 0 && d.getIdade() < 1826) && (d.getPerimetroCefalico() >= 31 && d.getPerimetroCefalico() <= 53.5)) {%>
                             pontosPc05.push(drawCircle(<%=(d.getIdade())%>, <%=d.getPerimetroCefalico()%>, 3, '000', '000', 1, "<%=d.getHint()%>", stagePc05, 'graficoPc05', 'Feminino'));
             <% }%>
                     }
-                    if (true){
-            <%
+                    if ($("#pacienteSexo").text() == 'Masculino'){
+            <%                
                 if ((d.getIdade() >= 1825 && d.getIdade() < 6936) && (d.getPeso() >= 13 && d.getPeso() <= 45)) {%>
                             pontosPeso519.push(drawCircle(<%=(d.getIdade())%>, <%=d.getPeso()%>, 3, '000', '000', 1, "<%=d.getHint()%>", stagePeso519, 'graficoPeso519', 'Masculino'));
             <% }%>
                     } else {
-            <%
+            <%                
                 if ((d.getIdade() >= 1825 && d.getIdade() < 6936) && (d.getPeso() >= 13 && d.getPeso() <= 47)) {%>
                             pontosPeso519.push(drawCircle(<%=(d.getIdade())%>, <%=d.getPeso()%>, 3, '000', '000', 1, "<%=d.getHint()%>", stagePeso519, 'graficoPeso519', 'Feminino'));
             <% }%>
                     }
-                    if (true){
-            <%
+                    if ($("#pacienteSexo").text() == 'Masculino'){
+            <%                
                 if ((d.getIdade() >= 1825 && d.getIdade() < 6936) && (d.getAltura() >= 1 && d.getAltura() <= 195)) {%>
                             pontosEstatura519.push(drawCircle(<%=(d.getIdade())%>, <%=d.getAltura()%>, 3, '000', '000', 1, "<%=d.getHint()%>", stageEstatura519, 'graficoEstatura519', 'Masculino'));
             <% }%>
                     } else {
-            <%
+            <%                
                 if ((d.getIdade() >= 1825 && d.getIdade() < 6936) && (d.getAltura() >= 105 && d.getAltura() <= 180)) {%>
                             pontosEstatura519.push(drawCircle(<%=(d.getIdade())%>, <%=d.getAltura()%>, 3, '000', '000', 1,"<%=d.getHint()%>", stageEstatura519, 'graficoEstatura519', 'Feminino'));
             <% }%>
                     }
-                    if (true){
-            <%
+                    if ($("#pacienteSexo").text() == 'Masculino'){
+            <%                
                 if ((d.getIdade() >= 1825 && d.getIdade() < 6936) && ((d.getPeso() / ((d.getAltura() / 100) * (d.getAltura() / 100))) >= 12 && ((d.getPeso() / ((d.getAltura() / 100) * (d.getAltura() / 100)))) <= 30)) {%>
                             pontosImc519.push(drawCircle(<%=(d.getIdade())%>, <%=(d.getPeso() / ((d.getAltura() / 100) * (d.getAltura() / 100)))%>, 3, '000', '000', 1, "<%=d.getHint()%>", stageImc519, 'graficoImc519', 'Masculino'));
             <% }%>
                     } else {
-            <%
+            <%                
                 if ((d.getIdade() >= 1825 && d.getIdade() < 6936) && ((d.getPeso() / ((d.getAltura() / 100) * (d.getAltura() / 100))) >= 12 && ((d.getPeso() / ((d.getAltura() / 100) * (d.getAltura() / 100)))) <= 29.5)) {%>
                             pontosImc519.push(drawCircle(<%=(d.getIdade())%>, <%=(d.getPeso() / ((d.getAltura() / 100) * (d.getAltura() / 100)))%>, 3, '000', '000', 1, "<%=d.getHint()%>", stageImc519, 'graficoImc519', 'Feminino'));
             <% }%>
                     }
-            <%
+            <%                    
                 }%>
 
                         drawLineTroughCircle(pontosPeso05, stagePeso05);
@@ -128,15 +128,15 @@
         <script type="text/javascript">
             function mudaTexto(tab){
                 if (tab=='peso05'){
-                    $('.report').html('<%=dados.size() > 0 ? dados.get(0).getTextoAtual("peso05", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
+                    $('.report').html('<%=((dados.size() > 0) && (dados.get(0).getIdade() < 1825)) ? dados.get(0).getTextoAtual("peso05", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
                 }else if(tab=='peso519'){
                     $('.report').html('Não há nenhuma avaliação disponível para este tipo de gráfico.');
                 }else if(tab=='estatura05'){
-                    $('.report').html('<%=dados.size() > 0 ? dados.get(0).getTextoAtual("estatura05", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
+                    $('.report').html('<%=((dados.size() > 0) && (dados.get(0).getIdade() < 1825)) ? dados.get(0).getTextoAtual("estatura05", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
                 }else if(tab=='estatura519'){
                     $('.report').html('Não há nenhuma avaliação disponível para este tipo de gráfico.');
                 }else if(tab=='imc05'){
-                    $('.report').html('<%=dados.size() > 0 ? dados.get(0).getTextoAtual("imc05", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
+                    $('.report').html('<%=((dados.size() > 0) && (dados.get(0).getIdade() < 1825)) ? dados.get(0).getTextoAtual("imc05", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
                 }else if(tab=='imc519'){
                     $('.report').html('Não há nenhuma avaliação disponível para este tipo de gráfico.');
                 }else if(tab=='pc05'){
@@ -330,6 +330,7 @@
                         <div id="graficoPc05" class="grafico" style="<%=(paciente.getSexo().equals("Masculino") ? "background-image: url('img/pc05masc.png');" : "background-image: url('img/pc05fem.png');")%>" >
                         </div>
                     </div>
+
                     <hr class="bar" />
                     <p class="minor">Fonte: OMS (2006)</p>
                 </section>

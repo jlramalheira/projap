@@ -37,97 +37,66 @@ function selectGrafico(tab){
     id = $(tab).attr("id");
     idade = $(".graphControl input[name='idade']:checked").attr("id");
     sexo = $("#pacienteSexo").text();
-    grafico = $("#grafico");
-    image = "";
-    if(sexo.toUpperCase() == ("masculino").toUpperCase()){
-        //Caso Masculino
-        if(idade == "maior"){
-            //Caso maior que 5
-            switch (id){
-                case "tabPeso" :
-                    image = "peso519masc.png"
-                    mudaTexto('peso519');
-                    break;
-                case "tabEstatura" :
-                    image = "estatura519masc.png";
-                    mudaTexto('estatura519');
-                    break;
-                case "tabIMC" :
-                    image = "imc519masc.png";
-                    mudaTexto('imc519');
-                    break;
-                case "tabPerimetroCefalico" :
-                    hideGraficoPerimetroCefalico(id);
-                    break;
-                default:
-                    image = "";
-            }
-        } else {
-            //Caso menor que 5
-            switch (id){
-                case "tabPeso" :
-                    image = "peso05masc.png"
-                    mudaTexto('peso05');
-                    break;
-                case "tabEstatura" :
-                    image = "estatura05masc.png";
-                    mudaTexto('estatura05');
-                    break;
-                case "tabIMC" :
-                    image = "imc05masc.png";
-                    mudaTexto('imc05');
-                    break;
-                case "tabPerimetroCefalico" :
-                    image = "pc05masc.png";
-                    mudaTexto('pc05');
-                    break;
-                default:
-                    image = "";
-            }
+    $("#pane *").css({
+        "display":"none"
+    });
+    grafico();
+    //Caso Masculino
+    if(idade == "maior"){
+        //Caso maior que 5
+        switch (id){
+            case "tabPeso" :
+                mudaTexto('peso519');
+                $("#graficoPeso519").css({
+                    "display":"block"
+                });
+                break;
+            case "tabEstatura" :
+                mudaTexto('estatura519');
+                $("#graficoEstatura519").css({
+                    "display":"block"
+                });
+                break;
+            case "tabIMC" :
+                mudaTexto('imc519');
+                $("#graficoImc519").css({
+                    "display":"block"
+                });
+                break;
+            case "tabPerimetroCefalico" :
+                hideGraficoPerimetroCefalico(id);
+                break;
         }
-    }else{
-        //Caso Feminino
-        if(idade == "maior"){
-            //Caso maior que 19
-            switch (id){
-                case "tabPeso" :
-                    image = "peso519fem.png"
-                    break;
-                case "tabEstatura" :
-                    image = "estatura519fem.png";
-                    break;
-                case "tabIMC" :
-                    image = "imc519fem.png";
-                    break;
-                case "tabPerimetroCefalico" :
-                    hideGraficoPerimetroCefalico(id);
-                    break;
-                default:
-                    image = "";
-            }
-        } else {
-            //Caso menor que 5
-            switch (id){
-                case "tabPeso" :
-                    image = "peso05fem.png"
-                    break;
-                case "tabEstatura" :
-                    image = "estatura05fem.png";
-                    break;
-                case "tabIMC" :
-                    image = "imc05fem.png";
-                    break;
-                case "tabPerimetroCefalico" :
-                    image = "pc05fem.png";
-                    break;
-                default:
-                    image = "";
-            }
+    } else {
+        //Caso menor que 5
+        switch (id){
+            case "tabPeso" :
+                mudaTexto('peso05');
+                $("#graficoPeso05").css({
+                    "display":"block"
+                });
+                break;
+            case "tabEstatura" :
+                mudaTexto('estatura05');
+                $("#graficoEstatura05").css({
+                    "display":"block"
+                });
+                break;
+            case "tabIMC" :
+                mudaTexto('imc05');
+                $("#graficoImc05").css({
+                    "display":"block"
+                });
+                break;
+            case "tabPerimetroCefalico" :
+                mudaTexto('pc05');
+                $("#graficoPc05").css({
+                    "display":"block"
+                });
+                break;
         }
     }
-    grafico.css({
-        "background-image":"url('img/"+image+"')"
-    });
+      
 }
 /* Apaga a guia de perímetro cefálico para gráficos de idade maior que 5 */
 function hideGraficoPerimetroCefalico(id){
@@ -169,37 +138,37 @@ var stageImc519;
 
 function init(){
     stagePeso05 = new Kinetic.Stage({
-        container: "grafico",
+        container: "graficoPeso05",
         width: 960,
         height: 640
     });
     stageEstatura05 = new Kinetic.Stage({
-        container: "grafico",
+        container: "graficoEstatura05",
         width: 960,
         height: 640
     });
     stageImc05 = new Kinetic.Stage({
-        container: "grafico",
+        container: "graficoImc05",
         width: 960,
         height: 640
     });
     stagePc05 = new Kinetic.Stage({
-        container: "grafico",
+        container: "graficoPc05",
         width: 960,
         height: 640
     });
     stagePeso519 = new Kinetic.Stage({
-        container: "grafico",
+        container: "graficoPeso519",
         width: 960,
         height: 640
     });
     stageEstatura519 = new Kinetic.Stage({
-        container: "grafico",
+        container: "graficoEstatura519",
         width: 960,
         height: 640
     });
     stageImc519 = new Kinetic.Stage({
-        container: "grafico",
+        container: "graficoImc519",
         width: 960,
         height: 640
     });    
@@ -228,10 +197,8 @@ function drawCircle (kx, ky, kradius, kfill, kstroke, kstrokeWidth, khint, stage
         });
         
     }
-    
     html = '<div id="hint-'+hintCount+'" class="hint">'+khint+'</div>';
-    $('#grafico').append(html);
-    
+    $('#'+grafico).append(html);
     /*$('#hint-'+hintCount).mouseleave(function () {
         $(this).fadeOut(100);
     });*/
@@ -250,10 +217,8 @@ function drawCircle (kx, ky, kradius, kfill, kstroke, kstrokeWidth, khint, stage
         hint.fadeOut(100);
     });        
 
-    alert(stage)
     shape.add(circle);
     stage.add(shape);
-    alert(1);
     
     hintCount ++;
     return circle;
@@ -396,7 +361,7 @@ function cancelaCadastro(){
             url: "Armazenamento",
             data: "cancelar="+cancelar,
             success: function (result){      
-               mostraTabela();             
+                mostraTabela();             
             }
         });
         return false;
