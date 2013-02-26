@@ -89,6 +89,9 @@ a:hover{
     color: inherit;
     text-decoration: underline;
 }
+#graficoPeso519, #graficoEstatura05, #graficoEstatura519, #graficoImc05, #graficoImc519, #graficoPc05{
+    display: none;
+}
 /*ESTRUTURAL
   ============================================================================*/
 html, body {
@@ -351,6 +354,23 @@ section.avaliacao{
 }
 /*Gráficos
   ============================================================================*/
+.grafico{
+    float:left;
+    width:960px;
+    height:640px;
+    position: relative;
+    clear: left;
+}
+.hint {
+    border: 1px solid #333;
+    font-family: Arial, Helvetica, sans-serif;
+    color:#333;
+    font-size: 12px;
+    padding: 3px;
+    position: absolute;
+    display: none;
+    background: #FFF;
+}
 section.graficos{
 
 }
