@@ -1,7 +1,7 @@
 <%--
-    Document   : pacienteAcompanhar2
+    Document   : pacienteAcompanhar
     Created on : 21/02/2013, 10:55:23
-    Author     : Max
+    Author     : Max e Joao Luiz
     Description: Esse documento JSP é utilizado para mostrar as informações do
                  paciente e acompanhamento do médico.
 --%>
