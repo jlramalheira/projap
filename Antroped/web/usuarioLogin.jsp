@@ -16,7 +16,7 @@
             <%-- HEADER --%>
             <header>
                 <a class="logo" href="#">
-                    <img src="img/logoAntroped.png" alt="Logo Antroped"/>
+                    <img src="img/logo.png" alt="Logo Antroped"/>
                 </a>
             </header>
             <%-- MAIN --%>
