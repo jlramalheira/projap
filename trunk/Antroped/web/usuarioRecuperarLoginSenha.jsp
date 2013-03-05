@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : usuarioRecuperarLoginSenha
     Created on : 20/02/2013, 23:44:53
     Author     : JoaoLuiz
@@ -18,7 +18,7 @@
         <div class="container">
             <!-- HEADER -->
             <header>
-                <img src="img/logo.png" alt="[Logo]" />
+                <img src="img/logoAntroped.png" alt="[Logo]" />
             </header>
             <!-- MAIN -->
             <div class="main">
@@ -32,8 +32,8 @@
                             }
                         %>
                         <label for="email">Email:</label><br/>
-                        <input type="text" name="email" id="email"/><br/>                     
-                        <input type="submit" id="recuperar" 
+                        <input type="text" name="email" id="email"/><br/>
+                        <input type="submit" id="recuperar"
                                name="operacao"
                                value="Recuperar"
                                class="button" />
