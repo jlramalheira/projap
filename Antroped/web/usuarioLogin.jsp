@@ -9,44 +9,40 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
-        <link type="text/css" rel="stylesheet" href="css/styles.css" />
-        <link href='http://fonts.googleapis.com/css?family=Advent+Pro|Capriola' rel='stylesheet' type='text/css'>
-        <script src="js/jquery-1.8.0.min.js" type="text/javascript"></script>
-        <title>Antroped</title>
+        <%@include file="interfaceHead.jsp" %>
     </head>
     <body lang="pt-br">
         <div class="container">
-            <!-- HEADER -->
+            <%-- HEADER --%>
             <header>
-                <img src="img/logo.png" alt="[Logo]" />
+                <a class="logo" href="#">
+                    <img src="img/logoAntroped.png" alt="Logo Antroped"/>
+                </a>
             </header>
-            <!-- MAIN -->
+            <%-- MAIN --%>
             <div class="main">
-                <form name="form" action="ServletUsuario" method="POST" class="formulario formulariologin">
-                    <fieldset>
-                        <legend>Login:</legend>
-                        <%
-                            if (session.getAttribute("mensagem") != null) {
-                                out.print("<p class=\"erro\">" + session.getAttribute("mensagem") + "</p>");
-                                session.removeAttribute("mensagem");
-                            }
-                        %>
+                <form class="form login" action="ServletUsuario" method="post" name="form" >
                         <label for="login">Login:</label><br/>
                         <input type="text" name="login" id="login"/><br/>
                         <label for="senha">Senha:</label><br/>
-                        <input type="password" name="senha" id="senha"/><br/>                        
-                        <input type="submit" id="login" 
-                               name="operacao"
-                               value="Login"
-                               class="button" />
-                        <a href="ServletUsuario?operacao=esqueceuSenha">Esqueceu login/senha?</a>
-                    </fieldset>
+                        <input type="password" name="senha" id="senha"/><br/>
+                        <%
+                            if (session.getAttribute("mensagem") != null) {
+                                out.print("<p class=\"error\">" + session.getAttribute("mensagem") + "</p>");
+                                session.removeAttribute("mensagem");
+                            }
+                        %>
+                        <div class="buttons">
+                            <input type="submit" id="loginButton"
+                                   name="operacao"
+                                   value="Entrar"
+                                   class="login" />
+                        </div>
+                        <a class="minor" href="ServletUsuario?operacao=esqueceuSenha">Esqueceu login/senha?</a>
                 </form>
             </div>
-            <!-- FOOTER -->
-            <footer>
-            </footer>
+            <%-- FOOTER --%>
+            <%@include file="interfaceFooter.jsp" %>
         </div>
     </body>
 </html>

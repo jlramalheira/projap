@@ -117,7 +117,7 @@ public class ServletUsuario extends HttpServlet {
 
                 response.sendRedirect("usuarioLogin.jsp");
             }
-        } else if (operacao.equalsIgnoreCase("login")) {
+        } else if (operacao.equalsIgnoreCase("entrar")) {
             String login = request.getParameter("login");
             String senha = request.getParameter("senha");
             if ((new DaoUsuario().listByLogin(login)).isEmpty()) {
