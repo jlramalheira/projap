@@ -32,7 +32,7 @@ public class Usuario implements Serializable {
     public Usuario(String login, String senha, String nome, String email) {
         this.login = login;
         this.senha = senha;
-        this.administrador = true;
+        this.administrador = false;
         this.nome = nome;
         this.email = email;
     }
@@ -40,7 +40,7 @@ public class Usuario implements Serializable {
     public Usuario(String login, String senha) {
         this.login = login;
         this.senha = senha;
-        this.administrador = true;
+        this.administrador = false;
     }
     
     public int getId() {

@@ -75,8 +75,8 @@ public class ServletMedidas extends HttpServlet {
 
         } else if (operacao.equalsIgnoreCase("editar")) {
             int id = Integer.parseInt(request.getParameter("id"));
-            Medida dado = new Dao<Medida>(Medida.class).get(id);
-            session.setAttribute("dado", dado);
+            Medida medida = new Dao<Medida>(Medida.class).get(id);
+            session.setAttribute("medida", medida);
         }
         response.sendRedirect("pacienteAcompanhar.jsp");
     }
@@ -135,16 +135,16 @@ public class ServletMedidas extends HttpServlet {
             System.out.println("aqui");
 
         } else if (operacao.equalsIgnoreCase("editar")) {
-            Medida dado = (Medida) session.getAttribute("dado");
-            dado.setPeso(peso);
-            dado.setPerimetroCefalico(perimetroCefalico);
-            dado.setAltura(estatura);
-            dado.setPosicao(posicao);
-            dado.setData(data);
-            dado.setIdade(total);
+            Medida medida = (Medida) session.getAttribute("medida");
+            medida.setPeso(peso);
+            medida.setPerimetroCefalico(perimetroCefalico);
+            medida.setAltura(estatura);
+            medida.setPosicao(posicao);
+            medida.setData(data);
+            medida.setIdade(total);
 
-            new Dao<Medida>(Medida.class).update(dado);
-            session.removeAttribute("dado");
+            new Dao<Medida>(Medida.class).update(medida);
+            session.removeAttribute("medida");
         }
         response.sendRedirect("pacienteAcompanhar.jsp");
     }
