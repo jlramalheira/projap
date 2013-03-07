@@ -32,6 +32,15 @@ public class Util {
     public static double DESVIO_PADRAO_MASC_PC05 = 0.925044;
     public static double DESVIO_PADRAO_FEM_PC05 = 0.934567;
     
+    public static double DESVIO_PADRAO_MASC_IMC519 = 1.990262;
+    public static double DESVIO_PADRAO_FEM_IMC519 = 1.998723;
+    
+    public static double DESVIO_PADRAO_MASC_PESO519 = 2.098701;
+    public static double DESVIO_PADRAO_FEM_PESO519 = 2.156095;
+    
+    public static double DESVIO_PADRAO_MASC_ESTATURA519 = 4.641411;
+    public static double DESVIO_PADRAO_FEM_ESTATURA519 = 4.208188;
+    
     public static String TEXTO_IMC05_MAGREZAACENTUADA_ATUAL = "De acordo com a Organização Mundial de Saúde (OMS) e conforme a última medida antropométrica, a criança encontra-se em Magreza Acentuada. Obs: Este até pode ser um biotipo familiar, no entanto, há um maior de risco de estar relacionado a alguma doença.";
     public static String TEXTO_IMC05_MAGREZA_ATUAL = "De acordo com a Organização Mundial de Saúde (OMS) e conforme a última medida antropométrica, a criança encontra-se em Magreza, que pode ser um biotipo familiar ou indicar uma doença. É importante o acompanhamento médico.";
     public static String TEXTO_IMC05_EUTROFIA_ATUAL = "De acordo com a Organização Mundial de Saúde (OMS) e conforme a última medida antropométrica, a criança encontra-se em Eutrofia, que significa criança saudável.";
@@ -39,14 +48,30 @@ public class Util {
     public static String TEXTO_IMC05_SOBREPESO_ATUAL = "De acordo com a Organização Mundial de Saúde (OMS) e conforme a última medida antropométrica, a criança encontra-se em Sobrepreso. É importante os pais procurarem um profissional da saúde afim de que não evolua para obesidade.";
     public static String TEXTO_IMC05_OBESIDADE_ATUAL = "De acordo com a Organização Mundial de Saúde (OMS) e conforme a última medida antropométrica, a criança encontra-se em Obesidade, essa é uma situação que requer assistência médica.";
     
+    public static String TEXTO_IMC519_MAGREZAACENTUADA_ATUAL = "De acordo com a Organização Mundial de Saúde (OMS) e conforme a última medida antropométrica, a criança encontra-se em Magreza Acentuada. Obs: Este até pode ser um biotipo familiar, no entanto, há um maior de risco de estar relacionado a alguma doença.";
+    public static String TEXTO_IMC519_MAGREZA_ATUAL = "De acordo com a Organização Mundial de Saúde (OMS) e conforme a última medida antropométrica, a criança encontra-se em Magreza, que pode ser um biotipo familiar ou indicar uma doença. É importante o acompanhamento médico.";
+    public static String TEXTO_IMC519_EUTROFIA_ATUAL = "De acordo com a Organização Mundial de Saúde (OMS) e conforme a última medida antropométrica, a criança encontra-se em Eutrofia, que significa criança saudável.";
+    public static String TEXTO_IMC519_SOBREPESO_ATUAL = "De acordo com a Organização Mundial de Saúde (OMS) e conforme a última medida antropométrica, a criança encontra-se em Sobrepreso. É importante os pais procurarem um profissional da saúde afim de que não evolua para obesidade.";
+    public static String TEXTO_IMC519_OBESIDADE_ATUAL = "De acordo com a Organização Mundial de Saúde (OMS) e conforme a última medida antropométrica, a criança encontra-se em Obesidade, essa é uma situação que requer assistência médica.";
+    public static String TEXTO_IMC519_OBESIDADEGRAVE_ATUAL = "De acordo com a Organização Mundial de Saúde (OMS) e conforme a última medida antropométrica, a criança encontra-se Obesidade Grave, essa é uma situação que requer urgentemente assistência médica .";
+    
     public static String TEXTO_PESO05_MUITOBAIXO_ATUAL = "De acordo com a Organização Mundial de Saúde (OMS) e conforme a última medida antropométrica, a criança encontra-se com o peso muito baixo para a idade.";
     public static String TEXTO_PESO05_BAIXO_ATUAL = "De acordo com a Organização Mundial de Saúde (OMS) e conforme a última medida antropométrica, a criança encontra-se com o peso baixo para a idade.";
     public static String TEXTO_PESO05_ADEQUADO_ATUAL = "De acordo com a Organização Mundial de Saúde (OMS) e conforme a última medida antropométrica, a criança encontra-se com o peso adequado para a idade.";
     public static String TEXTO_PESO05_ELEVADO_ATUAL = "De acordo com a Organização Mundial de Saúde (OMS) e conforme a última medida antropométrica, a criança encontra-se com o peso elevado para a idade.";
     
+    public static String TEXTO_PESO519_MUITOBAIXO_ATUAL = "De acordo com a Organização Mundial de Saúde (OMS) e conforme a última medida antropométrica, a criança encontra-se com o peso muito baixo para a idade.";
+    public static String TEXTO_PESO519_BAIXO_ATUAL = "De acordo com a Organização Mundial de Saúde (OMS) e conforme a última medida antropométrica, a criança encontra-se com o peso baixo para a idade.";
+    public static String TEXTO_PESO519_ADEQUADO_ATUAL = "De acordo com a Organização Mundial de Saúde (OMS) e conforme a última medida antropométrica, a criança encontra-se com o peso adequado para a idade.";
+    public static String TEXTO_PESO519_ELEVADO_ATUAL = "De acordo com a Organização Mundial de Saúde (OMS) e conforme a última medida antropométrica, a criança encontra-se com o peso elevado para a idade.";
+    
     public static String TEXTO_ESTATURA05_MUITOBAIXA_ATUAL = "De acordo com a Organização Mundial de Saúde (OMS) e conforme a última medida antropométrica, a criança encontra-se com a estatura muito baixa para a idade.";
     public static String TEXTO_ESTATURA05_BAIXA_ATUAL = "De acordo com a Organização Mundial de Saúde (OMS) e conforme a última medida antropométrica, a criança encontra-se com a estatura baixa para a idade.";
     public static String TEXTO_ESTATURA05_ADEQUADA_ATUAL = "De acordo com a Organização Mundial de Saúde (OMS) e conforme a última medida antropométrica, a criança encontra-se com a estatura adequada para a idade.";
+    
+    public static String TEXTO_ESTATURA519_MUITOBAIXA_ATUAL = "De acordo com a Organização Mundial de Saúde (OMS) e conforme a última medida antropométrica, a criança encontra-se com a estatura muito baixa para a idade.";
+    public static String TEXTO_ESTATURA519_BAIXA_ATUAL = "De acordo com a Organização Mundial de Saúde (OMS) e conforme a última medida antropométrica, a criança encontra-se com a estatura baixa para a idade.";
+    public static String TEXTO_ESTATURA519_ADEQUADA_ATUAL = "De acordo com a Organização Mundial de Saúde (OMS) e conforme a última medida antropométrica, a criança encontra-se com a estatura adequada para a idade.";
     
     public static String TEXTO_IMC05_MAGREZAACENTUADA_ESPECIFICA = "De acordo com a Organização Mundial de Saúde (OMS) e conforme a esta medida antropométrica, a criança encontra-se em Magreza Acentuada. Obs: Este até pode ser um biotipo familiar, no entanto, há um maior de risco de estar relacionado a alguma doença.";
     public static String TEXTO_IMC05_MAGREZA_ESPECIFICA = "De acordo com a Organização Mundial de Saúde (OMS) e conforme a esta medida antropométrica, a criança encontra-se em Magreza, que pode ser um biotipo familiar ou indicar uma doença. É importante o acompanhamento médico.";

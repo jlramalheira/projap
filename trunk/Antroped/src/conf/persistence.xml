@@ -6,6 +6,7 @@
     <class>Model.Paciente</class>
     <class>Model.TabelaScoreZ</class>
     <class>Model.Usuario</class>
+    <class>Model.TabelaPrevisaoAltura</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/antroped?zeroDateTimeBehavior=convertToNull"/>

@@ -9,7 +9,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <header>
     <a class="logo" href="#">
-        <img src="img/logo.png" alt="Logo Antroped"/>
+        <img src="img/logoAntroped.png" alt="Logo Antroped"/>
     </a>
     <section class="user">
         <div class="photo"></div>
