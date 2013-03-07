@@ -4,6 +4,7 @@
  */
 package Model;
 
+import Dao.DaoTabelaPrevisaoAltura;
 import Dao.DaoTabelaScoreZ;
 import java.io.Serializable;
 import java.text.DecimalFormat;
@@ -33,7 +34,8 @@ public class Medida implements Serializable {
     private double altura;
     private double perimetroCefalico;
     private String posicao;
-    private double idadeOssea;
+    private double idadeOsseaAnos;
+    private double idadeOsseaMeses;
     private double previsaoEstatura;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date data;
@@ -41,7 +43,7 @@ public class Medida implements Serializable {
     public Medida() {
     }
 
-    public Medida(String posicao, Date data, Paciente paciente, int idade, double peso, double perimetroEncefalico, double altura, double idadeOssea) {
+    public Medida(String posicao, Date data, Paciente paciente, int idade, double peso, double perimetroEncefalico, double altura, double idadeOsseaAnos, double idadeOsseaMeses) {
         this.paciente = paciente;
         this.peso = peso;
         this.idade = idade;
@@ -49,7 +51,8 @@ public class Medida implements Serializable {
         this.altura = altura;
         this.data = data;
         this.posicao = posicao;
-        this.idadeOssea = idadeOssea;
+        this.idadeOsseaAnos = idadeOsseaAnos;
+        this.idadeOsseaMeses = idadeOsseaMeses;
     }
 
     public double getScoreZ(String grafico, String sexo) {
@@ -74,7 +77,25 @@ public class Medida implements Serializable {
             } else {
                 return (this.altura - mediana) / Util.Util.DESVIO_PADRAO_FEM_ESTATURA05;
             }
-        }  else {
+        } else if (grafico.equalsIgnoreCase("imc519")) {
+            if (sexo.equalsIgnoreCase("masculino")) {
+                return (imc - mediana) / Util.Util.DESVIO_PADRAO_MASC_IMC519;
+            } else {
+                return (imc - mediana) / Util.Util.DESVIO_PADRAO_FEM_IMC519;
+            }
+        } else if (grafico.equalsIgnoreCase("peso519")) {
+            if (sexo.equalsIgnoreCase("masculino")) {
+                return (this.peso - mediana) / Util.Util.DESVIO_PADRAO_MASC_PESO519;
+            } else {
+                return (this.peso - mediana) / Util.Util.DESVIO_PADRAO_FEM_PESO519;
+            }
+        } else if (grafico.equalsIgnoreCase("estatura519")) {
+            if (sexo.equalsIgnoreCase("masculino")) {
+                return (this.altura - mediana) / Util.Util.DESVIO_PADRAO_MASC_ESTATURA519;
+            } else {
+                return (this.altura - mediana) / Util.Util.DESVIO_PADRAO_FEM_ESTATURA519;
+            }
+        } else {
             return 0;
         }
     }
@@ -112,11 +133,43 @@ public class Medida implements Serializable {
                 texto = Util.Util.TEXTO_ESTATURA05_BAIXA_ATUAL;
             } else if (this.getScoreZ(grafico, sexo) >= -2) {
                 texto = Util.Util.TEXTO_ESTATURA05_ADEQUADA_ATUAL;
-            } 
+            }
+        } else if (grafico.equals("peso519")) {
+            if (this.getScoreZ(grafico, sexo) < -3) {
+                texto = Util.Util.TEXTO_PESO519_MUITOBAIXO_ATUAL;
+            } else if (this.getScoreZ(grafico, sexo) >= -3 && this.getScoreZ(grafico, sexo) < -2) {
+                texto = Util.Util.TEXTO_PESO519_BAIXO_ATUAL;
+            } else if (this.getScoreZ(grafico, sexo) >= -2 && this.getScoreZ(grafico, sexo) <= 2) {
+                texto = Util.Util.TEXTO_PESO519_ADEQUADO_ATUAL;
+            } else if (this.getScoreZ(grafico, sexo) > 2) {
+                texto = Util.Util.TEXTO_PESO519_ELEVADO_ATUAL;
+            }
+        } else if (grafico.equals("estatura519")) {
+            if (this.getScoreZ(grafico, sexo) < -3) {
+                texto = Util.Util.TEXTO_ESTATURA519_MUITOBAIXA_ATUAL;
+            } else if (this.getScoreZ(grafico, sexo) >= -3 && this.getScoreZ(grafico, sexo) < -2) {
+                texto = Util.Util.TEXTO_ESTATURA519_BAIXA_ATUAL;
+            } else if (this.getScoreZ(grafico, sexo) >= -2) {
+                texto = Util.Util.TEXTO_ESTATURA519_ADEQUADA_ATUAL;
+            }
+        } else if (grafico.equals("imc519")) {
+            if (this.getScoreZ(grafico, sexo) < -3) {
+                texto = Util.Util.TEXTO_IMC519_MAGREZAACENTUADA_ATUAL;
+            } else if (this.getScoreZ(grafico, sexo) >= -3 && this.getScoreZ(grafico, sexo) < -2) {
+                texto = Util.Util.TEXTO_IMC519_MAGREZA_ATUAL;
+            } else if (this.getScoreZ(grafico, sexo) >= -2 && this.getScoreZ(grafico, sexo) <= 1) {
+                texto = Util.Util.TEXTO_IMC519_EUTROFIA_ATUAL;
+            } else if (this.getScoreZ(grafico, sexo) > 1 && this.getScoreZ(grafico, sexo) <= 2) {
+                texto = Util.Util.TEXTO_IMC519_SOBREPESO_ATUAL;
+            } else if (this.getScoreZ(grafico, sexo) > 2 && this.getScoreZ(grafico, sexo) <= 3) {
+                texto = Util.Util.TEXTO_IMC519_OBESIDADE_ATUAL;
+            } else if (this.getScoreZ(grafico, sexo) > 3) {
+                texto = Util.Util.TEXTO_IMC519_OBESIDADEGRAVE_ATUAL;
+            }
         }
         return texto;
     }
-    
+
     public String getTextoEspecifico(String grafico, String sexo) {
         String texto = "";
         if (grafico.equals("imc05")) {
@@ -150,9 +203,79 @@ public class Medida implements Serializable {
                 texto = Util.Util.TEXTO_ESTATURA05_BAIXA_ESPECIFICA;
             } else if (this.getScoreZ(grafico, sexo) >= -2) {
                 texto = Util.Util.TEXTO_ESTATURA05_ADEQUADA_ESPECIFICA;
-            } 
+            }
         }
         return texto;
+    }
+
+    public String getPrevisaoEstatura(String sexo) {
+        String texto = "-";
+        int idadeDias = this.getIdade();
+        int idadeOsseaDias = (int) (this.getIdadeOsseaAnos() * 365);
+        idadeOsseaDias += (int) (this.getIdadeOsseaMeses() * 30);
+        int mesesIdadeOssea = (int) (this.getIdadeOsseaMeses());
+        int anosIdadeOssea = (int) (this.getIdadeOsseaAnos());
+        if (sexo.equalsIgnoreCase("masculino")) {
+            if ((idadeDias - 365 < idadeOsseaDias) && (idadeDias + 365 > idadeOsseaDias)) {
+                switch (mesesIdadeOssea) {
+                    case 0: //valores mais proximos do mes 0, consulta tabela mes 0
+                    case 1: {
+                        TabelaPrevisaoAltura previsaoAltura = new DaoTabelaPrevisaoAltura().GetByGraficoSexoMes(sexo, 0, anosIdadeOssea);
+                        texto = this.getAltura() / previsaoAltura.getCompativel() + "";
+                        break;
+                    }
+                    case 2:
+                    case 3:   //valores mais proximos do mes 3, consulta tabela mes 3
+                    case 4: {
+                        TabelaPrevisaoAltura previsaoAltura = new DaoTabelaPrevisaoAltura().GetByGraficoSexoMes(sexo, 3, anosIdadeOssea);
+                        texto = this.getAltura() / previsaoAltura.getCompativel() + "";
+                        break;
+                    }
+                    case 5:
+                    case 6: //valores mais proximos do mes 6, consulta tabela mes 6
+                    case 7: {
+                        TabelaPrevisaoAltura previsaoAltura = new DaoTabelaPrevisaoAltura().GetByGraficoSexoMes(sexo, 6, anosIdadeOssea);
+                        texto = this.getAltura() / previsaoAltura.getCompativel() + "";
+                        break;
+                    }
+                    case 8: //valores mais proximos do mes 9, consulta tabela mes 9
+                    case 9: {
+                        TabelaPrevisaoAltura previsaoAltura = new DaoTabelaPrevisaoAltura().GetByGraficoSexoMes(sexo, 9, anosIdadeOssea);
+                        texto = this.getAltura() / previsaoAltura.getCompativel() + "";
+                        break;
+                    }
+                }
+            } else if (idadeDias - 365 < idadeOsseaDias) {
+                //atrasada
+            } else {
+                //adiantada
+            }
+        } else {
+            if ((idadeDias - 365 < idadeOsseaDias) && (idadeDias + 365 > idadeOsseaDias)) {
+                //compativel
+            } else if (idadeDias - 365 < idadeOsseaDias) {
+                //atrasada
+            } else {
+                //adiantada
+            }
+        }
+        return texto;
+    }
+
+    public String getIdadeOsseaExtenso() {
+        String idadeOssea = "";
+        idadeOssea += this.getIdadeOsseaAnos() + " ano";
+        if (this.getIdadeOsseaAnos() > 1) {
+            idadeOssea += "s";
+        }
+        idadeOssea += " " + this.getIdadeOsseaMeses();
+        if (this.getIdadeOsseaMeses() > 1) {
+            idadeOssea += " meses";
+        } else {
+            idadeOssea += " mês";
+        }
+
+        return idadeOssea;
     }
 
     public String getIMC() {
@@ -169,12 +292,20 @@ public class Medida implements Serializable {
         this.perimetroCefalico = perimetroCefalico;
     }
 
-    public double getIdadeOssea() {
-        return idadeOssea;
+    public double getIdadeOsseaAnos() {
+        return idadeOsseaAnos;
     }
 
-    public void setIdadeOssea(double idadeOssea) {
-        this.idadeOssea = idadeOssea;
+    public void setIdadeOsseaAnos(double idadeOsseaAnos) {
+        this.idadeOsseaAnos = idadeOsseaAnos;
+    }
+
+    public double getIdadeOsseaMeses() {
+        return idadeOsseaMeses;
+    }
+
+    public void setIdadeOsseaMeses(double idadeOsseaMeses) {
+        this.idadeOsseaMeses = idadeOsseaMeses;
     }
 
     public double getPrevisaoEstatura() {
@@ -274,7 +405,7 @@ public class Medida implements Serializable {
         String hint = "Data: " + Util.Util.dateToString(this.getData()) + "<br/>"
                 + "Idade: " + this.idadeToExtenso() + "<br/>"
                 + "Peso: " + this.getPeso() + " kg<br/>"
-                + "Altura: " + this.getAltura() + " "+this.getPosicaoAbreviado()+" cm<br/>"
+                + "Altura: " + this.getAltura() + " " + this.getPosicaoAbreviado() + " cm<br/>"
                 + "IMC: " + this.getIMC();
         return hint;
     }

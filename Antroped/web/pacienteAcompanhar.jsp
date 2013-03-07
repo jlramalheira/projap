@@ -126,15 +126,15 @@
                 if (tab=='peso05'){
                     $('.report').html('<%=((dados.size() > 0) && (dados.get(0).getIdade() < 1825)) ? dados.get(0).getTextoAtual("peso05", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
                 }else if(tab=='peso519'){
-                    $('.report').html('Não há nenhuma avaliação disponível para este tipo de gráfico.');
+                    $('.report').html('<%=((dados.size() > 0) && (dados.get(0).getIdade() >= 1825) && (dados.get(0).getIdade() < 3650)) ? dados.get(0).getTextoAtual("peso519", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
                 }else if(tab=='estatura05'){
                     $('.report').html('<%=((dados.size() > 0) && (dados.get(0).getIdade() < 1825)) ? dados.get(0).getTextoAtual("estatura05", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
                 }else if(tab=='estatura519'){
-                    $('.report').html('Não há nenhuma avaliação disponível para este tipo de gráfico.');
+                    $('.report').html('<%=((dados.size() > 0) && (dados.get(0).getIdade() >= 1825) && (dados.get(0).getIdade() < 6935)) ? dados.get(0).getTextoAtual("estatura519", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
                 }else if(tab=='imc05'){
                     $('.report').html('<%=((dados.size() > 0) && (dados.get(0).getIdade() < 1825)) ? dados.get(0).getTextoAtual("imc05", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
                 }else if(tab=='imc519'){
-                    $('.report').html('Não há nenhuma avaliação disponível para este tipo de gráfico.');
+                    $('.report').html('<%=((dados.size() > 0) && (dados.get(0).getIdade() >= 1825) && (dados.get(0).getIdade() < 6935)) ? dados.get(0).getTextoAtual("imc519", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
                 }else if(tab=='pc05'){
                     $('.report').html('Não há nenhuma avaliação disponível para este tipo de gráfico.');
                 }
@@ -210,8 +210,8 @@
                             <td class="estatura"><%=medida.getAltura()%><span class="minor"> <%=medida.getPosicaoAbreviado()%></span></td>
                             <td class="imc"><%=medida.getIMC()%></td>
                             <td class="perimetroCefalico"><%=medida.getPerimetroCefalico()%></td>
-                            <td class="idadeOssea"><%=medida.getIdadeOssea()%></td>
-                            <td class="previsaoEstatura">-</td>
+                            <td class="idadeOssea"><%=medida.getIdadeOsseaExtenso()%></td>
+                            <td class="previsaoEstatura"><%=medida.getPrevisaoEstatura(paciente.getSexo())%></td>
                             <td class="opcoes">
                                 <a href="#" title="Detalhes da medida"><img src="css/images/medidaDetails.svg" alt="Detalhes da medida icon"/></a>
                                 <a href="#" title="Editar medida"><img src="css/images/medidaEdit.svg" alt="Editar medida icon"/></a>
@@ -239,8 +239,11 @@
                                    placeholder="A estatura que foi medida"/><br/>
                         </div>
                         <div class="col">
-                            <label for="medidaIdadeOssea">Idade Óssea:</label><br/>
-                            <input type="text" name="idadeOssea" value="" id="medidaIdadeOssea"
+                            <label for="idadeOsseaAnos">Idade Óssea Anos:</label><br/>
+                            <input type="text" name="idadeOsseaAnos" value="" id="idadeOsseaAnos"
+                                   placeholder="A idade óssea atribuída" /><br/>
+                            <label for="idadeOsseaMeses">Idade Óssea Meses:</label><br/>
+                            <input type="text" name="idadeOsseaMeses" value="" id="idadeOsseaMeses"
                                    placeholder="A idade óssea atribuída" /><br/>
 
                             <label for="medidaEstatura">Perímetro Cefálico (cm):</label><br/>

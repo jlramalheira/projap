@@ -103,7 +103,8 @@ public class ServletMedidas extends HttpServlet {
         double peso = 0;
         double perimetroCefalico = 0;
         double estatura = 0;
-        double idadeOssea = 0;
+        double idadeOsseaAnos = 0;
+        double idadeOsseaMeses = 0;
         String posicao = "";
         Date data = new Date();
 
@@ -122,16 +123,17 @@ public class ServletMedidas extends HttpServlet {
         if (!request.getParameter("data").isEmpty()) {
             data = Util.Util.stringToDate(request.getParameter("data"));
         }
-        if (!request.getParameter("idadeOssea").isEmpty()) {
-            idadeOssea = Double.parseDouble(request.getParameter("idadeOssea"));
+        if (!request.getParameter("idadeOsseaAnos").isEmpty()) {
+            idadeOsseaAnos = Double.parseDouble(request.getParameter("idadeOsseaAnos"));
+        }
+        if (!request.getParameter("idadeOsseaMeses").isEmpty()) {
+            idadeOsseaMeses = Double.parseDouble(request.getParameter("idadeOsseaMeses"));
         }
         int total = Util.Util.getDiferencaDatas(paciente.getDataNascimento(), data);
-        System.out.println("************************");
-        System.out.println("aqui");
         if (operacao.equalsIgnoreCase("cadastrar")) {
 
             System.out.println("aqui");
-            new Dao<Medida>(Medida.class).insert(new Medida(posicao, data, paciente, total, peso, perimetroCefalico, estatura, idadeOssea));
+            new Dao<Medida>(Medida.class).insert(new Medida(posicao, data, paciente, total, peso, perimetroCefalico, estatura, idadeOsseaAnos, idadeOsseaMeses));
             System.out.println("aqui");
 
         } else if (operacao.equalsIgnoreCase("editar")) {
@@ -142,6 +144,8 @@ public class ServletMedidas extends HttpServlet {
             medida.setPosicao(posicao);
             medida.setData(data);
             medida.setIdade(total);
+            medida.setIdadeOsseaAnos(idadeOsseaAnos);
+            medida.setIdadeOsseaMeses(idadeOsseaMeses);
 
             new Dao<Medida>(Medida.class).update(medida);
             session.removeAttribute("medida");
