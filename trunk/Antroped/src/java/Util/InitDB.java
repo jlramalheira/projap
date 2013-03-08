@@ -14,7 +14,7 @@ import java.util.ArrayList;
  *
  * @author JoaoLuiz
  */
-public class PopularBanco {
+public class InitDB {
 
     public static void main(String[] args) {
         ArrayList<TabelaScoreZ> scores = new ArrayList<TabelaScoreZ>();
