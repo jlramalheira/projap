@@ -215,7 +215,7 @@
                             <td class="opcoes">
                                 <a href="#" title="Detalhes da medida"><img src="css/images/medidaDetails.svg" alt="Detalhes da medida icon"/></a>
                                 <a href="#" title="Editar medida"><img src="css/images/medidaEdit.svg" alt="Editar medida icon"/></a>
-                                <a href="#" title="Excluir medida"><img src="css/images/medidaDelete.svg" alt="Deletar medida icon"/></a>
+                                <a href="ServletMedidas?operacao=deletar&id=<%=medida.getId()%>" title="Excluir medida"><img src="css/images/medidaDelete.svg" alt="Deletar medida icon"/></a>
                             </td>
                         </tr>
                         <%}%>

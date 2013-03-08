@@ -210,71 +210,157 @@ public class Medida implements Serializable {
 
     public String getPrevisaoEstatura(String sexo) {
         String texto = "-";
-        int idadeDias = this.getIdade();
-        int idadeOsseaDias = (int) (this.getIdadeOsseaAnos() * 365);
-        idadeOsseaDias += (int) (this.getIdadeOsseaMeses() * 30);
-        int mesesIdadeOssea = (int) (this.getIdadeOsseaMeses());
-        int anosIdadeOssea = (int) (this.getIdadeOsseaAnos());
-        if (sexo.equalsIgnoreCase("masculino")) {
+        if (this.getIdadeOsseaAnos() > 5) {
+            int idadeDias = this.getIdade();
+            int idadeOsseaDias = (int) (this.getIdadeOsseaAnos() * 365);
+            idadeOsseaDias += (int) (this.getIdadeOsseaMeses() * 30);
+            int mesesIdadeOssea = (int) (this.getIdadeOsseaMeses());
+            int anosIdadeOssea = (int) (this.getIdadeOsseaAnos());
+
             if ((idadeDias - 365 < idadeOsseaDias) && (idadeDias + 365 > idadeOsseaDias)) {
                 switch (mesesIdadeOssea) {
                     case 0: //valores mais proximos do mes 0, consulta tabela mes 0
                     case 1: {
                         TabelaPrevisaoAltura previsaoAltura = new DaoTabelaPrevisaoAltura().GetByGraficoSexoMes(sexo, 0, anosIdadeOssea);
-                        texto = this.getAltura() / previsaoAltura.getCompativel() + "";
-                        break;
+                       double fracao = previsaoAltura.getCompativel();
+                        if (fracao > 0) {
+                            texto = Math.round(this.getAltura() / fracao) + "";
+                            break;
+                        }
                     }
                     case 2:
                     case 3:   //valores mais proximos do mes 3, consulta tabela mes 3
                     case 4: {
                         TabelaPrevisaoAltura previsaoAltura = new DaoTabelaPrevisaoAltura().GetByGraficoSexoMes(sexo, 3, anosIdadeOssea);
-                        texto = this.getAltura() / previsaoAltura.getCompativel() + "";
-                        break;
+                        double fracao = previsaoAltura.getCompativel();
+                        if (fracao > 0) {
+                            texto = Math.round(this.getAltura() / fracao) + "";
+                            break;
+                        }
                     }
                     case 5:
                     case 6: //valores mais proximos do mes 6, consulta tabela mes 6
                     case 7: {
                         TabelaPrevisaoAltura previsaoAltura = new DaoTabelaPrevisaoAltura().GetByGraficoSexoMes(sexo, 6, anosIdadeOssea);
-                        texto = this.getAltura() / previsaoAltura.getCompativel() + "";
-                        break;
+                        double fracao = previsaoAltura.getCompativel();
+                        if (fracao > 0) {
+                            texto = Math.round(this.getAltura() / fracao) + "";
+                            break;
+                        }
                     }
                     case 8: //valores mais proximos do mes 9, consulta tabela mes 9
                     case 9: {
                         TabelaPrevisaoAltura previsaoAltura = new DaoTabelaPrevisaoAltura().GetByGraficoSexoMes(sexo, 9, anosIdadeOssea);
-                        texto = this.getAltura() / previsaoAltura.getCompativel() + "";
-                        break;
+                        double fracao = previsaoAltura.getCompativel();
+                        if (fracao > 0) {
+                            texto = Math.round(this.getAltura() / fracao) + "";
+                            break;
+                        }
                     }
                 }
-            } else if (idadeDias - 365 < idadeOsseaDias) {
-                //atrasada
+            } else if (idadeDias - 365 > idadeOsseaDias) {
+                switch (mesesIdadeOssea) {
+                    case 0: //valores mais proximos do mes 0, consulta tabela mes 0
+                    case 1: {
+                        TabelaPrevisaoAltura previsaoAltura = new DaoTabelaPrevisaoAltura().GetByGraficoSexoMes(sexo, 0, anosIdadeOssea);
+                        double fracao = previsaoAltura.getAtrasado();
+                        if (fracao > 0) {
+                            texto = Math.round(this.getAltura() / fracao) + "";
+                            break;
+                        }
+                    }
+                    case 2:
+                    case 3:   //valores mais proximos do mes 3, consulta tabela mes 3
+                    case 4: {
+                        TabelaPrevisaoAltura previsaoAltura = new DaoTabelaPrevisaoAltura().GetByGraficoSexoMes(sexo, 3, anosIdadeOssea);
+                        double fracao = previsaoAltura.getAtrasado();
+                        if (fracao > 0) {
+                            texto = Math.round(this.getAltura() / fracao) + "";
+                            break;
+                        }
+                    }
+                    case 5:
+                    case 6: //valores mais proximos do mes 6, consulta tabela mes 6
+                    case 7: {
+                        TabelaPrevisaoAltura previsaoAltura = new DaoTabelaPrevisaoAltura().GetByGraficoSexoMes(sexo, 6, anosIdadeOssea);
+                        double fracao = previsaoAltura.getAtrasado();
+                        if (fracao > 0) {
+                            texto = Math.round(this.getAltura() / fracao) + "";
+                            break;
+                        }
+                    }
+                    case 8: //valores mais proximos do mes 9, consulta tabela mes 9
+                    case 9: {
+                        TabelaPrevisaoAltura previsaoAltura = new DaoTabelaPrevisaoAltura().GetByGraficoSexoMes(sexo, 9, anosIdadeOssea);
+                        double fracao = previsaoAltura.getAtrasado();
+                        if (fracao > 0) {
+                            texto = Math.round(this.getAltura() / fracao) + "";
+                            break;
+                        }
+                    }
+                }
             } else {
-                //adiantada
-            }
-        } else {
-            if ((idadeDias - 365 < idadeOsseaDias) && (idadeDias + 365 > idadeOsseaDias)) {
-                //compativel
-            } else if (idadeDias - 365 < idadeOsseaDias) {
-                //atrasada
-            } else {
-                //adiantada
+                switch (mesesIdadeOssea) {
+                    case 0: //valores mais proximos do mes 0, consulta tabela mes 0
+                    case 1: {
+                        TabelaPrevisaoAltura previsaoAltura = new DaoTabelaPrevisaoAltura().GetByGraficoSexoMes(sexo, 0, anosIdadeOssea);
+                        double fracao = previsaoAltura.getAdiantado();
+                        if (fracao > 0) {
+                            texto = Math.round(this.getAltura() / fracao) + "";
+                            break;
+                        }
+                    }
+                    case 2:
+                    case 3:   //valores mais proximos do mes 3, consulta tabela mes 3
+                    case 4: {
+                        TabelaPrevisaoAltura previsaoAltura = new DaoTabelaPrevisaoAltura().GetByGraficoSexoMes(sexo, 3, anosIdadeOssea);
+                        double fracao = previsaoAltura.getAdiantado();
+                        if (fracao > 0) {
+                            texto = Math.round(this.getAltura() / fracao) + "";
+                            break;
+                        }
+                    }
+                    case 5:
+                    case 6: //valores mais proximos do mes 6, consulta tabela mes 6
+                    case 7: {
+                        TabelaPrevisaoAltura previsaoAltura = new DaoTabelaPrevisaoAltura().GetByGraficoSexoMes(sexo, 6, anosIdadeOssea);
+                        double fracao = previsaoAltura.getAdiantado();
+                        if (fracao > 0) {
+                            texto = Math.round(this.getAltura() / fracao) + "";
+                            break;
+                        }
+                    }
+                    case 8: //valores mais proximos do mes 9, consulta tabela mes 9
+                    case 9: {
+                        TabelaPrevisaoAltura previsaoAltura = new DaoTabelaPrevisaoAltura().GetByGraficoSexoMes(sexo, 9, anosIdadeOssea);
+                        double fracao = previsaoAltura.getAdiantado();
+                        if (fracao > 0) {
+                            texto = Math.round(this.getAltura() / fracao) + "";
+                            break;
+                        }
+                    }
+                }
             }
         }
         return texto;
     }
 
     public String getIdadeOsseaExtenso() {
-        String idadeOssea = "";
-        idadeOssea += this.getIdadeOsseaAnos() + " ano";
-        if (this.getIdadeOsseaAnos() > 1) {
-            idadeOssea += "s";
+        String idadeOssea = "-";
+        if (this.getIdadeOsseaAnos() > 0) {
+            idadeOssea = ((int) this.getIdadeOsseaAnos()) + " ano";
+            if (this.getIdadeOsseaAnos() > 1) {
+                idadeOssea += "s";
+            }
+            if (this.getIdadeOsseaMeses() > 0) {
+                idadeOssea += " " + ((int) this.getIdadeOsseaMeses());
+                if (this.getIdadeOsseaMeses() > 1) {
+                    idadeOssea += " meses";
+                } else {
+                    idadeOssea += " mês";
+                }
+            }
         }
-        idadeOssea += " " + this.getIdadeOsseaMeses();
-        if (this.getIdadeOsseaMeses() > 1) {
-            idadeOssea += " meses";
-        } else {
-            idadeOssea += " mês";
-        }
-
         return idadeOssea;
     }
 
@@ -424,7 +510,7 @@ public class Medida implements Serializable {
         String data = "";
         int anos = (int) (this.getIdade() / 365);
         int meses = (int) ((this.getIdade() % 365) / 30);
-        int dias = (int) ((this.getIdade() % 365) % 30) - (meses / 2 + 1);
+        int dias = (int) ((this.getIdade() % 365) % 30) - (meses / 2 + 2);
         if (anos > 0) {
             data += anos;
             if (anos == 1) {

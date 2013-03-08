@@ -46,8 +46,8 @@ public class Email {
         message.addRecipients(Message.RecipientType.TO, toAddress);
 
         message.setSubject(subject);
-
-        message.setText(text);
+        message.setContent(text, "text/html");
+        //message.setText(text);
 
         Transport.send(message);
     }
