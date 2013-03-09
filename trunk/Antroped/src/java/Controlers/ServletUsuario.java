@@ -42,6 +42,7 @@ public class ServletUsuario extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        DaoUsuario daoUsuario = new DaoUsuario();
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession(true);
         String operacao;
@@ -53,7 +54,7 @@ public class ServletUsuario extends HttpServlet {
             String login = request.getParameter("login");
             String senha = request.getParameter("senha");
 
-            List<Usuario> usuarios = (new DaoUsuario().listByLoginEmail(login, email));
+            List<Usuario> usuarios = (daoUsuario.listByLoginOrEmail(login, email));
 
 
             if (!usuarios.isEmpty()) {
@@ -62,21 +63,20 @@ public class ServletUsuario extends HttpServlet {
                 response.sendRedirect("usuarioCadastrar.jsp");
             } else {
                 Usuario usuario = new Usuario(login, senha, nome, email);
-                new DaoUsuario().insert(usuario);
-
-                session.setAttribute("usuario", usuario);
-
-                response.sendRedirect("usuarioLogin.jsp");
+                daoUsuario.insert(usuario);
+                
+                session.setAttribute("mensagem", "Usuario cadastrado com sucesso!");
+                response.sendRedirect("usuarioIndex.jsp");
             }
         } else if (operacao.equalsIgnoreCase("entrar")) {
             String login = request.getParameter("login");
             String senha = request.getParameter("senha");
-            if ((new DaoUsuario().listByLogin(login)).isEmpty()) {
+            if ((daoUsuario.listByLogin(login)).isEmpty()) {
                 session.setAttribute("mensagem", "Login incorreto");
 
                 response.sendRedirect("usuarioLogin.jsp");
             } else {
-                Usuario usuario = (new DaoUsuario().listByLogin(login)).get(0);
+                Usuario usuario = (daoUsuario.listByLogin(login)).get(0);
                 if ((usuario != null) && (usuario.getSenha().equals(senha))) {
                     session.setAttribute("usuario", usuario);
                     response.sendRedirect("usuarioIndex.jsp");
@@ -88,13 +88,14 @@ public class ServletUsuario extends HttpServlet {
         } else if (operacao.equalsIgnoreCase("recuperar")) {
             String email = request.getParameter("email");
 
-            if (!(new DaoUsuario().listByEmail(email).isEmpty())) {
-                Usuario usuario = new DaoUsuario().listByEmail(email).get(0);
+            if (!(daoUsuario.listByEmail(email).isEmpty())) {
+                Usuario usuario = daoUsuario.listByEmail(email).get(0);
                 try {
                     //Opcao em html para enviar imagem
+                    String caminho = "caminho da imagem aqui";
                     Email.sendEmail(email, "Recuperação de Login e Senha",
-                            "<img src=\"caminhoLogo\" alt=\"Logo\" /> <br/>"
-                            +"Olá " + usuario.getNome() + ", <br/><br/>"
+                            "<img src=\""+caminho+"\" alt=\"Logo\" /> <br/>"
+                            + "Olá " + usuario.getNome() + ", <br/><br/>"
                             + "Seu Login no sistema Antroped é: " + usuario.getLogin()
                             + " <br/>Sua senha é: " + usuario.getSenha() + " <br/><br/>"
                             + "Atenciosamente,<br/>Antroped.");
@@ -106,6 +107,34 @@ public class ServletUsuario extends HttpServlet {
             } else {
                 session.setAttribute("mensagem", "Usuario não cadastrado");
                 response.sendRedirect("usuarioRecuperarLoginSenha.jsp");
+            }
+        } else if (operacao.equalsIgnoreCase("editar")) {
+            String nome = request.getParameter("nome");
+            String email = request.getParameter("email");
+            String senhaAtual = request.getParameter("senhaAtual");
+            String senhaNova = request.getParameter("senhaNova");
+
+            Usuario usuario = (Usuario) session.getAttribute("usuario");
+
+            if (!usuario.getEmail().equalsIgnoreCase(email)) {
+                List<Usuario> usuarios = daoUsuario.listByEmail(email);
+                if (!usuarios.isEmpty()) {
+                    session.setAttribute("mensagem", "Email já cadastrado!");
+                    response.sendRedirect("usuarioEditar.jsp");
+                }
+            } else {
+                if (usuario.getSenha().equals(senhaAtual)) {
+                    usuario.setEmail(email);
+                    usuario.setNome(nome);
+                    usuario.setSenha(senhaNova);
+                    
+                    daoUsuario.update(usuario);
+                    session.setAttribute("mensagem", "Sucesso na alteração!");
+                    response.sendRedirect("usuarioIndex.jsp");
+                } else {
+                    session.setAttribute("mensagem", "Senha invalida");
+                    response.sendRedirect("usauarioEditar.jsp");
+                }
             }
         }
 

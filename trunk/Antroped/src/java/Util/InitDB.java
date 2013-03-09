@@ -6,8 +6,10 @@ package Util;
 
 import Dao.DaoTabelaPrevisaoAltura;
 import Dao.DaoTabelaScoreZ;
+import Dao.DaoUsuario;
 import Model.TabelaPrevisaoAltura;
 import Model.TabelaScoreZ;
+import Model.Usuario;
 import java.util.ArrayList;
 
 /**
@@ -1414,6 +1416,15 @@ public class InitDB {
         previsoes.add(new TabelaPrevisaoAltura("feminino", 17, 6, 0, 0.9995, 0.9995));
         previsoes.add(new TabelaPrevisaoAltura("feminino", 17, 9, 0, 0.9995, 1.0));
         previsoes.add(new TabelaPrevisaoAltura("feminino", 18, 0, 0, 1.0, 0));
+        
+        Usuario usuario = new Usuario();
+        usuario.setNome("Administrador");
+        usuario.setEmail("antroped@gmail.com");
+        usuario.setLogin("admin");
+        usuario.setSenha("admin");
+        usuario.setAdministrador(true);
+        
+        new DaoUsuario().insert(usuario);
 
         //Preencendo o banco
         for (TabelaScoreZ score : scores) {

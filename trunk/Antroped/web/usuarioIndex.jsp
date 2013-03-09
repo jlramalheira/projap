@@ -27,6 +27,13 @@
             <%@include file="interfaceHeader.jsp" %>
             <%-- MAIN --%>
             <div class="main">
+                <%
+                    //Mensagem de Alterado com sucesso
+                    if (session.getAttribute("mensagem") != null) {
+                        out.print("<p class=\"erro\">" + session.getAttribute("mensagem") + "</p>");
+                        session.removeAttribute("mensagem");
+                    }
+                %>
                 <a href="pacienteCadastrar.jsp">Adicionar Novo</a>
                 <a href="pacienteBuscar.jsp">Busca Avancada</a>
                 <form action="ServletPaciente" method="GET"
