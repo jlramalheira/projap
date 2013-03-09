@@ -1,25 +1,25 @@
 <%-- 
-    Document   : cadastro
+    Document   : usuarioCadastrar
     Created on : 27/09/2012, 17:20:22
-    Author     : Guilherme
+    Author     : João Luiz e Max
+    Description: Pagina para cadastro de novos usuarios
+
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
-        <link type="text/css" rel="stylesheet" href="css/styles.css" />
-        <link href='http://fonts.googleapis.com/css?family=Advent+Pro|Capriola' rel='stylesheet' type='text/css'>
-        <script src="js/jquery-1.8.0.min.js" type="text/javascript"></script>
-        <title>Antroped</title>
+         <%@include file="interfaceHead.jsp" %>
     </head>
     
     <body lang="pt-br">
         <div class="container">
             <!-- HEADER -->
             <header>
-                <h1>Antroped</h1>
+                <a class="logo" href="#">
+                    <img src="img/logoAntroped.png" alt="Logo Antroped"/>
+                </a>
             </header>
             <!-- MAIN -->
             <div class="main">
@@ -47,6 +47,7 @@
             </div>
             <!-- FOOTER -->
             <footer>
+                <%@include file="interfaceFooter.jsp" %>
             </footer>
         </div>
     </body>

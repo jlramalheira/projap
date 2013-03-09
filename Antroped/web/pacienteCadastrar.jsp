@@ -20,10 +20,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
-        <link type="text/css" rel="stylesheet" href="css/styles.css" />
-        <link href='http://fonts.googleapis.com/css?family=Advent+Pro|Capriola' rel='stylesheet' type='text/css'>
-        <script src="js/jquery-1.8.0.min.js" type="text/javascript"></script>
+        <%@include file="interfaceHead.jsp" %>
         <script src="js/jquery.maskedinput-1.3.min.js" type="text/javascript"></script>
         <script type="text/javascript">
             $(function(){
@@ -40,20 +37,13 @@
                 });
             });
         </script>
-        <title>Antropometria</title>
     </head>
     <body lang="pt-br">
         <div class="container">
-            <!-- HEADER -->
-            <header>
-                <h1>Antropometria</h1>
-                <p class="sair">
-                    <a href="ServletUsuario?operacao=sair" title="Sair">Sair<img src="img/exitIco.png" /></a>
-                </p>
-            </header>
-            <!-- MAIN -->
+            <%-- HEADER --%>
+            <%@include file="interfaceHeader.jsp" %>
+            <%-- MAIN --%>
             <div class="main">                
-                
                 <!-- Formulário para adicionar um paciente novo -->
                 <form name="form" action="ServletPaciente" method="POST" class="formulario formularionovopaciente">
                     <fieldset>
@@ -118,6 +108,7 @@
             </div>
             <!-- FOOTER -->
             <footer>
+                <%@include file="interfaceFooter.jsp" %>
             </footer>
         </div>
     </body>
