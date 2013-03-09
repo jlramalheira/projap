@@ -15,7 +15,6 @@
     if ((usuario == null)) {
         response.sendRedirect("usuarioLogin.jsp");
     } else {
-        List<Paciente> pacientes = new Dao<Paciente>(Paciente.class).listByUsuario(usuario);
 %>
 <!DOCTYPE html>
 <html>
@@ -43,7 +42,7 @@
             <%-- HEADER --%>
             <%@include file="interfaceHeader.jsp" %>
             <%-- MAIN --%>
-            <div class="main">                
+            <div class="main">
                 <!-- Formulário para adicionar um paciente novo -->
                 <form name="form" action="ServletPaciente" method="POST" class="formulario formularionovopaciente">
                     <fieldset>
@@ -97,12 +96,12 @@
                                            ? ""
                                            : ((Paciente) session.getAttribute("editando")).getEstaturaMae()%>"/>
                         </p> 
-                        
-                        <input type="submit" value="Cancelar" name="operacao"
-                               class="button cancelar" 
-                               onclick=""/>                  
+                                       
                         <input type="submit" value="Cadastrar" name="operacao"
                                class="button enviar"/>
+                        <input type="submit" value="Cancelar" name="operacao"
+                               class="button cancelar" 
+                               onclick=""/>
                     </fieldset>
                 </form>
             </div>

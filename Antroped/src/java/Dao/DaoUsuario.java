@@ -19,7 +19,7 @@ public class DaoUsuario extends Dao<Usuario>{
         return em.createQuery("SELECT e FROM Usuario e WHERE e.login LIKE '"+login+"'").getResultList();
     }
     
-    public List<Usuario> listByLoginEmail(String login, String email) {
+    public List<Usuario> listByLoginOrEmail(String login, String email) {
         return em.createQuery("SELECT e FROM Usuario e WHERE e.login LIKE '"+login+"' or e.email = '"+email+"'").getResultList();
     }
     

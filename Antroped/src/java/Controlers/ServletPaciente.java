@@ -33,12 +33,12 @@ public class ServletPaciente extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession(true);
-        
+
         int id = 0;
-        if (request.getParameter("id")!=null){
+        if (request.getParameter("id") != null) {
             id = Integer.parseInt(request.getParameter("id"));
         }
-        Usuario usuario = (Usuario)session.getAttribute("usuario");
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
         String operacao = request.getParameter("operacao");
 
         if (operacao.equalsIgnoreCase("deletar")) {
@@ -59,38 +59,38 @@ public class ServletPaciente extends HttpServlet {
 
             session.setAttribute("pacienteEditando", paciente);
             response.sendRedirect("usuarioIndex.jsp");
-        } else if (operacao.equalsIgnoreCase("pesquisar")){
+        } else if (operacao.equalsIgnoreCase("pesquisar")) {
             String nomePaciente = "";
             String nomePai = "";
             String nomeMae = "";
             String sexo = "";
-            
-            if (request.getParameter("pesquisar")!= null){
+
+            if (request.getParameter("pesquisar") != null) {
                 nomePaciente = request.getParameter("pesquisar");
             }
-            if (request.getParameter("pesquisarNomeMae")!= null){
+            if (request.getParameter("pesquisarNomeMae") != null) {
                 nomeMae = request.getParameter("pesquisarNomeMae");
             }
-            if (request.getParameter("pesquisarNomePai")!= null){
+            if (request.getParameter("pesquisarNomePai") != null) {
                 nomePai = request.getParameter("pesquisarNomePai");
             }
-            if (request.getParameter("pesquisarSexo")!= null){
+            if (request.getParameter("pesquisarSexo") != null) {
                 sexo = request.getParameter("pesquisarSexo");
             }
-            
-            List<Paciente> pacientesPesquisa = new DaoPaciente().listByAll(nomePaciente,nomePai,nomeMae, sexo, usuario);
-            
+
+            List<Paciente> pacientesPesquisa = new DaoPaciente().listByAll(nomePaciente, nomePai, nomeMae, sexo, usuario);
+
             session.setAttribute("pacientesPesquisa", pacientesPesquisa);
             RequestDispatcher rd = request.getRequestDispatcher("pacienteListar.jsp");
-            
-            rd.forward(request, response);            
+
+            rd.forward(request, response);
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession(true);
 
@@ -151,8 +151,9 @@ public class ServletPaciente extends HttpServlet {
 
             session.removeAttribute("pacienteEditando");
             session.setAttribute("paciente", paciente);
+            response.sendRedirect("pacienteAcompanhar.jsp");
+        } else if (operacao.equalsIgnoreCase("cancelar")) {
+            response.sendRedirect("usuarioIndex.jsp");
         }
-
     }
-
 }

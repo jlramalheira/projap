@@ -1,17 +1,14 @@
 <%-- 
-    Document   : usuarioCadastrar
-    Created on : 27/09/2012, 17:20:22
-    Author     : João Luiz e Max
-    Description: Pagina para cadastro de novos usuarios
-
+    Document   : usuarioEditar
+    Created on : 09/03/2013, 11:38:31
+    Author     : Joao Luiz e Max
+    Description: Pagina para o usuario alterar sua senha
 --%>
 <%@page import="Model.Usuario"%>
 <%
     Usuario usuario = (Usuario) session.getAttribute("usuario");
     if ((usuario == null)) {
         response.sendRedirect("usuarioLogin.jsp");
-    } else if (!usuario.isAdministrador()) { //Caso o usuario não seja o Administrador, não permite cadastrar novo usuario
-        response.sendRedirect("usuarioIndex.jsp");
     } else {
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -20,20 +17,15 @@
     <head>
         <%@include file="interfaceHead.jsp" %>
     </head>
-
     <body lang="pt-br">
         <div class="container">
-            <!-- HEADER -->
-            <header>
-                <a class="logo" href="#">
-                    <img src="img/logoAntroped.png" alt="Logo Antroped"/>
-                </a>
-            </header>
-            <!-- MAIN -->
+            <%-- HEADER --%>
+            <%@include file="interfaceHeader.jsp" %>
+            <%-- MAIN --%>
             <div class="main">
                 <form name="form" action="ServletUsuario" method="POST" class="formulario formulariocadastro">
                     <fieldset>
-                        <legend>Cadastro:</legend>
+                        <legend>Editar:</legend>
                         <%
                             if (session.getAttribute("mensagem") != null) {
                                 out.print("<p class=\"erro\">" + session.getAttribute("mensagem") + "</p>");
@@ -41,15 +33,18 @@
                             }
                         %>
                         <label for="nome">Nome:</label><br/>
-                        <input type="text" name="nome" id="nome"/><br/>
+                        <input type="text" name="nome" id="nome" value="<%=usuario.getNome()%>"/><br/>
                         <label for="email">Email:</label><br/>
-                        <input type="text" name="email" id="email"/><br/>
-                        <label for="login">Login:</label><br/>
-                        <input type="text" name="login" id="login"/><br/>
-                        <label for="senha">Senha:</label><br/>
-                        <input type="password" name="senha" id="senha"/><br/>                        
+                        <input type="text" name="email" id="email" value="<%=usuario.getEmail()%>"/><br/>
+                        <%--@TODO aparecer clicando em algo do tipo "alterar senha?"--%>
+                        <div>
+                            <label for="senhaAtual">Senha Atual:</label><br/>
+                            <input type="password" name="senhaAtual" id="senhaAtual"/><br/>
+                            <label for="senhaNova">Nova Senha:</label><br/>
+                            <input type="password" name="senhaNova" id="senhaNova"/><br/> 
+                        </div>
                         <input type="submit" id="login" name="operacao"
-                               value="Cadastrar" class="button" />
+                               value="Editar" class="button" />
                     </fieldset>
                 </form>
             </div>
