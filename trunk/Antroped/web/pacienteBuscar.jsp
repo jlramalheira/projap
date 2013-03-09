@@ -20,21 +20,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
-        <link type="text/css" rel="stylesheet" href="css/styles.css" />
-        <link href='http://fonts.googleapis.com/css?family=Advent+Pro|Capriola' rel='stylesheet' type='text/css'>
-        <script src="js/jquery-1.8.0.min.js" type="text/javascript"></script>
-        <title>Antropometria</title>
+        <%@include file="interfaceHead.jsp" %>
     </head>
     <body lang="pt-br">
         <div class="container">
             <!-- HEADER -->
-            <header>
-                <h1>Antropometria</h1>
-                <p class="sair">
-                    <a href="ServletUsuario?operacao=sair" title="Sair">Sair<img src="img/exitIco.png" /></a>
-                </p>
-            </header>
+            <%@include file="interfaceHeader.jsp" %>
             <!-- MAIN -->
             <div class="main">
                 <form action="ServletPaciente" method="GET" name="formpesquisaPaciente">
@@ -55,6 +46,7 @@
             </div>
             <!-- FOOTER -->
             <footer>
+                <%@include file="interfaceFooter.jsp" %>
             </footer>
         </div>
     </body>
