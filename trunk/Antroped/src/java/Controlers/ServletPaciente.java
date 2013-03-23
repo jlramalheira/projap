@@ -32,30 +32,31 @@ public class ServletPaciente extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
+        DaoPaciente daoPaciente = new DaoPaciente();
         HttpSession session = request.getSession(true);
 
-        int id = 0;
-        if (request.getParameter("id") != null) {
-            id = Integer.parseInt(request.getParameter("id"));
+        int pacienteId = 0;
+        if (request.getParameter("pacienteId") != null) {
+            pacienteId = Integer.parseInt(request.getParameter("id"));
         }
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         String operacao = request.getParameter("operacao");
 
         if (operacao.equalsIgnoreCase("deletar")) {
-            List<Medida> dados = new Dao<Medida>(Medida.class).listById(id);
+            List<Medida> dados = new Dao<Medida>(Medida.class).listById(pacienteId);
             for (Medida d : dados) {
                 new Dao<Medida>(Medida.class).remove(d.getId());
             }
-            new Dao<Paciente>(Paciente.class).remove(id);
+            daoPaciente.remove(pacienteId);
 
             response.sendRedirect("usuarioIndex.jsp");
         } else if (operacao.equalsIgnoreCase("mostrar")) {
-            Paciente paciente = new Dao<Paciente>(Paciente.class).get(id);
+            Paciente paciente = daoPaciente.get(pacienteId);
 
             session.setAttribute("paciente", paciente);
             response.sendRedirect("pacienteAcompanhar.jsp");
         } else if (operacao.equalsIgnoreCase("editar")) {
-            Paciente paciente = new Dao<Paciente>(Paciente.class).get(id);
+            Paciente paciente = daoPaciente.get(pacienteId);
 
             session.setAttribute("pacienteEditando", paciente);
             response.sendRedirect("usuarioIndex.jsp");
@@ -78,7 +79,7 @@ public class ServletPaciente extends HttpServlet {
                 sexo = request.getParameter("pesquisarSexo");
             }
 
-            List<Paciente> pacientesPesquisa = new DaoPaciente().listByAll(nomePaciente, nomePai, nomeMae, sexo, usuario);
+            List<Paciente> pacientesPesquisa = daoPaciente.listByAll(nomePaciente, nomePai, nomeMae, sexo, usuario);
 
             session.setAttribute("pacientesPesquisa", pacientesPesquisa);
             RequestDispatcher rd = request.getRequestDispatcher("pacienteListar.jsp");
@@ -90,6 +91,7 @@ public class ServletPaciente extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        DaoPaciente daoPaciente = new DaoPaciente();
 
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession(true);
@@ -133,12 +135,13 @@ public class ServletPaciente extends HttpServlet {
         //@TO-DO Implementar o cancelar do editar
         if (operacao.equalsIgnoreCase("cadastrar")) {
             Paciente paciente = new Paciente(nome, nomePai, nomeMae, estaturaPai, estaturaMae, dataNascimento, sexo, usuario);
-            new Dao<Paciente>(Paciente.class).insert(paciente);
+            daoPaciente.insert(paciente);
             session.setAttribute("paciente", paciente);
             response.sendRedirect("pacienteAcompanhar.jsp");
 
         } else if (operacao.equalsIgnoreCase("editar")) {
-            Paciente paciente = (Paciente) session.getAttribute("editando");
+            int pacienteId = Integer.parseInt(request.getParameter("pacienteId"));
+            Paciente paciente = daoPaciente.get(pacienteId);
             paciente.setNome(nome);
             paciente.setSexo(sexo);
             paciente.setNomePai(nomePai);
@@ -147,9 +150,9 @@ public class ServletPaciente extends HttpServlet {
             paciente.setEstaturaMae(estaturaMae);
             paciente.setDataNascimento(dataNascimento);
 
-            new Dao<Paciente>(Paciente.class).update(paciente);
+            daoPaciente.update(paciente);
 
-            session.removeAttribute("pacienteEditando");
+            session.removeAttribute("paciente");
             session.setAttribute("paciente", paciente);
             response.sendRedirect("pacienteAcompanhar.jsp");
         } else if (operacao.equalsIgnoreCase("cancelar")) {

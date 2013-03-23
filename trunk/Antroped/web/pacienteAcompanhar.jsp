@@ -149,7 +149,7 @@
             <div class="main">
                 <%-- Navigation --%>
                 <nav>
-                    <a href="#">Pacientes</a> » <span class="current">Acompanhar Paciente</span>
+                    <a href="pacienteListar.jsp">Pacientes</a> » <span class="current">Acompanhar Paciente</span>
                 </nav>
                 <%-- Paciente Data --%>
                 <section class="paciente">
@@ -282,7 +282,7 @@
                 </section>
                 <%-- Avaliação do Gráfico --%>
                 <section class="avaliacao">
-                    <h1>Avaliação do Gráfico</h1>
+                    <h1>Avaliação do Gráfico <%=dados.get(0).getScoreZ("imc519", paciente.getSexo()) %></h1>
                     <p class="report">
                     </p>
                 </section>

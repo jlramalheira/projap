@@ -1,7 +1,7 @@
 <%--
-    Document   : pacienteCadastrar
-    Created on : 24/09/2012, 19:24:29
-    Author     : Joao Luiz e Max
+    Document   : pacienteEditar
+    Created on : 23/03/2013, 01:14:29
+    Author     : JoaoLuiz e Max
 --%>
 <%@page import="Model.Usuario"%>
 <%@page import="Model.Paciente"%>
@@ -46,33 +46,56 @@
                 <!-- Formulário para adicionar um paciente novo -->
                 <form name="form" action="ServletPaciente" method="POST" class="formulario formularionovopaciente">
                     <fieldset>
-                        <legend>Novo Paciente:</legend>
+                        <legend>Editar Paciente:</legend>
+                        <input type="hidden" name="pacienteId" value="<%=((Paciente) session.getAttribute("pacienteEditando")).getId()%>" />
                         <label for="nome">Nome:</label><br/>
-                        <input type="text" name="nome" id="nome" maxlength="40" /><br/>
+                        <input type="text" name="nome" id="nome" maxlength="40"
+                               value="<%=(session.getAttribute("pacienteEditando") == null)
+                                       ? ""
+                                       : ((Paciente) session.getAttribute("pacienteEditando")).getNome()%>"/><br/>
                         
                         <label for="datanasc">Data de Nascimento:</label><br/>
-                        <input type="text" name="dataNascimento" id="datanasc" /><br/>
+                        <input type="text" name="dataNascimento" id="datanasc"
+                               value="<%=(session.getAttribute("pacienteEditando") == null)
+                                       ? ""
+                                       : Util.Util.dateToString(((Paciente) session.getAttribute("pacienteEditando")).getDataNascimento())%>"/><br/>
 
                         <label>Sexo:</label><br/>
                         <input type="radio" name="sexo" value="Masculino" id="sexom" checked="checked"/>
                         <label for="sexom" class="radiolabel">Masculino</label>                        
-                        <input type="radio" name="sexo" value="Feminino" id="sexof" />
+                        <input type="radio" name="sexo" value="Feminino" id="sexof"
+                               <%=(session.getAttribute("pacienteEditando") != null)
+                                       && (((Paciente) session.getAttribute("pacienteEditando")).getSexo().equalsIgnoreCase("feminino"))
+                                       ? "checked=\"checked\""
+                                       : ""%>/>
                         <label for="sexof" class="radiolabel">Feminino</label><br/>
 
                         <label for="nomepai">Nome do Pai:</label><br/>
-                        <input type="text" name="nomePai" id="nomepai" /><br/>
+                        <input type="text" name="nomePai" id="nomepai"
+                               value="<%=(session.getAttribute("pacienteEditando") == null)
+                                       ? ""
+                                       : ((Paciente) session.getAttribute("pacienteEditando")).getNomePai()%>"/><br/>
 
                         <label for="nomemae">Nome da Mãe:</label><br/>
-                        <input type="text" name="nomeMae" id="nomemae" /><br/>
+                        <input type="text" name="nomeMae" id="nomemae"
+                               value="<%=(session.getAttribute("pacienteEditando") == null)
+                                       ? ""
+                                       : ((Paciente) session.getAttribute("pacienteEditando")).getNomeMae()%>"/><br/>
 
                         <p class="estatura">
                             <label for="estaturapai">Estatura do Pai (cm):</label><br/>                        
-                            <input type="text" name="estaturaPai" id="estaturapai" />
+                            <input type="text" name="estaturaPai" id="estaturapai"
+                                   value="<%=(session.getAttribute("pacienteEditando") == null)
+                                           ? ""
+                                           : ((Paciente) session.getAttribute("pacienteEditando")).getEstaturaPai()%>"/>
                         </p>
 
                         <p class="estatura">
                             <label for="estaturamae">Estatura da Mãe (cm):</label><br/>
-                            <input type="text" name="estaturaMae" id="estaturamae" />
+                            <input type="text" name="estaturaMae" id="estaturamae"
+                                   value="<%=(session.getAttribute("pacienteEditando") == null)
+                                           ? ""
+                                           : ((Paciente) session.getAttribute("pacienteEditando")).getEstaturaMae()%>"/>
                         </p> 
                                        
                         <input type="submit" value="Cadastrar" name="operacao"
@@ -89,5 +112,7 @@
             </footer>
         </div>
     </body>
-    <%}%>
+    <%
+    session.removeAttribute("pacienteEditando");
+    }%>
 </html>
