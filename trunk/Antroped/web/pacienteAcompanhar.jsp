@@ -282,7 +282,7 @@
                 </section>
                 <%-- Avaliação do Gráfico --%>
                 <section class="avaliacao">
-                    <h1>Avaliação do Gráfico <%=dados.get(0).getScoreZ("imc519", paciente.getSexo()) %></h1>
+                    <h1>Avaliação do Gráfico</h1>
                     <p class="report">
                     </p>
                 </section>
