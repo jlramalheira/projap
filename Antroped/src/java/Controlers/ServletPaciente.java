@@ -37,7 +37,7 @@ public class ServletPaciente extends HttpServlet {
 
         int pacienteId = 0;
         if (request.getParameter("pacienteId") != null) {
-            pacienteId = Integer.parseInt(request.getParameter("id"));
+            pacienteId = Integer.parseInt(request.getParameter("pacienteId"));
         }
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         String operacao = request.getParameter("operacao");
