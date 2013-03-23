@@ -21,22 +21,22 @@ public class Util {
     //public static double DESVIO_PADRAO_MASC_IMC05 = 0.9902626022190686;
     //public static double DESVIO_PADRAO_FEM_IMC05 = 0.9902626022190686;
     public static double DESVIO_PADRAO_MASC_IMC05 = 0.990262;
-    public static double DESVIO_PADRAO_FEM_IMC05 = 0.998723;
+    public static double DESVIO_PADRAO_FEM_IMC05 = 0.828723;
     
     public static double DESVIO_PADRAO_MASC_PESO05 = 0.979605;
-    public static double DESVIO_PADRAO_FEM_PESO05 = 0.987985;
+    public static double DESVIO_PADRAO_FEM_PESO05 = 0.730985;
     
     public static double DESVIO_PADRAO_MASC_ESTATURA05 = 0.978690;
-    public static double DESVIO_PADRAO_FEM_ESTATURA05 = 0.983478;
+    public static double DESVIO_PADRAO_FEM_ESTATURA05 = 1.424478;
     
     public static double DESVIO_PADRAO_MASC_PC05 = 0.925044;
     public static double DESVIO_PADRAO_FEM_PC05 = 0.934567;
     
     public static double DESVIO_PADRAO_MASC_IMC519 = 0.73089;
-    public static double DESVIO_PADRAO_FEM_IMC519 = 0.72709;
+    public static double DESVIO_PADRAO_FEM_IMC519 = 0.73309;
     
     public static double DESVIO_PADRAO_MASC_PESO519 = 2.098701;
-    public static double DESVIO_PADRAO_FEM_PESO519 = 2.156095;
+    public static double DESVIO_PADRAO_FEM_PESO519 = 1.788095;
     
     public static double DESVIO_PADRAO_MASC_ESTATURA519 = 2.641411;
     public static double DESVIO_PADRAO_FEM_ESTATURA519 = 2.638188;
