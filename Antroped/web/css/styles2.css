@@ -54,7 +54,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
     font-family: inherit;
     vertical-align: baseline;
 }
-:focus {
+*:focus {
     outline: 0;
 }
 body {
@@ -90,6 +90,49 @@ a:hover{
 }
 #graficoPeso519, #graficoEstatura05, #graficoEstatura519, #graficoImc05, #graficoImc519, #graficoPc05{
     display: none;
+}
+/* LIB
+==============================================================================*/
+.fleft{
+    float: left;
+}
+.fright{
+    float: right;
+}
+.mleft20px{
+    margin-left: 20px;
+}
+.mright20px{
+    margin-right: 20px;
+}
+.mtop20px{
+    margin-top: 20px;
+}
+.mbotton20px{
+    margin-bottom: 20px;
+}
+.hidden{
+    display: none;
+}
+.button{
+    display: inline-block;
+    width: auto;
+    height: auto;
+    padding: 17px 30px;
+    background-color: #76619a;
+    border: none;
+    color: #fff;
+    font: normal normal normal 1em "Segoe Light", sans-serif;
+    text-align: center;
+    cursor: pointer;
+}
+.button:hover{
+    background-color: #9987b7;
+}
+.button:active{
+    background-color: #614c85;
+    position: relative;
+    top: 1px;
 }
 /*ESTRUTURAL
   ============================================================================*/
@@ -162,7 +205,6 @@ footer{
     height: 150px; /*É preciso que seja o padding-bottom do CONTAINER*/
     background-color: #76619a;
 }
-
 /*MAIN
   ============================================================================*/
 div.main{
@@ -181,27 +223,6 @@ div.main nav .current{
     color: #76619a;
     font-family: "Segoe";
 }
-/*Botões
-  ============================================================================*/
-.control button{
-    width: 100%;
-    height: 65px;
-    margin: 0 0 20px 0;
-    padding: 0 0 0 40px;
-    background-color: #76619a;
-    background-repeat: no-repeat;
-    border: none;
-    color: #fff;
-    font: normal normal normal 1em "Segoe Light", sans-serif;
-    cursor: pointer;
-}
-.control button:hover{
-    background-color: #9987b7;
-}
-.control button:active{
-    background-color: #614c85;
-}
-
 /*Paciente
   ============================================================================*/
 div.main section.paciente {
@@ -232,20 +253,69 @@ div.main section.paciente section .margin{
 }
 div.main section.paciente .control{
     float: right;
-    width: 150px;
+    width: 160px;
 }
-div.main section.paciente .control button.edit{
-    background-image: url("images/pacienteEdit.svg");
-    background-size: 24%;
-    background-position: 13px center;
+div.main section.paciente section.control .button{
+    width: 160px;
 }
-div.main section.paciente .control button.newMedida{
-    background-image: url("images/medidaNew.svg");
-    background-size: 25%;
-    background-position: 10px center;
-}
-/*Tabela
+/*TABELAS
   ============================================================================*/
+table{
+    width: 100%;
+    margin: 20px 0;
+    border: #76619a solid 1px;
+}
+    table thead tr{
+        height: 40px;
+        background-color: #76619a;
+        color: #fff;
+    }
+    table thead th{
+        vertical-align: middle;
+        text-align: center;
+        font: normal normal normal 0.875em "Segoe", sans-serif;
+        line-height: 0.75em;
+    }
+        table thead th .minor{
+            color: #d1cadc;
+            font-size: 0.688em;
+        }
+    table tbody tr{
+        height: 40px;
+        color: #454150;
+    }
+        table tbody tr.even{
+            background-color: #e5e2eb;
+        }
+        table tbody tr.odd{
+            background-color: #d1cadc;
+        }
+    table tbody td{
+        vertical-align: middle;
+        text-align: center;
+        font: normal normal normal 0.875em "Segoe", sans-serif;
+        border-left: #b9b1c8 solid 1px;
+        border-right: #b9b1c8 solid 1px;
+    }
+        table tbody td:first-child{
+            border-left-color: #76619a;
+        }
+        table tbody td:last-child{
+            border-right-color: #76619a;
+        }
+    table tbody td img{
+        vertical-align: middle;
+        display: inline-block;
+        width: 25px;
+        height: 25px;
+        margin: 0 2px;
+    }
+
+table tbody td .minor{
+    font-size: 0.688em;
+}
+
+/*Medidas*/
 table.medidas {
     width: 100%;
     margin: 20px 0 20px 0;
@@ -429,6 +499,7 @@ section.graficos .minor{
     color: #5a5662;
     font: normal normal normal 0.750em "Segoe Bold", sans-serif;
 }
+
 /*FORMULÁRIOS
   ============================================================================*/
 form.form {
@@ -448,48 +519,10 @@ form.form legend{
 form.form label{
     font: normal normal normal 1em "Segoe", sans-serif;
 }
-form.form
-input[type="text"],
-input[type="password"],
-input[type="search"]{
-    width: 300px;
-    padding: 5px;
-    border: none;
-    margin: 5px 0 10px 0;
-    color: #614c85;
-    font: normal normal normal 0.875em "Segoe", sans-serif;
-}
+
 form.form div.buttons{
     float: right;
     width: 150px;
-}
-form.form div.buttons input[type="submit"], button{
-    width: 150px;
-    height: 65px;
-    margin: 0 0 20px 0;
-    padding: 0 0 0 40px;
-    border: none;
-    background-color: #76619a;
-    background-repeat: no-repeat;
-    color: #fff;
-    font: normal normal normal 1em "Segoe Light", sans-serif;
-    cursor: pointer;
-}
-form.form div.buttons input[type="submit"]:hover, button:hover{
-    background-color: #9987b7;
-}
-form.form div.buttons input[type="submit"]:active, button:active{
-    background-color: #614c85;
-}
-form.form div.buttons .confirm{
-    background-image: url("images/formConfirm.svg");
-    background-size: 20%;
-    background-position: 20px center;
-}
-form.form div.buttons .cancel{
-    background-image: url("images/formCancel.svg");
-    background-size: 20%;
-    background-position: 20px center;
 }
 form.form .minor{
     font-family: "Segoe", sans-serif;
@@ -500,16 +533,42 @@ form.form .error{
     font-family: "Segoe", sans-serif;
     font-size: 0.750em;
 }
+form.form input[type="text"],
+form.form input[type="password"],
+form.form input[type="search"]{
+    -webkit-appearance: none;
+    padding: 5px;
+    border: none;
+    margin: 5px 0 10px 0;
+    background-color: #FFF;
+    color: #614c85;
+    font: normal normal normal 0.875em "Segoe", sans-serif;
+}
+    form.form input[type="text"]:focus,
+    form.form input[type="password"]:focus,
+    form.form input[type="search"]:focus{
+        outline: #b9b1c8 solid 1px;
+    }
 
-
-/*Nova Medida
-  ============================================================================*/
+/*Types of Inputs*/
+form.form input.long{
+    width: 500px;
+}
+form.form input.medium{
+    width: 300px;
+}
+form.form input.small{
+    width: 150px;
+}
+form.form input.tiny{
+    width: 100px;
+}
+/*Nova Medida*/
 form#medidaNewForm {
     display: none;
-    height: 240px;
+    height: 270px;
 }
-/*Login
-  ============================================================================*/
+/*Login*/
 form.login{
     width: 310px;
     margin: 0 auto;
@@ -519,14 +578,51 @@ form.login div.buttons{
     width: auto;
     margin: 10px 0 0 0;
 }
-form.login div.buttons .login{
-    background-image: url("images/userLogin.svg");
-    background-size: 25%;
-    background-position: 20px center;
+
+/*Search*/
+form.search{
+    text-align: center;
 }
-/*Search
-  ============================================================================*/
 #queryPaciente{
-    
+
 }
+/* BUTTONS ICONS
+  ============================================================================*/
+a.button:hover{
+    text-decoration: none;
+    color: #FFF;
+}
+.buttonIcon{
+    padding-left: 50px;
+    padding-right: 15px;
+    background-repeat: no-repeat;
+    text-align: left;
+}
+    .buttonIcon.edit{
+        background-image: url("images/pacienteEdit.svg");
+        background-size: 20%;
+        background-position: 13px center;
+    }
+    .buttonIcon.newMedida{
+        background-image: url("images/medidaNew.svg");
+        background-size: 20%;
+        background-position: 10px center;
+    }
+    .buttonIcon.confirm{
+        width: 150px;
+        background-image: url("images/formConfirm.svg");
+        background-size: 25px;
+        background-position: 15px center;
+    }
+    .buttonIcon.cancel{
+        width: 150px;
+        background-image: url("images/formCancel.svg");
+        background-size: 25px;
+        background-position: 15px center;
+    }
+    .buttonIcon.login{
+        background-image: url("images/userLogin.svg");
+        background-size: 25px;
+        background-position: 10px center;
+    }
 
