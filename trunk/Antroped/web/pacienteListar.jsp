@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : pacienteListar
     Created on : 20/02/2013, 17:04:09
     Author     : JoaoLuiz
@@ -27,6 +27,15 @@
             <%@include file="interfaceHeader.jsp" %>
             <%-- MAIN --%>
             <div class="main">
+                <a class="button buttonIcon fleft mright20px" href="pacienteCadastrar.jsp">Adicionar Novo</a>
+                <a class="button buttonIcon" href="pacienteBuscar.jsp">Busca Avancada</a>
+                <form action="ServletPaciente" method="GET"
+                      name="formpesquisaPaciente" class="form search">
+                    <input type="search" name="pesquisar" value=""
+                           class="long"
+                           placeholder="Digite o nome de um paciente" />
+                    <input class="button mleft20px" type="submit" name="operacao" value="Pesquisar">
+                </form>
                 <% if (!pacientes.isEmpty()) {%>
                 <table class="tabela tabelapaciente" id="dataTable">
                     <thead>
@@ -55,9 +64,8 @@
                 </table>
 
                 <%} else {//caso nao encontra nenhum usuario com os parametros fornecidos%>
-                <h1>Não existe nenhum paciente com esses dados</h1>
+                <h1>Nenhum resultado foi encontrado</h1>
                 <% }%>
-                <a href="pacienteCadastrar.jsp">Adicionar Novo</a>
                 <%
                     session.removeAttribute("pacientesPesquisa");
                 %>

@@ -155,8 +155,8 @@
                 <section class="paciente">
                     <%-- Paciente Controller --%>
                     <section class="control">
-                        <button class="edit" id="edit">Editar dados</button>
-                        <button class="newMedida" onclick="medidaNewShow()" id="medidaNewButton">Nova medida</button>
+                        <button class="button buttonIcon edit" id="edit">Editar dados</button>
+                        <button class="button buttonIcon mtop20px newMedida" onclick="medidaNewShow()" id="medidaNewButton">Nova medida</button>
                     </section>
                     <h1 class="name"><%=paciente.getNome()%></h1>
                     <section class="data">
@@ -227,45 +227,52 @@
                         <legend>Nova Medida</legend>
                         <div class="col">
                             <label for="medidaData">Data:</label><br/>
-                            <input type="text" name="data" value="" id="medidaData"
+                            <input type="text" name="data" value=""
+                                   id="medidaData" class="medium"
                                    placeholder="Data que foi realizada a medida"/><br/>
 
                             <label for="medidaPeso">Peso (kg):</label><br/>
-                            <input type="text" name="peso" value="" id="medidaPeso"
+                            <input type="text" name="peso" value=""
+                                   id="medidaPeso" class="small"
                                    placeholder="O peso que foi medido"/><br/>
 
                             <label for="medidaEstatura">Estatura (cm):</label><br/>
-                            <input type="text" name="estatura" value="" id="medidaEstatura"
+                            <input type="text" name="estatura" value=""
+                                   id="medidaEstatura" class="small"
                                    placeholder="A estatura que foi medida"/><br/>
-                        </div>
-                        <div class="col">
-                            <label for="idadeOsseaAnos">Idade Óssea Anos:</label><br/>
-                            <input type="text" name="idadeOsseaAnos" value="" id="idadeOsseaAnos"
-                                   placeholder="A idade óssea atribuída" /><br/>
-                            <label for="idadeOsseaMeses">Idade Óssea Meses:</label><br/>
-                            <input type="text" name="idadeOsseaMeses" value="" id="idadeOsseaMeses"
-                                   placeholder="A idade óssea atribuída" /><br/>
 
-                            <label for="medidaEstatura">Perímetro Cefálico (cm):</label><br/>
-                            <input type="text" name="perimetroCefalico" value="" id="medidaPerimetroCefalico"
-                                   placeholder="O perímetro cefálico que foi medido"/><br/>
                             <label>Posição:</label><br/>
                             <input type="radio" name="posicao" value="decubito" id="medidaPosicaoDecubito" checked="checked"/>
-                            <label for="medidaPosicaoDecubito">Decúbito</label>
+                            <label for="medidaPosicaoDecubito" class="mright20px">Decúbito</label>
                             <input type="radio" name="posicao" value="ortostatismo" id="medidaPosicaoOrtosttismo" />
                             <label for="medidaPosicaoOrtosttismo">Ortostatismo</label><br/>
                         </div>
+                        <div class="col">
+                            <label for="idadeOsseaAnos">Idade Óssea Anos:</label><br/>
+                            <input type="text" name="idadeOsseaAnos" value=""
+                                   id="idadeOsseaAnos" class="small"
+                                   placeholder="A idade óssea atribuída" /><br/>
+                            <label for="idadeOsseaMeses">Idade Óssea Meses:</label><br/>
+                            <input type="text" name="idadeOsseaMeses" value=""
+                                   id="idadeOsseaMeses" class="small"
+                                   placeholder="A idade óssea atribuída" /><br/>
+
+                            <label for="medidaEstatura">Perímetro Cefálico (cm):</label><br/>
+                            <input type="text" name="perimetroCefalico" value=""
+                                   id="medidaPerimetroCefalico" class="medium"
+                                   placeholder="O perímetro cefálico que foi medido"/><br/>
+                        </div>
                         <div class="buttons">
-                            <input type="submit" name="operacao" value="Cadastrar" class="confirm"/><br/>
-                            <button type="reset" class="cancel"  onclick="medidaNewCancel()">Cancelar</button>
+                            <input type="submit" name="operacao" value="Cadastrar" class="button buttonIcon confirm"/><br/>
+                            <button type="reset" class="button buttonIcon cancel mtop20px"  onclick="medidaNewCancel()">Cancelar</button>
                         </div>
                     </fieldset>
                 </form>
                 <%-- Table and Graph Controller --%>
                 <section class="control tableControl">
                     <div>
-                        <button class="antigas">&lt; Antigas</button>
-                        <button class="recentes">Recentes ></button>
+                        <button class="button antigas ">&lt; Antigas</button>
+                        <button class="button recentes mbotton20px">Recentes ></button>
                     </div>
                     <form class="graphControl">
                         <fieldset>

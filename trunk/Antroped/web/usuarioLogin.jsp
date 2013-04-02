@@ -23,9 +23,9 @@
             <div class="main">
                 <form class="form login" action="ServletUsuario" method="post" name="form" >
                         <label for="login">Login:</label><br/>
-                        <input type="text" name="login" id="login"/><br/>
+                        <input type="text" name="login" id="login" class="medium"/><br/>
                         <label for="senha">Senha:</label><br/>
-                        <input type="password" name="senha" id="senha"/><br/>
+                        <input type="password" name="senha" id="senha" class="small"/><br/>
                         <%
                             if (session.getAttribute("mensagem") != null) {
                                 out.print("<p class=\"error\">" + session.getAttribute("mensagem") + "</p>");
@@ -36,7 +36,7 @@
                             <input type="submit" id="loginButton"
                                    name="operacao"
                                    value="Entrar"
-                                   class="login" />
+                                   class="button buttonIcon login" />
                         </div>
                         <a class="minor" href="ServletUsuario?operacao=esqueceuSenha">Esqueceu login/senha?</a>
                 </form>

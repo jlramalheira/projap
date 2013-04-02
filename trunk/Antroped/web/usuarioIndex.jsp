@@ -34,13 +34,14 @@
                         session.removeAttribute("mensagem");
                     }
                 %>
-                <a href="pacienteCadastrar.jsp">Adicionar Novo</a>
-                <a href="pacienteBuscar.jsp">Busca Avancada</a>
+                <a class="button buttonIcon fleft mright20px" href="pacienteCadastrar.jsp">Adicionar Novo</a>
+                <a class="button buttonIcon" href="pacienteBuscar.jsp">Busca Avancada</a>
                 <form action="ServletPaciente" method="GET"
                       name="formpesquisaPaciente" class="form search">
-                    <input type="search" name="pesquisar" id="searchQuery" value=""
+                    <input type="search" name="pesquisar" value=""
+                           class="long"
                            placeholder="Digite o nome de um paciente" />
-                    <input type="submit" name="operacao" value="Pesquisar">
+                    <input class="button mleft20px" type="submit" name="operacao" value="Pesquisar">
                 </form>
             </div>
             <%-- FOOTER --%>
