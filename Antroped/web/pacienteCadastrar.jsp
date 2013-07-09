@@ -24,15 +24,15 @@
         <script type="text/javascript">
             $(function(){
                 $('#datanasc').mask("99/99/9999");
-                
-                $("#estaturapai").keyup(function() {  
-                    var valor = $("#estaturapai").val().replace(/[^0-9.]+/g,'');  
-                    $("#estaturapai").val(valor);  
+
+                $("#estaturapai").keyup(function() {
+                    var valor = $("#estaturapai").val().replace(/[^0-9.]+/g,'');
+                    $("#estaturapai").val(valor);
                 });
-                
-                $("#estaturamae").keyup(function() {  
-                    var valor = $("#estaturamae").val().replace(/[^0-9.]+/g,'');  
-                    $("#estaturamae").val(valor);  
+
+                $("#estaturamae").keyup(function() {
+                    var valor = $("#estaturamae").val().replace(/[^0-9.]+/g,'');
+                    $("#estaturamae").val(valor);
                 });
             });
         </script>
@@ -43,43 +43,79 @@
             <%@include file="interfaceHeader.jsp" %>
             <%-- MAIN --%>
             <div class="main">
-                <!-- Formulário para adicionar um paciente novo -->
-                <form name="form" action="ServletPaciente" method="POST" class="formulario formularionovopaciente">
+
+                <%-- Navigation --%>
+                <nav>
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="pacienteListar.jsp">Pacientes</a>
+                            <span class="divider">/</span>
+                        </li>
+                        <li class="active">
+                            Cadastrar
+                        </li>
+                    </ul>
+                </nav>
+
+                <h1>Cadastrar paciente</h1>
+                <form action="ServletPaciente" method="POST"
+                      class="form">
                     <fieldset>
-                        <legend>Novo Paciente:</legend>
-                        <label for="nome">Nome:</label><br/>
-                        <input type="text" name="nome" id="nome" maxlength="40" /><br/>
-                        
-                        <label for="datanasc">Data de Nascimento:</label><br/>
-                        <input type="text" name="dataNascimento" id="datanasc" /><br/>
+                        <label for="nome">Nome:</label>
+                        <input type="text" name="nome" value=""
+                               id="nome" class="input-xxlarge"
+                               placeholder="Nome completo do paciente"
+                               required/>
 
-                        <label>Sexo:</label><br/>
-                        <input type="radio" name="sexo" value="Masculino" id="sexom" checked="checked"/>
-                        <label for="sexom" class="radiolabel">Masculino</label>                        
-                        <input type="radio" name="sexo" value="Feminino" id="sexof" />
-                        <label for="sexof" class="radiolabel">Feminino</label><br/>
+                        <label for="datanasc">Data de Nascimento:</label>
+                        <input type="text" name="dataNascimento" value=""
+                               id="datanasc" class="date"
+                               title="Data de nascimento"
+                               pattern="([0-2][0-9]|3(0|1))/(0[0-9]|1[0-2])/([0-9]+)"
+                               placeholder="dd/mm/aaaa"
+                               required/>
 
-                        <label for="nomepai">Nome do Pai:</label><br/>
-                        <input type="text" name="nomePai" id="nomepai" /><br/>
+                        <label>Sexo:</label>
+                        <label for="sexom" class="radio inline">
+                            <input type="radio" name="sexo" value="Masculino"
+                                   id="sexom"
+                                   required/>
+                            Masculino
+                        </label>
+                        <label for="sexof" class="radio inline">
+                            <input type="radio" name="sexo" value="Feminino"
+                                   id="sexof"
+                                   required=""/>
+                            Feminino
+                        </label><br/><br/>
 
-                        <label for="nomemae">Nome da Mãe:</label><br/>
-                        <input type="text" name="nomeMae" id="nomemae" /><br/>
+                        <label for="nomepai">Nome do Pai:</label>
+                        <input type="text" name="nomePai" value=""
+                               id="nomepai" class="input-xxlarge"
+                               placeholder="Nome completo do pai"/>
 
-                        <p class="estatura">
-                            <label for="estaturapai">Estatura do Pai (cm):</label><br/>                        
-                            <input type="text" name="estaturaPai" id="estaturapai" />
-                        </p>
+                        <label for="nomemae">Nome da Mãe:</label>
+                        <input type="text" name="nomeMae" value=""
+                               id="nomemae" class="input-xxlarge"
+                               placeholder="Nome completo da mãe"/>
 
-                        <p class="estatura">
-                            <label for="estaturamae">Estatura da Mãe (cm):</label><br/>
-                            <input type="text" name="estaturaMae" id="estaturamae" />
-                        </p> 
-                                       
-                        <input type="submit" value="Cadastrar" name="operacao"
-                               class="button enviar"/>
-                        <input type="submit" value="Cancelar" name="operacao"
-                               class="button cancelar" 
-                               onclick=""/>
+
+                        <label for="estaturapai">Estatura do Pai:</label>
+                        <input type="text" name="estaturaPai" value=""
+                               id="estaturapai" class="input-xlarge"
+                               placeholder="Estatura do pai em centímetros"/>
+
+                        <label for="estaturamae">Estatura da Mãe:</label>
+                        <input type="text" name="estaturaMae"
+                               id="estaturamae" class="input-xlarge"
+                               placeholder="Estatura da mãe em centímetros"/>
+
+                        <div class="form-actions">
+                            <button type="submit" value="Cadastrar" name="operacao"
+                                    class="btn btn-large btn-icon new-user">
+                                Cadastrar
+                            </button>
+                        </div>
                     </fieldset>
                 </form>
             </div>

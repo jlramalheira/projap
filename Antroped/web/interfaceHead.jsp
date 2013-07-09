@@ -9,5 +9,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <meta charset="utf-8">
 <title>ANTROPED :: Antropometria Pediátrica</title>
+<link href="css/bootstrap.css" type="text/css" rel="stylesheet"/>
 <link href="css/styles2.css" type="text/css" rel="stylesheet"/>
-<script src="js/jquery-1.8.0.min.js" type="text/javascript"></script>

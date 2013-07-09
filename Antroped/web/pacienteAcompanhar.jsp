@@ -33,7 +33,7 @@
     <head>
         <%@include file="interfaceHead.jsp" %>
         <script src="js/kinetic-v3.10.0.min.js" type="text/javascript"></script>
-        <script src="js/interface.js" type="text/javascript"></script>
+        <script src="js/graficos.js" type="text/javascript"></script>
         <script type="text/javascript">
             function grafico(){
                 init();
@@ -124,86 +124,126 @@
         <script type="text/javascript">
             function mudaTexto(tab){
                 if (tab=='peso05'){
-                    $('.report').html('<%=((dados.size() > 0) && (dados.get(0).getIdade() < 1825)) ? dados.get(0).getTextoAtual("peso05", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
-                }else if(tab=='peso519'){
-                    $('.report').html('<%=((dados.size() > 0) && (dados.get(0).getIdade() >= 1825) && (dados.get(0).getIdade() < 3650)) ? dados.get(0).getTextoAtual("peso519", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
-                }else if(tab=='estatura05'){
-                    $('.report').html('<%=((dados.size() > 0) && (dados.get(0).getIdade() < 1825)) ? dados.get(0).getTextoAtual("estatura05", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
-                }else if(tab=='estatura519'){
-                    $('.report').html('<%=((dados.size() > 0) && (dados.get(0).getIdade() >= 1825) && (dados.get(0).getIdade() < 6935)) ? dados.get(0).getTextoAtual("estatura519", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
-                }else if(tab=='imc05'){
-                    $('.report').html('<%=((dados.size() > 0) && (dados.get(0).getIdade() < 1825)) ? dados.get(0).getTextoAtual("imc05", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
-                }else if(tab=='imc519'){
-                    $('.report').html('<%=((dados.size() > 0) && (dados.get(0).getIdade() >= 1825) && (dados.get(0).getIdade() < 6935)) ? dados.get(0).getTextoAtual("imc519", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
-                }else if(tab=='pc05'){
-                    $('.report').html('Não há nenhuma avaliação disponível para este tipo de gráfico.');
-                }
-            }
+                    $('.report').html('<%=((dados.size() > 0) && (dados.get(0).getIdade() < 1825))
+                            ? dados.get(0).getTextoAtual("peso05", paciente.getSexo())
+                            : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
+                                    }else if(tab=='peso519'){
+                                        $('.report').html('<%=((dados.size() > 0) && (dados.get(0).getIdade() >= 1825) && (dados.get(0).getIdade() < 3650))
+                                                ? dados.get(0).getTextoAtual("peso519", paciente.getSexo())
+                                                : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
+                                                        }else if(tab=='estatura05'){
+                                                            $('.report').html('<%=((dados.size() > 0) && (dados.get(0).getIdade() < 1825)) ? dados.get(0).getTextoAtual("estatura05", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
+                                                        }else if(tab=='estatura519'){
+                                                            $('.report').html('<%=((dados.size() > 0) && (dados.get(0).getIdade() >= 1825) && (dados.get(0).getIdade() < 6935)) ? dados.get(0).getTextoAtual("estatura519", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
+                                                        }else if(tab=='imc05'){
+                                                            $('.report').html('<%=((dados.size() > 0) && (dados.get(0).getIdade() < 1825)) ? dados.get(0).getTextoAtual("imc05", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
+                                                        }else if(tab=='imc519'){
+                                                            $('.report').html('<%=((dados.size() > 0) && (dados.get(0).getIdade() >= 1825) && (dados.get(0).getIdade() < 6935)) ? dados.get(0).getTextoAtual("imc519", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
+                                                        }else if(tab=='pc05'){
+                                                            $('.report').html('Não há nenhuma avaliação disponível para este tipo de gráfico.');
+                                                        }
+                                                    }
         </script>
     </head>
+
     <body>
         <div class="container">
             <%-- HEADER --%>
             <%@include file="interfaceHeader.jsp" %>
+
             <%-- MAIN --%>
             <div class="main">
+
                 <%-- Navigation --%>
                 <nav>
-                    <a href="pacienteListar.jsp">Pacientes</a> » <span class="current">Acompanhar Paciente</span>
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="pacienteListar.jsp">Pacientes</a>
+                            <span class="divider">/</span>
+                        </li>
+                        <li class="active">
+                            Acompanhar Paciente
+                        </li>
+                    </ul>
                 </nav>
+
                 <%-- Paciente Data --%>
-                <section class="paciente">
-                    <%-- Paciente Controller --%>
-                    <section class="control">
-                        <button class="button buttonIcon edit" id="edit">Editar dados</button>
-                        <button class="button buttonIcon mtop20px newMedida" onclick="medidaNewShow()" id="medidaNewButton">Nova medida</button>
-                    </section>
-                    <h1 class="name"><%=paciente.getNome()%></h1>
-                    <section class="data">
-                        <span id="pacienteSexo"><%=paciente.getSexo()%></span><br/>
-                        nascido em <%=Util.Util.dateToString(paciente.getDataNascimento())%><br/>
-                        <%=paciente.idadeToExtenso()%>
-                        <div class="margin"><span class="label">Estatura Alvo:</span><br/>
-                            <%=paciente.CalculaEstaturaAlvo()%> cm <span class="minor">(+- 10 cm)</span></div>
-                    </section>
-                    <section class="mother">
-                        <span class="label">Mãe:</span><br/>
-                        <%=paciente.getNomeMae()%><br/>
-                        <%=paciente.getEstaturaMae()%> cm
-                    </section>
-                    <section class="father">
-                        <span class="label margin">Pai:</span><br/>
-                        <%=paciente.getNomePai()%><br/>
-                        <%=paciente.getEstaturaPai()%> cm
-                    </section>
+                <section class="row">
+                    <div class="span9">
+                        <h1><%=paciente.getNome()%></h1>
+                        <div class="row">
+                            <div class="span3">
+                                <%=paciente.getSexo()%><br/>
+                                nascido em <%=Util.Util.dateToString(paciente.getDataNascimento())%><br/>
+                                <%=paciente.idadeToExtenso()%>
+                                <br/><br/>
+                                <span class="label">Estatura Alvo:</span><br/>
+                                <%=paciente.CalculaEstaturaAlvo()%> cm <span class="minor">(+- 10 cm)</span>
+                            </div>
+                            <div class="span3">
+                                <span class="label">Mãe:</span><br/>
+                                <%=paciente.getNomeMae()%><br/>
+                                <%=paciente.getEstaturaMae()%> cm
+                            </div>
+                            <div class="span3">
+                                <span class="label">Pai:</span><br/>
+                                <%=paciente.getNomePai()%><br/>
+                                <%=paciente.getEstaturaPai()%> cm
+                            </div>
+                        </div>
+                    </div>
+                    <div class="span3">
+                        <a href="#" class="btn btn-large btn-block btn-icon edit margin-top">
+                            Editar dados
+                        </a>
+                        <button class="btn btn-large btn-block btn-icon nova-medida margin-top"
+                                onclick="showFormMedidaCreate()()"
+                                id="medida-button">
+                            Nova medida
+                        </button>
+                    </div>
                 </section>
+
+                <hr/>
+
                 <%-- Medidas table --%>
-                <table class="medidas">
+                <table id="medida-table" class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th>Data</th>
-                            <th>Idade</th>
-                            <th>Peso<br/><span class="minor">(kg)</span></th>
-                            <th>Estatura<br/><span class="minor">(cm)</span></th>
-                            <th>IMC<br/><span class="minor">(kg/m²)</span></th>
-                            <th>Per. Cefálico<br/><span class="minor">(cm)</span></th>
-                            <th>Idade Óssea<br/><span class="minor"></span></th>
-                            <th>Prev. de Estatura<br/><span class="minor">(cm)</span></th>
-                            <th>Opções</th>
+                            <th>
+                                Data
+                            </th>
+                            <th>
+                                Idade
+                            </th>
+                            <th>
+                                Peso<br/>
+                                <span class="minor">(kg)</span>
+                            </th>
+                            <th>
+                                Estatura<br/>
+                                <span class="minor">(cm)</span>
+                            </th>
+                            <th>
+                                IMC<br/><span class="minor">(kg/m²)</span>
+                            </th>
+                            <th>
+                                Per. Cefálico<br/><span class="minor">(cm)</span>
+                            </th>
+                            <th>
+                                Idade Óssea<br/><span class="minor"></span>
+                            </th>
+                            <th>
+                                Prev. de Estatura<br/><span class="minor">(cm)</span>
+                            </th>
+                            <th>
+                                Opções
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
                         <%for (Medida medida : paginados) {%>
-                        <tr class="<%
-                            //verifica a cor da linha e define o id dela
-                            if (corEscuraTabela) {
-                                out.print("even");
-                                corEscuraTabela = false;
-                            } else {
-                                out.print("odd");
-                                corEscuraTabela = true;
-                            }
-                            %>">
+                        <tr>
                             <td class="data"><%=medida.getDataStr()%></td>
                             <td class="idade"><%=medida.idadeToExtenso()%></td>
                             <td class="peso"><%=medida.getPeso()%></td>
@@ -213,89 +253,200 @@
                             <td class="idadeOssea"><%=medida.getIdadeOsseaExtenso()%></td>
                             <td class="previsaoEstatura"><%=medida.getPrevisaoEstatura(paciente.getSexo())%></td>
                             <td class="opcoes">
-                                <a href="#" title="Detalhes da medida"><img src="css/images/medidaDetails.svg" alt="Detalhes da medida icon"/></a>
-                                <a href="#" title="Editar medida"><img src="css/images/medidaEdit.svg" alt="Editar medida icon"/></a>
-                                <a href="ServletMedidas?operacao=deletar&id=<%=medida.getId()%>" title="Excluir medida"><img src="css/images/medidaDelete.svg" alt="Deletar medida icon"/></a>
+                                <a href="#" title="Detalhes da medida">
+                                    <img src="css/images/medidaDetails.svg" alt="Ícone Detalhes da medida" class="icon"/>
+                                </a>
+                                <a href="#" title="Editar medida">
+                                    <img src="css/images/medidaEdit.svg" alt="Ícone Editar medida" class="icon"/>
+                                </a>
+                                <a href="ServletMedidas?operacao=deletar&id=<%=medida.getId()%>" title="Excluir medida">
+                                    <img src="css/images/medidaDelete.svg" alt="Ícone Deletar medida" class="icon"/>
+                                </a>
                             </td>
                         </tr>
                         <%}%>
                     </tbody>
                 </table>
+
+                <div id="medida-pagination" class="pagination text-center">
+                    <ul>
+                        <li><a href="#">Medidas Anteriores</a></li>
+                        <li><a href="#">Medidas Posteriores</a></li>
+                    </ul>
+                </div>
+
                 <%-- Form Nova Medida --%>
-                <form class="form" id="medidaNewForm" action="ServletMedidas" method="POST">
+                <form action="ServletMedidas" method="POST"
+                      class="form hide" id="medida-create" >
                     <fieldset>
                         <legend>Nova Medida</legend>
-                        <div class="col">
-                            <label for="medidaData">Data:</label><br/>
-                            <input type="text" name="data" value=""
-                                   id="medidaData" class="medium"
-                                   placeholder="Data que foi realizada a medida"/><br/>
+                        <div class="row">
+                            <div class="span4">
+                                <label for="medidaData">Data</label>
+                                <input type="text" name="data" value=""
+                                       id="medidaData" class="input-large"
+                                       />
 
-                            <label for="medidaPeso">Peso (kg):</label><br/>
-                            <input type="text" name="peso" value=""
-                                   id="medidaPeso" class="small"
-                                   placeholder="O peso que foi medido"/><br/>
+                                <label for="medidaPeso">Peso (kg)</label>
+                                <input type="text" name="peso" value=""
+                                       id="medidaPeso" class="input-medium"
+                                       />
 
-                            <label for="medidaEstatura">Estatura (cm):</label><br/>
-                            <input type="text" name="estatura" value=""
-                                   id="medidaEstatura" class="small"
-                                   placeholder="A estatura que foi medida"/><br/>
+                                <label for="medidaEstatura">Estatura (cm)</label>
+                                <input type="text" name="estatura" value=""
+                                       id="medidaEstatura" class="input-medium"
+                                       placeholder="A estatura que foi medida"/>
+                            </div>
 
-                            <label>Posição:</label><br/>
-                            <input type="radio" name="posicao" value="decubito" id="medidaPosicaoDecubito" checked="checked"/>
-                            <label for="medidaPosicaoDecubito" class="mright20px">Decúbito</label>
-                            <input type="radio" name="posicao" value="ortostatismo" id="medidaPosicaoOrtosttismo" />
-                            <label for="medidaPosicaoOrtosttismo">Ortostatismo</label><br/>
-                        </div>
-                        <div class="col">
-                            <label for="idadeOsseaAnos">Idade Óssea Anos:</label><br/>
-                            <input type="text" name="idadeOsseaAnos" value=""
-                                   id="idadeOsseaAnos" class="small"
-                                   placeholder="A idade óssea atribuída" /><br/>
-                            <label for="idadeOsseaMeses">Idade Óssea Meses:</label><br/>
-                            <input type="text" name="idadeOsseaMeses" value=""
-                                   id="idadeOsseaMeses" class="small"
-                                   placeholder="A idade óssea atribuída" /><br/>
+                            <div class="span3">
+                                <label for="idadeOsseaAnos">Idade Óssea atribuída</label>
+                                <input type="text" name="idadeOsseaAnos" value=""
+                                       id="idadeOsseaAnos" class="input-small"
+                                       placeholder="Anos" />
 
-                            <label for="medidaEstatura">Perímetro Cefálico (cm):</label><br/>
-                            <input type="text" name="perimetroCefalico" value=""
-                                   id="medidaPerimetroCefalico" class="medium"
-                                   placeholder="O perímetro cefálico que foi medido"/><br/>
-                        </div>
-                        <div class="buttons">
-                            <input type="submit" name="operacao" value="Cadastrar" class="button buttonIcon confirm"/><br/>
-                            <button type="reset" class="button buttonIcon cancel mtop20px"  onclick="medidaNewCancel()">Cancelar</button>
+                                <input type="text" name="idadeOsseaMeses" value=""
+                                       id="idadeOsseaMeses" class="input-small"
+                                       placeholder="Meses" />
+
+                                <label for="medidaPerimetroCefalico">Perímetro Cefálico (cm)</label>
+                                <input type="text" name="perimetroCefalico" value=""
+                                       id="medidaPerimetroCefalico"
+                                       placeholder="O perímetro cefálico que foi medido"/>
+
+                                <label>Posição</label>
+                                <label class="radio inline">
+                                    <input type="radio" name="posicao" value="decubito" id="medidaPosicaoDecubito"/>
+                                    Decúbito
+                                </label>
+                                <label class="radio inline">
+                                    <input type="radio" name="posicao" value="ortostatismo" id="medidaPosicaoOrtosttismo" />
+                                    Ortostatismo
+                                </label>
+                            </div>
+
+                            <div class="span3 pull-right">
+                                <button type="submit" name="operacao" value="Cadastrar"
+                                        class="btn btn-large btn-block btn-icon confirm ">
+                                    Cadastrar
+                                </button>
+                                <button type="reset"
+                                        class="btn btn-large btn-block btn-icon cancel margin-top"
+                                        onclick="hideFormMedidaCreate()()">
+                                    Cancelar
+                                </button>
+                            </div>
                         </div>
                     </fieldset>
                 </form>
-                <%-- Table and Graph Controller --%>
-                <section class="control tableControl">
-                    <div>
-                        <button class="button antigas ">&lt; Antigas</button>
-                        <button class="button recentes mbotton20px">Recentes ></button>
-                    </div>
-                    <form class="graphControl">
-                        <fieldset>
-                            <legend>Mostrar gráfico de idade</legend>
-                            <input type="radio" name="idade" value="menor"
-                                   id="menor" checked="checked"
-                                   onchange="toggleGrafico()"/>
-                            <label for="menor"> Menor que 5 anos</label><br/>
-                            <input type="radio" name="idade" value="maior"
-                                   id="maior" onclick="toggleGrafico()"/>
-                            <label for="maior"> Maior que 5 anos</label>
-                        </fieldset>
-                    </form>
-                </section>
-                <%-- Avaliação do Gráfico --%>
-                <section class="avaliacao">
-                    <h1>Avaliação do Gráfico</h1>
-                    <p class="report">
-                    </p>
-                </section>
+
+                <hr/>
+
                 <%-- Gráficos --%>
                 <section class="graficos">
-                    <ul class="tabs">
+
+                    <ul class="nav nav-tabs no-margin-bottom" id="graficos-tabs">
+                        <li class="active">
+                            <a href="#grafico-peso" data-toggle="tab">Peso</a>
+                        </li>
+                        <li>
+                            <a href="#grafico-estatura" data-toggle="tab">Estatura</a>
+                        </li>
+                        <li>
+                            <a href="#grafico-imc" data-toggle="tab">
+                                <abbr title="Índice de Massa Corporal">IMC</abbr>
+                            </a>
+                        </li>
+                        <li id="tab-perimetro-cefalico">
+                            <a href="#grafico-perimetro-cefalico" data-toggle="tab">Perímetro Cefálico</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content">
+
+                        <h4 class="pull-left">Avaliação do Gráfico</h4>
+
+                        <div class="span3 pull-right">
+                            <div class="control">
+                                <p>Mostrar gráfico de idade</p>
+                                <button type="button" onclick="showGrafico05(this)"
+                                        class="btn btn-block active toggle-grafico">
+                                    Entre 0 e 5 anos
+                                </button>
+                                <button type="button" onclick="showGrafico519(this)"
+                                        class="btn btn-block toggle-grafico">
+                                    Maior que 5 anos
+                                </button>
+
+                            </div>
+                        </div>
+
+                        <div class="tab-pane active" id="grafico-peso">
+                            <p class="avaliacao grafico-05">
+                                <%=((dados.size() > 0) && (dados.get(0).getIdade() < 1825)) ? dados.get(0).getTextoAtual("peso05", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>
+                            </p>
+                            <div id="graficoPeso05" class="grafico grafico-05"
+                                 style="<%=(paciente.getSexo().equals("Masculino")
+                                         ? "background-image: url('img/peso05masc.png');"
+                                         : "background-image: url('img/peso05fem.png');")%>"></div>
+
+                            <p class="avaliacao grafico-519 hide">
+                                <%=((dados.size() > 0) && (dados.get(0).getIdade() >= 1825) && (dados.get(0).getIdade() < 3650)) ? dados.get(0).getTextoAtual("peso519", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>
+                            </p>
+                            <div id="graficoPeso519" class="grafico grafico-519 hide"
+                                 style="<%=(paciente.getSexo().equals("Masculino")
+                                         ? "background-image: url('img/peso519masc.png');"
+                                         : "background-image: url('img/peso519fem.png');")%>"></div>
+                        </div>
+
+                        <div class="tab-pane" id="grafico-estatura">
+                            <p class="avaliacao grafico-05">
+                                <%=((dados.size() > 0) && (dados.get(0).getIdade() < 1825)) ? dados.get(0).getTextoAtual("estatura05", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>
+
+                            </p>
+                            <div id="graficoEstatura05" class="grafico grafico-05"
+                                 style="<%=(paciente.getSexo().equals("Masculino")
+                                         ? "background-image: url('img/estatura05masc.png');"
+                                         : "background-image: url('img/estatura05fem.png');")%>"></div>
+
+                            <p class="avaliacao grafico-519 hide">
+                                <%=((dados.size() > 0) && (dados.get(0).getIdade() >= 1825) && (dados.get(0).getIdade() < 6935)) ? dados.get(0).getTextoAtual("estatura519", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>
+                            </p>
+                            <div id="graficoEstatura519" class="grafico grafico-519 hide"
+                                 style="<%=(paciente.getSexo().equals("Masculino")
+                                         ? "background-image: url('img/estatura519masc.png');"
+                                         : "background-image: url('img/estatura519fem.png');")%>"></div>
+                        </div>
+
+                        <div class="tab-pane" id="grafico-imc">
+                            <p class="avaliacao grafico-05">
+                                <%=((dados.size() > 0) && (dados.get(0).getIdade() < 1825)) ? dados.get(0).getTextoAtual("imc05", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>
+                            </p>
+                            <div id="graficoImc05" class="grafico grafico-05"
+                                 style="<%=(paciente.getSexo().equals("Masculino")
+                                         ? "background-image: url('img/imc05masc.png');"
+                                         : "background-image: url('img/imc05fem.png');")%>"></div>
+
+                            <p class="avaliacao grafico-519 hide">
+                                <%=((dados.size() > 0) && (dados.get(0).getIdade() >= 1825) && (dados.get(0).getIdade() < 6935)) ? dados.get(0).getTextoAtual("imc519", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>
+                            </p>
+                            <div id="graficoImc519" class="grafico grafico-519 hide"
+                                 style="<%=(paciente.getSexo().equals("Masculino")
+                                         ? "background-image: url('img/imc519masc.png');"
+                                         : "background-image: url('img/imc519fem.png');")%>"></div>
+                        </div>
+
+                        <div class="tab-pane" id="grafico-perimetro-cefalico">
+                            <p class="avaliacao">
+                                Não há nenhuma avaliação disponível para este tipo de gráfico.
+                            </p>
+                            <div id="graficoPc05" class="grafico grafico-05"
+                                 style="<%=(paciente.getSexo().equals("Masculino")
+                                         ? "background-image: url('img/pc05masc.png');"
+                                         : "background-image: url('img/pc05fem.png');")%>" ></div>
+                        </div>
+                    </div>
+
+                    <!--<ul class="tabs">
                         <li id="tabPeso" class="current" onclick="showGrafico(this)">Gráfico do Peso</li>
                         <li id="tabEstatura" onclick="showGrafico(this)">Gráfico da Estatura</li>
                         <li id="tabIMC" onclick="showGrafico(this)">Gráfico do IMC</li>
@@ -303,28 +454,41 @@
                     </ul>
                     <hr class="bar" />
                     <div class="pane" id="pane">
-                        <div id="graficoPeso05" class="grafico" style="<%=(paciente.getSexo().equals("Masculino") ? "background-image: url('img/peso05masc.png');" : "background-image: url('img/peso05fem.png');")%>">
+                        <div id="graficoPeso05" class="grafico"
+                             style="<%=(paciente.getSexo().equals("Masculino")
+                                     ? "background-image: url('img/peso05masc.png');"
+                                     : "background-image: url('img/peso05fem.png');")%>"></div>
 
-                        </div>
+                        <div id="graficoPeso519" class="grafico"
+                             style="<%=(paciente.getSexo().equals("Masculino")
+                                     ? "background-image: url('img/peso519masc.png');"
+                                     : "background-image: url('img/peso519fem.png');")%>"></div>
 
-                        <div id="graficoPeso519" class="grafico" style="<%=(paciente.getSexo().equals("Masculino") ? "background-image: url('img/peso519masc.png');" : "background-image: url('img/peso519fem.png');")%>">
+                        <div id="graficoEstatura05" class="grafico"
+                             style="<%=(paciente.getSexo().equals("Masculino")
+                                     ? "background-image: url('img/estatura05masc.png');"
+                                     : "background-image: url('img/estatura05fem.png');")%>"></div>
 
-                        </div>
-                        <div id="graficoEstatura05" class="grafico" style="<%=(paciente.getSexo().equals("Masculino") ? "background-image: url('img/estatura05masc.png');" : "background-image: url('img/estatura05fem.png');")%>">
+                        <div id="graficoEstatura519" class="grafico"
+                             style="<%=(paciente.getSexo().equals("Masculino")
+                                     ? "background-image: url('img/estatura519masc.png');"
+                                     : "background-image: url('img/estatura519fem.png');")%>"></div>
 
-                        </div>
-                        <div id="graficoEstatura519" class="grafico" style="<%=(paciente.getSexo().equals("Masculino") ? "background-image: url('img/estatura519masc.png');" : "background-image: url('img/estatura519fem.png');")%>">
+                        <div id="graficoImc05" class="grafico"
+                             style="<%=(paciente.getSexo().equals("Masculino")
+                                     ? "background-image: url('img/imc05masc.png');"
+                                     : "background-image: url('img/imc05fem.png');")%>"></div>
 
-                        </div>
-                        <div id="graficoImc05" class="grafico" style="<%=(paciente.getSexo().equals("Masculino") ? "background-image: url('img/imc05masc.png');" : "background-image: url('img/imc05fem.png');")%>">
+                        <div id="graficoImc519" class="grafico"
+                             style="<%=(paciente.getSexo().equals("Masculino")
+                                     ? "background-image: url('img/imc519masc.png');"
+                                     : "background-image: url('img/imc519fem.png');")%>"></div>
 
-                        </div>
-                        <div id="graficoImc519" class="grafico" style="<%=(paciente.getSexo().equals("Masculino") ? "background-image: url('img/imc519masc.png');" : "background-image: url('img/imc519fem.png');")%>">
-
-                        </div>
-                        <div id="graficoPc05" class="grafico" style="<%=(paciente.getSexo().equals("Masculino") ? "background-image: url('img/pc05masc.png');" : "background-image: url('img/pc05fem.png');")%>" >
-                        </div>
-                    </div>
+                        <div id="graficoPc05" class="grafico"
+                             style="<%=(paciente.getSexo().equals("Masculino")
+                                     ? "background-image: url('img/pc05masc.png');"
+                                     : "background-image: url('img/pc05fem.png');")%>" ></div>
+                    </div> -->
 
                     <hr class="bar" />
                     <p class="minor">Fonte: OMS (2006)</p>
@@ -334,8 +498,9 @@
             <%-- FOOTER --%>
             <%@include file="interfaceFooter.jsp" %>
         </div>
-        <script type="text/javascript" >
-            grafico()
+
+        <script type="text/javascript">
+            grafico();
         </script>
     </body>
 </html>
