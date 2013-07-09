@@ -31,120 +31,18 @@
     font-weight: bold;
     font-style: normal;
 }
-/*CSS RESET
-  ============================================================================*/
-html, body {
-    width: 100%;
-}
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, font, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    font-weight: inherit;
-    font-style: inherit;
-    font-size: 100%;
-    font-family: inherit;
-    vertical-align: baseline;
-}
-*:focus {
-    outline: 0;
-}
-body {
-    line-height: 1;
-    color: black;
-    background: white;
-}
-ol, ul {
-    list-style: none;
-}
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-caption, th, td {
-    text-align: left;
-    font-weight: normal;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-    content: "";
-}
-blockquote, q {
-    quotes: "" "";
-}
-a{
-    color: inherit;
-    text-decoration: none;
-}
-a:hover{
-    color: inherit;
-    text-decoration: underline;
-}
-#graficoPeso519, #graficoEstatura05, #graficoEstatura519, #graficoImc05, #graficoImc519, #graficoPc05{
-    display: none;
-}
-/* LIB
-==============================================================================*/
-.fleft{
-    float: left;
-}
-.fright{
-    float: right;
-}
-.mleft20px{
-    margin-left: 20px;
-}
-.mright20px{
-    margin-right: 20px;
-}
-.mtop20px{
-    margin-top: 20px;
-}
-.mbotton20px{
-    margin-bottom: 20px;
-}
-.hidden{
-    display: none;
-}
-.button{
-    display: inline-block;
-    width: auto;
-    height: auto;
-    padding: 17px 30px;
-    background-color: #76619a;
-    border: none;
-    color: #fff;
-    font: normal normal normal 1em "Segoe Light", sans-serif;
-    text-align: center;
-    cursor: pointer;
-}
-.button:hover{
-    background-color: #9987b7;
-}
-.button:active{
-    background-color: #614c85;
-    position: relative;
-    top: 1px;
-}
+
 /*ESTRUTURAL
   ============================================================================*/
 html, body {
     height: 100%;
-    background-color: #e5e2eb;
+    background-color: #ffffff;
     font-size: 12pt;
-    font-family: "Segoe Light";
+    font-family: "Segoe";
 }
-div.container {
+.container {
     position: relative;
-    width: 960px;
+    width: 940px;
     min-height: 100%;
     background-color: #fff;
     margin: 0 auto;
@@ -154,12 +52,326 @@ div.container {
     background-color: #9987b7;
     color: #fff;
 }
+div.main{
+    padding-bottom: 170px; /*É preciso que seja o height do FOOTER + padding do normal main*/
+}
+
+/* MAIN
+ =============================================================================*/
+h1, h2, h3, h4, h5, h6{
+    font-family: "Segoe";
+    font-weight: normal;
+    color: #463366;
+}
+h1{
+    font-size: 2.00em;
+}
+h2{
+    font-size: 1.75em;
+}
+h3{
+    font-size: 1.50em
+}
+h4{
+    font-size: 1.25em
+}
+
+a{
+    color: inherit;
+    text-decoration: none;
+}
+a:hover{
+    color: inherit;
+    text-decoration: underline;
+}
+
+/* Labels
+------------------------------------------------------------------------------*/
+.label{
+    display: inline-block;
+    padding: 0;
+    font-size: 1em;
+    font-family: "Segoe Bold";
+    font-weight: normal;
+    line-height: inherit;
+    color: inherit;
+    text-shadow: none;
+    white-space: nowrap;
+    vertical-align: baseline;
+    background-color: transparent;
+}
+
+/* Buttons
+------------------------------------------------------------------------------*/
+.btn{
+    padding: 8px 15px;
+    border: none;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    background-color: #76619a;
+    background-image: none;
+    color: #ffffff;
+    font-family: "Segoe";
+    font-size: 1em;
+    text-shadow: none;
+    vertical-align: middle;
+}
+.btn:hover,
+.btn:focus,
+.btn:active,
+.btn.active,
+.btn.disabled,
+.btn[disabled] {
+    background-color: #614c85;
+    color: #ffffff;
+}
+.btn.active,
+.btn:active {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    background-color: #463366;
+}
+
+.btn-large{
+    padding: 20px 35px;
+}
+
+.btn-block{
+    margin-bottom: 15px;
+}
+
+.btn-icon{
+    padding-left: 55px;
+    background-position: 15px center;
+    background-repeat: no-repeat;
+    background-size: 30px;
+    text-align: left;
+}
+.btn-icon:hover,
+.btn-icon:focus{
+    padding-left: 55px;
+    background-position: 15px center;
+    background-repeat: no-repeat;
+    background-size: 30px;
+    text-align: left;
+}
+
+/* Icon's buttons '*/
+.btn-icon.edit{
+    background-image: url(images/pacienteEdit.svg);
+}
+.btn-icon.nova-medida{
+    background-image: url("images/medidaNew.svg");
+}
+.btn-icon.confirm{
+    background-image: url("images/formConfirm.svg");
+}
+.btn-icon.cancel{
+    background-image: url("images/formCancel.svg");
+}
+.btn-icon.login{
+    background-image: url("images/userLogin.svg");
+}
+.btn-icon.new-user{
+    background-image: url("images/icon-new-user.svg");
+}
+.btn-icon.search{
+    background-image: url("images/icon-search.svg");
+}
+.btn-icon.more{
+    background-image: url("images/icon-more.svg");
+}
+
+/* Formularios
+------------------------------------------------------------------------------*/
+form.form{
+    padding: 20px;
+    background-color: #e5e2eb;
+}
+
+legend{
+    margin-bottom: 10px;
+}
+
+label{
+    font-size: 1em;
+}
+
+select,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input {
+    display: inline-block;
+    height: 20px;
+    margin-bottom: 20px;
+    padding: 4px 6px;
+    border: none;
+    background-color: #ffffff;
+    font-family: "Segoe";
+    font-size: inherit;
+    color: #5a5662;
+    vertical-align: middle;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+    -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+    -o-transition: border linear 0.2s, box-shadow linear 0.2s;
+    transition: border linear 0.2s, box-shadow linear 0.2s;
+}
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {
+    outline: 0;
+    outline: thin dotted \9;
+    /* IE6-9 */
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #9987b7;
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #9987b7;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #9987b7;
+}
+
+.form-actions{
+    padding: 0;
+    background-color: transparent;
+}
+
+.more-options{
+    display: none;
+}
+
+/*Login*/
+form.login{
+    width: 310px;
+    margin: 0 auto;
+}
+
+/* Table
+------------------------------------------------------------------------------*/
+.table thead th{
+    background-color: #76619a;
+    text-align: center;
+    color: #ffffff;
+    font-family: "Segoe";
+    font-weight: normal;
+    vertical-align: middle;
+}
+
+.table tbody th,
+.table tbody td{
+    vertical-align: middle;
+}
+
+table .icon{
+    width: 25px;
+}
+
+/* Tabs
+------------------------------------------------------------------------------*/
+.tab-content{
+    overflow: hidden;
+}
+
+#graficos-tabs{
+    margin-bottom: 0;
+}
+
+/* Gráficos
+------------------------------------------------------------------------------*/
+.control{
+    padding: 10px;
+    background-color: #d1cadc;
+    color: #454150;
+}
+.avaliacao{
+    clear: left;
+}
+.grafico{
+    width:940px;
+    height:640px;
+    position: relative;
+    left: 20px;
+    clear: both;
+}
+.hint {
+    display: none;
+    position: absolute;
+    padding: 5px;
+    border: 1px solid #76619a;
+    background-color: #e5e2eb;
+    color: #454150;
+    font-family: "Segoe";
+    font-size: 14px;
+
+}
+section.graficos hr.bar{
+    width: 100%;
+    height: 5px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background-color: #76619a;
+}
+section.graficos div.grafico{
+    width: 960px;
+    height: 640px;
+    margin: 0 0 0 -20px;
+    background: #76619a url("../img/peso05masc.png") no-repeat scroll bottom center;
+}
+section.graficos .minor{
+    color: #5a5662;
+    font: normal normal normal 0.750em "Segoe Bold", sans-serif;
+}
+
+
+/*Navigation
+  ============================================================================*/
+nav{
+    width: 100%;
+    color: #5a5662;
+    font: normal normal normal 0.750em "Segoe Bold", sans-serif;
+}
+nav .current{
+    color: #76619a;
+    font-family: "Segoe";
+}
 
 /*HEADER
   ============================================================================*/
 header {
-    width: 920px;
+    width: 900px;
     height: 80px;
+    margin: 0 0 10px 0;
     background-color: #76619a;
     padding: 20px;
 }
@@ -205,424 +417,16 @@ footer{
     height: 150px; /*É preciso que seja o padding-bottom do CONTAINER*/
     background-color: #76619a;
 }
-/*MAIN
-  ============================================================================*/
-div.main{
-    width: 920px;
-    padding: 20px;
-    padding-bottom: 170px; /*É preciso que seja o height do FOOTER + padding do normal main*/
-}
-/*Navigation
-  ============================================================================*/
-div.main nav{
-    width: 100%;
-    color: #5a5662;
-    font: normal normal normal 0.750em "Segoe Bold", sans-serif;
-}
-div.main nav .current{
-    color: #76619a;
-    font-family: "Segoe";
-}
-/*Paciente
-  ============================================================================*/
-div.main section.paciente {
-    width: 100%;
-    height: 150px;
-    margin: 15px 0 0 0;
-    overflow: hidden;
-    line-height: 1.2em;
-}
-div.main section.paciente h1.name{
-    font-size: 1.875em;
-    margin: 0 0 15px 0;
-}
-div.main section.paciente section.data, section.mother, section.father{
-    display: block;
-    float: left;
-    width: 220px;
-}
-div.main section.paciente section span.label{
-    font-family: "Segoe";
-}
-div.main section.paciente section span.minor{
-    font-size: 0.688em;
-    color: #555;
-}
-div.main section.paciente section .margin{
-    margin: 5px 0 0 0;
-}
-div.main section.paciente .control{
-    float: right;
-    width: 160px;
-}
-div.main section.paciente section.control .button{
-    width: 160px;
-}
-/*TABELAS
-  ============================================================================*/
-table{
-    width: 100%;
-    margin: 20px 0;
-    border: #76619a solid 1px;
-}
-    table thead tr{
-        height: 40px;
-        background-color: #76619a;
-        color: #fff;
-    }
-    table thead th{
-        vertical-align: middle;
-        text-align: center;
-        font: normal normal normal 0.875em "Segoe", sans-serif;
-        line-height: 0.75em;
-    }
-        table thead th .minor{
-            color: #d1cadc;
-            font-size: 0.688em;
-        }
-    table tbody tr{
-        height: 40px;
-        color: #454150;
-    }
-        table tbody tr.even{
-            background-color: #e5e2eb;
-        }
-        table tbody tr.odd{
-            background-color: #d1cadc;
-        }
-    table tbody td{
-        vertical-align: middle;
-        text-align: center;
-        font: normal normal normal 0.875em "Segoe", sans-serif;
-        border-left: #b9b1c8 solid 1px;
-        border-right: #b9b1c8 solid 1px;
-    }
-        table tbody td:first-child{
-            border-left-color: #76619a;
-        }
-        table tbody td:last-child{
-            border-right-color: #76619a;
-        }
-    table tbody td img{
-        vertical-align: middle;
-        display: inline-block;
-        width: 25px;
-        height: 25px;
-        margin: 0 2px;
-    }
 
-table tbody td .minor{
-    font-size: 0.688em;
+/* LIB
+==============================================================================*/
+.margin-top{
+    margin-top: 20px;
 }
-
-/*Medidas*/
-table.medidas {
-    width: 100%;
-    margin: 20px 0 20px 0;
+.no-margin-bottom{
+    margin-bottom: 0;
 }
-table.medidas thead tr{
-    height: 40px;
-    background-color: #76619a;
-    color: #fff;
+.minor{
+    font-size: 0.75em;
 }
-table.medidas thead th{
-    vertical-align: middle;
-    text-align: center;
-    font: normal normal normal 0.875em "Segoe", sans-serif;
-    line-height: 0.75em;
-}
-table.medidas thead th .minor{
-    color: #d1cadc;
-    font-size: 0.688em;
-}
-table.medidas tbody tr{
-    height: 40px;
-    color: #454150;
-}
-table.medidas tbody tr.even{
-    background-color: #e5e2eb;
-}
-table.medidas tbody tr.odd{
-    background-color: #d1cadc;
-}
-table.medidas tbody td{
-    vertical-align: middle;
-    text-align: center;
-    font: normal normal normal 0.875em "Segoe", sans-serif;
-    border-left: #b9b1c8 solid 1px;
-    border-right: #b9b1c8 solid 1px;
-}
-table.medidas tbody td img{
-    vertical-align: middle;
-    display: inline-block;
-    width: 25px;
-    height: 25px;
-    margin: 0 2px;
-}
-
-table.medidas tbody td .minor{
-    font-size: 0.688em;
-}
-table.medidas .data{
-    border-left: none;
-}
-table.medidas .opcoes{
-    border-right: none;
-    width: 110px;
-}
-table.medidas .idade{
-    text-align: left;
-    text-indent: 10px;
-}
-/*Controle de Tabela e Gráficos
-  ============================================================================*/
-.tableControl {
-    display: block;
-    float: right;
-    width: 200px;
-    height: 120px;
-    background-color: #614c85;
-    padding: 10px;
-    margin: 0;
-    font: normal normal normal 0.875em "Segoe", sans-serif;
-    color: #ffffff;
-}
-.tableControl button{
-    display: block;
-    float: left;
-    width: 95px;
-    height: 30px;
-    padding: 0;
-    font-family: "Segoe";
-}
-.tableControl button.antigas{
-    margin: 0 10px 0 0;
-    padding: 0 5px 0 0;
-}
-.tableControl button.recentes{
-    padding: 0 0 0 5px;
-}
-form.graphControl{
-    display: block;
-    float: left;
-    width: 100%;
-    height: 90px;
-    margin: 0 0 0 0;
-}
-form.graphControl legend{
-    margin:0;
-    font-family: "Segoe Bold"
-}
-/*Avaliação do Gráfico
-  ============================================================================*/
-section.avaliacao{
-    width: 680px;
-    height: 140px;
-    overflow: hidden;
-}
-section.avaliacao h1{
-    margin: 0px;
-    color: #614c85;
-    font: normal normal normal 1.2em "Segoe", sans-serif;
-}
-section.avaliacao p{
-    text-align: justify;
-    text-indent: 50px;
-    line-height: 1.5em;
-}
-.report{
-    text-align: justify;
-    line-height: 2em;
-    text-indent: 50px;
-}
-/*Gráficos
-  ============================================================================*/
-.grafico{
-    float:left;
-    width:960px;
-    height:640px;
-    position: relative;
-    clear: left;
-}
-.hint {
-    border: 1px solid #333;
-    font-family: Arial, Helvetica, sans-serif;
-    color:#333;
-    font-size: 12px;
-    padding: 3px;
-    position: absolute;
-    display: none;
-    background: #FFF;
-}
-section.graficos{
-
-}
-section.graficos ul.tabs{
-    width: 100%;
-    height: 50px;
-    margin: 20px 0 0 0;
-    background-color: #d1cadc;
-    color: #454150;
-    font: normal normal normal 0.813em "Segoe", sans-serif;
-}
-section.graficos ul.tabs li{
-    display: inline-block;
-    float: left;
-    width: 175px;
-    height: 35px;
-    padding: 15px 0 0 0;
-    text-align: center;
-    cursor: pointer;
-}
-section.graficos ul.tabs li:hover{
-    background-color: #e5e2eb;
-}
-section.graficos ul.tabs li.current{
-    background-color: #76619a;
-    color: #fff;
-}
-section.graficos hr.bar{
-    width: 100%;
-    height: 5px;
-    margin: 0;
-    padding: 0;
-    border: none;
-    background-color: #76619a;
-}
-section.graficos div.grafico{
-    width: 960px;
-    height: 640px;
-    margin: 0 0 0 -20px;
-    background: #76619a url("../img/peso05masc.png") no-repeat scroll bottom center;
-}
-section.graficos .minor{
-    color: #5a5662;
-    font: normal normal normal 0.750em "Segoe Bold", sans-serif;
-}
-
-/*FORMULÁRIOS
-  ============================================================================*/
-form.form {
-    width: 880px;
-    padding: 20px;
-    margin: 20px 0;
-    background-color: #e5e2eb;
-    color: #454150;
-}
-form.form div.col{
-    float: left;
-    margin: 0 30px 0 0;
-}
-form.form legend{
-    font: normal normal normal 1.313em "Segoe", sans;
-}
-form.form label{
-    font: normal normal normal 1em "Segoe", sans-serif;
-}
-
-form.form div.buttons{
-    float: right;
-    width: 150px;
-}
-form.form .minor{
-    font-family: "Segoe", sans-serif;
-    font-size: 0.750em;
-}
-form.form .error{
-    color: #ca002b;
-    font-family: "Segoe", sans-serif;
-    font-size: 0.750em;
-}
-form.form input[type="text"],
-form.form input[type="password"],
-form.form input[type="search"]{
-    -webkit-appearance: none;
-    padding: 5px;
-    border: none;
-    margin: 5px 0 10px 0;
-    background-color: #FFF;
-    color: #614c85;
-    font: normal normal normal 0.875em "Segoe", sans-serif;
-}
-    form.form input[type="text"]:focus,
-    form.form input[type="password"]:focus,
-    form.form input[type="search"]:focus{
-        outline: #b9b1c8 solid 1px;
-    }
-
-/*Types of Inputs*/
-form.form input.long{
-    width: 500px;
-}
-form.form input.medium{
-    width: 300px;
-}
-form.form input.small{
-    width: 150px;
-}
-form.form input.tiny{
-    width: 100px;
-}
-/*Nova Medida*/
-form#medidaNewForm {
-    display: none;
-    height: 270px;
-}
-/*Login*/
-form.login{
-    width: 310px;
-    margin: 0 auto;
-}
-form.login div.buttons{
-    float: none;
-    width: auto;
-    margin: 10px 0 0 0;
-}
-
-/*Search*/
-form.search{
-    text-align: center;
-}
-#queryPaciente{
-
-}
-/* BUTTONS ICONS
-  ============================================================================*/
-a.button:hover{
-    text-decoration: none;
-    color: #FFF;
-}
-.buttonIcon{
-    padding-left: 50px;
-    padding-right: 15px;
-    background-repeat: no-repeat;
-    text-align: left;
-}
-    .buttonIcon.edit{
-        background-image: url("images/pacienteEdit.svg");
-        background-size: 20%;
-        background-position: 13px center;
-    }
-    .buttonIcon.newMedida{
-        background-image: url("images/medidaNew.svg");
-        background-size: 20%;
-        background-position: 10px center;
-    }
-    .buttonIcon.confirm{
-        width: 150px;
-        background-image: url("images/formConfirm.svg");
-        background-size: 25px;
-        background-position: 15px center;
-    }
-    .buttonIcon.cancel{
-        width: 150px;
-        background-image: url("images/formCancel.svg");
-        background-size: 25px;
-        background-position: 15px center;
-    }
-    .buttonIcon.login{
-        background-image: url("images/userLogin.svg");
-        background-size: 25px;
-        background-position: 10px center;
-    }
 

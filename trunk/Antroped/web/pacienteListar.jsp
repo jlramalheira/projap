@@ -27,17 +27,78 @@
             <%@include file="interfaceHeader.jsp" %>
             <%-- MAIN --%>
             <div class="main">
-                <a class="button buttonIcon fleft mright20px" href="pacienteCadastrar.jsp">Adicionar Novo</a>
-                <a class="button buttonIcon" href="pacienteBuscar.jsp">Busca Avancada</a>
+
+                <h1>Pacientes</h1>
+
                 <form action="ServletPaciente" method="GET"
-                      name="formpesquisaPaciente" class="form search">
-                    <input type="search" name="pesquisar" value=""
-                           class="long"
-                           placeholder="Digite o nome de um paciente" />
-                    <input class="button mleft20px" type="submit" name="operacao" value="Pesquisar">
+                      class="form">
+                    <div class="row">
+                        <div class="span8">
+                            <label for="nome">Nome:</label>
+                            <input type="text" name="pesquisar" value=""
+                                   id="nome" class="input-xxlarge"
+                                   placeholder="Nome completo do paciente"
+                                   required/>
+
+                            <div class="more-options">
+                                <label for="datanasc">Data de Nascimento:</label>
+                                <input type="text" name="dataNascimento" value=""
+                                       id="datanasc" class="date"
+                                       title="Data de nascimento"
+                                       pattern="([0-2][0-9]|3(0|1))/(0[0-9]|1[0-2])/([0-9]+)"
+                                       placeholder="dd/mm/aaaa"
+                                       required/>
+
+                                <label>Sexo:</label>
+                                <label for="sexom" class="radio inline">
+                                    <input type="radio" name="sexo" value="Masculino"
+                                           id="sexom"
+                                           required/>
+                                    Masculino
+                                </label>
+                                <label for="sexof" class="radio inline">
+                                    <input type="radio" name="sexo" value="Feminino"
+                                           id="sexof"
+                                           required=""/>
+                                    Feminino
+                                </label><br/><br/>
+
+                                <label for="nomepai">Nome do Pai:</label>
+                                <input type="text" name="nomePai" value=""
+                                       id="nomepai" class="input-xxlarge"
+                                       placeholder="Nome completo do pai"/>
+
+                                <label for="nomemae">Nome da Mãe:</label>
+                                <input type="text" name="nomeMae" value=""
+                                       id="nomemae" class="input-xxlarge"
+                                       placeholder="Nome completo da mãe"/>
+                            </div>
+
+                            <button type="submit" name="operacao" value="Pesquisar"
+                                    class="btn btn-large btn-icon search">
+                                Pesquisar
+                            </button>
+                            <button type="button"
+                                    class="btn btn-large btn-icon more"
+                                    onclick="toggleMoreOptions(this)">
+                                Mais Opções
+                            </button>
+                            <a href="pacienteCadastrar.jsp"
+                               class="btn btn-large btn-icon new-user">
+                                Adicionar Novo
+                            </a>
+                        </div>
+                        <div class="span3 pull-right">
+
+                        </div>
+                    </div>
+
+
+
                 </form>
+
                 <% if (!pacientes.isEmpty()) {%>
-                <table class="tabela tabelapaciente" id="dataTable">
+                <table class="table table-bordered table-striped" id="dataTable">
                     <thead>
                         <tr>
                             <th id="colunaNome">Nome</th>
