@@ -8,6 +8,7 @@ import Dao.DaoUsuario;
 import Model.Usuario;
 import java.io.IOException;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -52,7 +53,8 @@ public class ServletUsuario extends HttpServlet {
             String nome = request.getParameter("nome");
             String email = request.getParameter("email");
             String login = request.getParameter("login");
-            String senha = request.getParameter("senha");
+            String sen = request.getParameter("senha");
+            String senha = Util.Util.criptografar(sen);
 
             List<Usuario> usuarios = (daoUsuario.listByLoginOrEmail(login, email));
 
@@ -70,7 +72,9 @@ public class ServletUsuario extends HttpServlet {
             }
         } else if (operacao.equalsIgnoreCase("entrar")) {
             String login = request.getParameter("login");
-            String senha = request.getParameter("senha");
+            String sen = request.getParameter("senha");
+            String senha = Util.Util.criptografar(sen);
+            
             if ((daoUsuario.listByLogin(login)).isEmpty()) {
                 session.setAttribute("mensagem", "Login incorreto");
 
@@ -92,12 +96,20 @@ public class ServletUsuario extends HttpServlet {
                 Usuario usuario = daoUsuario.listByEmail(email).get(0);
                 try {
                     //Opcao em html para enviar imagem
-                    String caminho = "caminho da imagem aqui";
+                    int sen = new Random().nextInt();
+                    if (sen < 0){
+                        sen = sen * -1;
+                    }
+                    String senha = Util.Util.criptografar(sen+"");
+                    usuario.setSenha(senha);
+                    
+                    daoUsuario.update(usuario);
+                    String caminho = "http://www.sbp.com.br/img/LogoABP1.JPG";
                     Email.sendEmail(email, "Recuperação de Login e Senha",
                             "<img src=\""+caminho+"\" alt=\"Logo\" /> <br/>"
                             + "Olá " + usuario.getNome() + ", <br/><br/>"
                             + "Seu Login no sistema Antroped é: " + usuario.getLogin()
-                            + " <br/>Sua senha é: " + usuario.getSenha() + " <br/><br/>"
+                            + " <br/>Sua senha é: " + sen + " <br/><br/>"
                             + "Atenciosamente,<br/>Antroped.");
                 } catch (Exception ex) {
                     Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
