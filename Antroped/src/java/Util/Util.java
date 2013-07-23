@@ -4,6 +4,9 @@
  */
 package Util;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -108,5 +111,18 @@ public class Util {
         long diferenca = dataFim - dataInicio;
 
         return (int) (diferenca / (1000 * 24 * 60 * 60));
+    }
+    
+    public static String criptografar(String senha) {
+        String sen = "";
+        MessageDigest md = null;
+        try {
+            md = MessageDigest.getInstance("MD5");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        BigInteger hash = new BigInteger(1, md.digest(senha.getBytes()));
+        sen = hash.toString(16);
+        return sen;
     }
 }

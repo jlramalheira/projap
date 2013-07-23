@@ -1421,7 +1421,7 @@ public class InitDB {
         usuario.setNome("Administrador");
         usuario.setEmail("antroped@gmail.com");
         usuario.setLogin("admin");
-        usuario.setSenha("admin");
+        usuario.setSenha(Util.criptografar("admin"));
         usuario.setAdministrador(true);
         
         new DaoUsuario().insert(usuario);
