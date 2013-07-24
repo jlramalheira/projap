@@ -5,6 +5,7 @@
     Description: Esse documento JSP é utilizado para mostrar as informações do
                  paciente e acompanhamento do médico.
 --%>
+<%@page import="Dao.DaoPaciente"%>
 <%@page import="Model.Usuario"%>
 <%@page import="Dao.DaoTabelaScoreZ"%>
 <%@page import="java.util.Calendar"%>
@@ -17,7 +18,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
-    Paciente paciente = (Paciente) session.getAttribute("paciente");
+    Paciente paciente = (Paciente) request.getAttribute("idPaciente");
     if ((paciente == null)) {
         response.sendRedirect("usuarioIndex.jsp");
     } else {

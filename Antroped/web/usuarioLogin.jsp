@@ -3,7 +3,7 @@
 <%
     Usuario usuario = (Usuario) session.getAttribute("usuario");
     if ((usuario != null)) {
-        response.sendRedirect("usuarioIndex.jsp");
+        response.sendRedirect("pacienteListar.jsp");
     }
 %>
 <!DOCTYPE html>

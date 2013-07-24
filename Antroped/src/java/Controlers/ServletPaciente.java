@@ -25,41 +25,60 @@ import javax.servlet.http.HttpSession;
  *
  * @author Max
  */
-@WebServlet(name = "ServletPaciente", urlPatterns = {"/ServletPaciente"})
+@WebServlet(name = "Paciente", urlPatterns = {"/Paciente"})
 public class ServletPaciente extends HttpServlet {
+
+    DaoPaciente daoPaciente = new DaoPaciente();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        DaoPaciente daoPaciente = new DaoPaciente();
         HttpSession session = request.getSession(true);
+        RequestDispatcher rd ;
 
-        int pacienteId = 0;
-        if (request.getParameter("pacienteId") != null) {
-            pacienteId = Integer.parseInt(request.getParameter("pacienteId"));
-        }
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         String operacao = request.getParameter("operacao");
 
         if (operacao.equalsIgnoreCase("deletar")) {
-            List<Medida> dados = new Dao<Medida>(Medida.class).listById(pacienteId);
+            int idPaciente = Integer.parseInt(request.getParameter("idPaciente"));
+
+            List<Medida> dados = new Dao<Medida>(Medida.class).listById(idPaciente);
             for (Medida d : dados) {
                 new Dao<Medida>(Medida.class).remove(d.getId());
             }
-            daoPaciente.remove(pacienteId);
+            daoPaciente.remove(idPaciente);
 
-            response.sendRedirect("usuarioIndex.jsp");
-        } else if (operacao.equalsIgnoreCase("mostrar")) {
-            Paciente paciente = daoPaciente.get(pacienteId);
+            rd = request.getRequestDispatcher("pacienteListar.jsp");
+            rd.forward(request, response);
+        } else if (operacao.equalsIgnoreCase("acompanhar")) {
+            int idPaciente = Integer.parseInt(request.getParameter("idPaciente"));
 
-            session.setAttribute("paciente", paciente);
-            response.sendRedirect("pacienteAcompanhar.jsp");
+            Paciente paciente = daoPaciente.get(idPaciente);
+
+            request.setAttribute("paciente", paciente);
+            rd = request.getRequestDispatcher("pacienteAcompanhar.jsp");
+            rd.forward(request, response);
+        } else if (operacao.equalsIgnoreCase("listar")) {
+            rd = request.getRequestDispatcher("pacienteListar.jsp");
+            rd.forward(request, response);
         } else if (operacao.equalsIgnoreCase("editar")) {
-            Paciente paciente = daoPaciente.get(pacienteId);
+            int idPaciente = Integer.parseInt(request.getParameter("idPaciente"));
 
-            session.setAttribute("pacienteEditando", paciente);
-            response.sendRedirect("usuarioIndex.jsp");
+            Paciente paciente = daoPaciente.get(idPaciente);
+            
+            request.setAttribute("paciente", paciente);
+
+            rd = request.getRequestDispatcher("pacienteEditar.jsp");
+            rd.forward(request, response);
+        } else if (operacao.equalsIgnoreCase("editar")) {
+            int idPaciente = Integer.parseInt(request.getParameter("idPaciente"));
+            Paciente paciente = daoPaciente.get(idPaciente);
+
+            request.setAttribute("paciente", paciente);
+
+            rd = request.getRequestDispatcher("pacienteEditar.jsp");
+            rd.forward(request, response);
         } else if (operacao.equalsIgnoreCase("pesquisar")) {
             String nomePaciente = "";
             String nomePai = "";
@@ -82,16 +101,17 @@ public class ServletPaciente extends HttpServlet {
             List<Paciente> pacientesPesquisa = daoPaciente.listByAll(nomePaciente, nomePai, nomeMae, sexo, usuario);
 
             session.setAttribute("pacientesPesquisa", pacientesPesquisa);
-            RequestDispatcher rd = request.getRequestDispatcher("pacienteListar.jsp");
+            rd = request.getRequestDispatcher("pacienteListar.jsp");
 
             rd.forward(request, response);
+        } else {
+            response.sendError(404);
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        DaoPaciente daoPaciente = new DaoPaciente();
 
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession(true);
@@ -156,7 +176,7 @@ public class ServletPaciente extends HttpServlet {
             session.setAttribute("paciente", paciente);
             response.sendRedirect("pacienteAcompanhar.jsp");
         } else if (operacao.equalsIgnoreCase("cancelar")) {
-            response.sendRedirect("usuarioIndex.jsp");
+            response.sendRedirect("pacienteListar.jsp");
         }
     }
 }
