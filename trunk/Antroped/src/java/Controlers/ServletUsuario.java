@@ -6,7 +6,9 @@ package Controlers;
 
 import Dao.DaoUsuario;
 import Model.Usuario;
+import Util.Message;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
@@ -55,6 +57,9 @@ public class ServletUsuario extends HttpServlet {
             request.setAttribute("idUsuario", idUsuario);
             rd = request.getRequestDispatcher("usuarioEditar.jsp");
             rd.forward(request, response);
+        } else if (operacao.equalsIgnoreCase("editarSenha")) {
+            rd = request.getRequestDispatcher("usuarioEditarSenha.jsp");
+            rd.forward(request, response);
         } else {
             response.sendError(404);
         }
@@ -65,6 +70,7 @@ public class ServletUsuario extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession(true);
+        ArrayList<Message> messages = new ArrayList<Message>();
         String operacao = request.getParameter("operacao");
 
         if (operacao.equalsIgnoreCase("cadastrar")) {
@@ -78,19 +84,28 @@ public class ServletUsuario extends HttpServlet {
 
 
             if (!usuarios.isEmpty()) {
-                session.setAttribute("mensagem", "Ja existe um usuário cadastrado com este email");
+                Message message = new Message("Email já cadastrado!", Message.TYPE_ERROR);
+                messages.add(message);
+
+                session.setAttribute("messages", messages);
                 response.sendRedirect("Usuario?operacao=cadastrar");
             } else {
 
                 usuarios = daoUsuario.listByLogin(login);
                 if (!usuarios.isEmpty()) {
-                    session.setAttribute("mensagem", "Ja existe um usuário cadastrado com este login");
+                    Message message = new Message("Login já cadastrado!", Message.TYPE_ERROR);
+                    messages.add(message);
+
+                    session.setAttribute("messages", messages);
                     response.sendRedirect("Usuario?operacao=cadastrar");
                 } else {
                     Usuario usuario = new Usuario(login, senha, nome, email);
                     daoUsuario.insert(usuario);
-                    
-                    session.setAttribute("mensagem", "Usuário cadastrado com sucesso!");
+
+                    Message message = new Message("Usuário cadastrado com sucesso!", Message.TYPE_SUCCESS);
+                    messages.add(message);
+
+                    session.setAttribute("messages", messages);
                     response.sendRedirect("Paciente?operacao=listar");
                 }
             }
@@ -102,15 +117,22 @@ public class ServletUsuario extends HttpServlet {
             String sen = request.getParameter("senha");
             String senha = Util.Util.criptografar(sen);
 
-            if ((daoUsuario.listByLogin(login)).isEmpty()) { //email incorreto
-                session.setAttribute("mensagem", "Email ");
+            if ((daoUsuario.listByLogin(login)).isEmpty()) { //login incorreto
+                Message message = new Message("Login incorreto!", Message.TYPE_ERROR);
+                messages.add(message);
+
+                session.setAttribute("messages", messages);
                 response.sendRedirect("Usuario?operacao=logar");
             } else {
                 Usuario usuario = (daoUsuario.listByLogin(login)).get(0);
                 if ((usuario != null) && (usuario.getSenha().equals(senha))) {
                     session.setAttribute("usuario", usuario);
                     response.sendRedirect("Paciente?operacao=listar");
-                } else { //senha incorreta
+                } else {
+                    Message message = new Message("Sennha incorreta!", Message.TYPE_ERROR);
+                    messages.add(message);
+
+                    session.setAttribute("messages", messages);
                     response.sendRedirect("Usuario?operacao=logar");
                 }
             }
@@ -139,29 +161,66 @@ public class ServletUsuario extends HttpServlet {
                 } catch (Exception ex) {
                     Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                Message message = new Message("Email enviado com sucesso!", Message.TYPE_SUCCESS);
+                messages.add(message);
 
-                response.sendRedirect("Usuario?operacao=logar"); //email enviado com sucesso
+                session.setAttribute("messages", messages);
+                response.sendRedirect("Usuario?operacao=logar");
             } else {
-                response.sendRedirect("Usuario?operacao=recuperarSenha"); //email nao cadastrado
+                Message message = new Message("Email não cadastrado!", Message.TYPE_ERROR);
+                messages.add(message);
+
+                session.setAttribute("messages", messages);
+                response.sendRedirect("Usuario?operacao=recuperarSenha");
             }
         } else if (operacao.equalsIgnoreCase("editar")) {
             String nome = request.getParameter("nome");
             String email = request.getParameter("email");
-            String senhaAtual = request.getParameter("senhaAtual");
-            String senhaNova = request.getParameter("senhaNova");
+            String senha = request.getParameter("senha");
 
             Usuario usuario = (Usuario) session.getAttribute("usuario");
 
             if (!usuario.getEmail().equalsIgnoreCase(email)) {
                 List<Usuario> usuarios = daoUsuario.listByEmail(email);
                 if (!usuarios.isEmpty()) {
-                    session.setAttribute("mensagem", "Email já cadastrado!");
-                    response.sendRedirect("usuarioEditar.jsp");
+                    Message message = new Message("Email já cadastrado!", Message.TYPE_ERROR);
+                    messages.add(message);
+
+                    session.setAttribute("messages", messages);
+                    response.sendRedirect("Usuario?operacao=editar");
                 }
             } else {
-                if (usuario.getSenha().equals(senhaAtual)) {
+                if (usuario.getSenha().equals(senha)) {
                     usuario.setEmail(email);
                     usuario.setNome(nome);
+
+                    daoUsuario.update(usuario);
+
+                    session.removeAttribute("usuario");
+                    session.setAttribute("usuario", usuario);
+
+                    Message message = new Message("Usuário alterado com sucesso!", Message.TYPE_SUCCESS);
+                    messages.add(message);
+
+                    session.setAttribute("messages", messages);
+                    response.sendRedirect("Usuario?operacao=listar");
+                } else {
+                    Message message = new Message("Senha invalida!", Message.TYPE_ERROR);
+                    messages.add(message);
+
+                    session.setAttribute("messages", messages);
+                    response.sendRedirect("Usuario?operacao=editar");
+                }
+            }
+        } else if (operacao.equalsIgnoreCase("editarSenha")) {
+            String senhaAtual = request.getParameter("senhaAtual");
+            String senhaNova = request.getParameter("senhaNova");
+            String senhaNova2 = request.getParameter("senhaNova2");
+
+            Usuario usuario = (Usuario) session.getAttribute("usuario");
+
+            if (usuario.getSenha().equals(senhaAtual)) {
+                if (senhaNova.equals(senhaNova2)) {
                     usuario.setSenha(Util.Util.criptografar(senhaNova));
 
                     daoUsuario.update(usuario);
@@ -169,10 +228,24 @@ public class ServletUsuario extends HttpServlet {
                     session.removeAttribute("usuario");
                     session.setAttribute("usuario", usuario);
 
-                    response.sendRedirect("Usuario?operacao=listar"); //sucesso na alteracao
+                    Message message = new Message("Usuário alterado com sucesso!", Message.TYPE_SUCCESS);
+                    messages.add(message);
+
+                    session.setAttribute("messages", messages);
+                    response.sendRedirect("Usuario?operacao=listar");
                 } else {
-                    response.sendRedirect("Usuario?operacao=editar"); //senha invalida
+                    Message message = new Message("As senhas não conferem!", Message.TYPE_SUCCESS);
+                    messages.add(message);
+
+                    session.setAttribute("messages", messages);
+                    response.sendRedirect("Usuario?operacao=editarSenha");
                 }
+            } else {
+                Message message = new Message("Senha invalida!", Message.TYPE_ERROR);
+                messages.add(message);
+
+                session.setAttribute("messages", messages);
+                response.sendRedirect("Usuario?operacao=editar");
             }
         }
 
