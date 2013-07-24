@@ -39,8 +39,6 @@ public class ServletPaciente extends HttpServlet {
 
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         String operacao = request.getParameter("operacao");
-        System.out.println("*******************************GET");
-        System.out.println(operacao);
         if (operacao.equalsIgnoreCase("cadastrar")) {
             rd = request.getRequestDispatcher("pacienteCadastrar.jsp");
             rd.forward(request, response);
@@ -57,7 +55,6 @@ public class ServletPaciente extends HttpServlet {
             rd.forward(request, response);
         } else if (operacao.equalsIgnoreCase("acompanhar")) {
             int idPaciente = Integer.parseInt(request.getParameter("idPaciente"));
-            System.out.println("aqui");
             Paciente paciente = daoPaciente.get(idPaciente);
 
             request.setAttribute("paciente", paciente);

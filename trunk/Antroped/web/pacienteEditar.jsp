@@ -48,7 +48,7 @@
                 <form name="form" action="ServletPaciente" method="POST" class="formulario formularionovopaciente">
                     <fieldset>
                         <legend>Editar Paciente:</legend>
-                        <input type="hidden" name="pacienteId" value="<%=((Paciente) session.getAttribute("pacienteEditando")).getId()%>" />
+                        <input type="hidden" name="pacienteId" value="<%=(paciente).getId()%>" />
                         <label for="nome">Nome:</label><br/>
                         <input type="text" name="nome" id="nome" maxlength="40"
                                value="<%=paciente.getNome()%>"/><br/>
