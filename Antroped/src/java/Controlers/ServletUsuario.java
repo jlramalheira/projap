@@ -4,7 +4,9 @@
  */
 package Controlers;
 
+import Dao.DaoPaciente;
 import Dao.DaoUsuario;
+import Model.Paciente;
 import Model.Usuario;
 import java.io.IOException;
 import java.util.List;
@@ -86,7 +88,7 @@ public class ServletUsuario extends HttpServlet {
                 session.setAttribute("mensagem", "Usuario cadastrado com sucesso!");
                 response.sendRedirect("pacienteListar.jsp");
             }
-        } else if (operacao.equalsIgnoreCase("entrar")) {
+        } else if (operacao.equalsIgnoreCase("logar")) {
             String login = request.getParameter("login");
             String sen = request.getParameter("senha");
             String senha = Util.Util.criptografar(sen);
@@ -99,6 +101,8 @@ public class ServletUsuario extends HttpServlet {
                 Usuario usuario = (daoUsuario.listByLogin(login)).get(0);
                 if ((usuario != null) && (usuario.getSenha().equals(senha))) {
                     session.setAttribute("usuario", usuario);
+                    List<Paciente> pacientes = new DaoPaciente().list();
+                    session.setAttribute("pacientes", pacientes);
                     response.sendRedirect("pacienteListar.jsp");
                 } else {
                     session.setAttribute("mensagem", "Senha incorreta");
