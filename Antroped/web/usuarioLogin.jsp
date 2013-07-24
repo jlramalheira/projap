@@ -22,7 +22,8 @@
 
             <%-- MAIN --%>
             <div class="main">
-                <form class="form login" action="ServletUsuario" method="post" name="form" >
+                <form action="Usuario" method="post"
+                      class="form login">
                         <label for="login">Login</label>
                         <input type="text" name="login" value=""
                                id="login" class="input-xlarge"/>
@@ -39,7 +40,7 @@
                         %>
 
                         <div class="form-actions">
-                            <button type="submit" name="operacao" value="Entrar"
+                            <button type="submit" name="operacao" value="logar"
                                     id="loginButton" class="btn btn-large btn-icon login">
                                 Entrar
                             </button>
