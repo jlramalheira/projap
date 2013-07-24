@@ -5,10 +5,11 @@
     Description:
         Esse documento JSP é utilizado para página de erro.
 --%>
+<%@page import="java.util.List"%>
 <%@page import="Model.Usuario"%>
 <%
     Usuario usuario = (Usuario) session.getAttribute("usuario");
-    if ((usuario == null)) {
+    if ((usuario == null) || (!usuario.isAdministrador())) {
         usuario = new Usuario();
         response.sendRedirect("Usuario?operacao=logar");
     }
@@ -31,21 +32,21 @@
                 <form action="Usuario" method="GET"
                       class="form">
                     <label for="nome">Nome:</label>
-                    <input type="text" name="pesquisar" value=""
+                    <input type="text" name="nome" value=""
                            id="nome" class="input-xxlarge"
-                           placeholder="Nome completo do paciente"
+                           placeholder="Nome completo do usuario"
                            />
 
                     <div class="more-options">
                         <label for="email">Email:</label>
                         <input type="text" name="email"
                                id="email" class="input-xlarge"
-                               placeholder="Utilize um e-mail válido"/>
+                               placeholder="E-mail usuario"/>
 
                         <label for="login">Login:</label>
                         <input type="text" name="login"
                                id="login"
-                               placeholder="Nome de usuário"/>
+                               placeholder="login do usuário"/>
                     </div>
 
                     <div class="form-actions">
@@ -64,6 +65,10 @@
                         </a>
                     </div>
                 </form>
+                <% if (request.getAttribute("usuarios") != null) {
+                        List<Usuario> usuarios = (List<Usuario>) request.getAttribute("usuarios");
+                        if (!usuarios.isEmpty()) {%>
+
 
                 <table class="table table-bordered table-striped" id="dataTable">
                     <thead>
@@ -74,14 +79,19 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <%for (Usuario user : usuarios){ %>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><%=user.getNome()%></td>
+                            <td><%=user.getLogin()%></td>
+                            <td><%=user.getEmail()%></td>
                         </tr>
+                        <%}%>
                     </tbody>
                 </table>
-
+                <%    } else {%>
+                <h1>Nenhum resultado foi encontrado</h1>
+                <%}
+                    }%>
             </div>
             <%-- FOOTER --%>
             <%@include file="interfaceFooter.jsp" %>

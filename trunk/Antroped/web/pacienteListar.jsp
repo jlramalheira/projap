@@ -12,8 +12,8 @@
 <%
     Usuario usuario = (Usuario) session.getAttribute("usuario");
     if (usuario == null) {
-        response.sendRedirect("usuarioLogin.jsp");
-    } else {
+        response.sendRedirect("Usuario?operacao=logar");
+    } 
 
 %>
 <!DOCTYPE html>
@@ -128,5 +128,4 @@
             </footer>
         </div>
     </body>
-    <%}%>
 </html>
