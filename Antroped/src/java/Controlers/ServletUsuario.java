@@ -89,6 +89,9 @@ public class ServletUsuario extends HttpServlet {
                 response.sendRedirect("pacienteListar.jsp");
             }
         } else if (operacao.equalsIgnoreCase("logar")) {
+            if (session.getAttribute("usuario") != null){
+                response.sendRedirect("Paciente?operacao=listar");
+            }
             String login = request.getParameter("login");
             String sen = request.getParameter("senha");
             String senha = Util.Util.criptografar(sen);
