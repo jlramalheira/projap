@@ -193,7 +193,7 @@
                         </div>
                     </div>
                     <div class="span3">
-                        <a href="Paciente?operacao=editar?idPaciente=<%=paciente.getId()%>" class="btn btn-large btn-block btn-icon edit margin-top">
+                        <a href="Paciente?operacao=editar&idPaciente=<%=paciente.getId()%>" class="btn btn-large btn-block btn-icon edit margin-top">
                             Editar dados
                         </a>
                         <button class="btn btn-large btn-block btn-icon nova-medida margin-top"
