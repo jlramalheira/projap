@@ -60,6 +60,9 @@ public class ServletPaciente extends HttpServlet {
             rd = request.getRequestDispatcher("pacienteAcompanhar.jsp");
             rd.forward(request, response);
         } else if (operacao.equalsIgnoreCase("listar")) {
+            List<Paciente> pacientes = new DaoPaciente().list();
+            request.setAttribute("pacientes", pacientes);
+            
             rd = request.getRequestDispatcher("pacienteListar.jsp");
             rd.forward(request, response);
         } else if (operacao.equalsIgnoreCase("editar")) {

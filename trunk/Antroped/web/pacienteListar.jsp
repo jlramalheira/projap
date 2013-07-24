@@ -11,10 +11,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     Usuario usuario = (Usuario) session.getAttribute("usuario");
-    if ((usuario == null) || session.getAttribute("pacientes") == null) {
+    if ((usuario == null) || request.getAttribute("pacientes") == null) {
         response.sendRedirect("usuarioLogin.jsp");
     } else {
-        List<Paciente> pacientes = (List<Paciente>) session.getAttribute("pacientes");
+        List<Paciente> pacientes = (List<Paciente>) request.getAttribute("pacientes");
 %>
 <!DOCTYPE html>
 <html>

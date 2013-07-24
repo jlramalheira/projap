@@ -101,8 +101,7 @@ public class ServletUsuario extends HttpServlet {
                 Usuario usuario = (daoUsuario.listByLogin(login)).get(0);
                 if ((usuario != null) && (usuario.getSenha().equals(senha))) {
                     session.setAttribute("usuario", usuario);
-                    List<Paciente> pacientes = new DaoPaciente().list();
-                    session.setAttribute("pacientes", pacientes);
+                    
                     response.sendRedirect("pacienteListar.jsp");
                 } else {
                     session.setAttribute("mensagem", "Senha incorreta");
