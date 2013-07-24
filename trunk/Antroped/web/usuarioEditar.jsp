@@ -10,6 +10,7 @@
     if ((usuario == null)) {
         response.sendRedirect("usuarioLogin.jsp");
     } else {
+        
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -23,7 +24,7 @@
             <%@include file="interfaceHeader.jsp" %>
             <%-- MAIN --%>
             <div class="main">
-                <form name="form" action="ServletUsuario" method="POST" class="formulario formulariocadastro">
+                <form name="form" action="Usuario" method="POST" class="formulario formulariocadastro">
                     <fieldset>
                         <legend>Editar:</legend>
                         <%

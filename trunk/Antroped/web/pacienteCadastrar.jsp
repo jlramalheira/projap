@@ -48,7 +48,7 @@
                 <nav>
                     <ul class="breadcrumb">
                         <li>
-                            <a href="pacienteListar.jsp">Pacientes</a>
+                            <a href="Paciente?operacao=listar">Pacientes</a>
                             <span class="divider">/</span>
                         </li>
                         <li class="active">
@@ -58,7 +58,7 @@
                 </nav>
 
                 <h1>Cadastrar paciente</h1>
-                <form action="ServletPaciente" method="POST"
+                <form action="Paciente" method="POST"
                       class="form">
                     <fieldset>
                         <label for="nome">Nome:</label>

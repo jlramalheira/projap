@@ -35,12 +35,16 @@ public class ServletPaciente extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession(true);
-        RequestDispatcher rd ;
+        RequestDispatcher rd;
 
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         String operacao = request.getParameter("operacao");
-
-        if (operacao.equalsIgnoreCase("deletar")) {
+        System.out.println("*******************************GET");
+        System.out.println(operacao);
+        if (operacao.equalsIgnoreCase("cadastrar")) {
+            rd = request.getRequestDispatcher("pacienteCadastrar.jsp");
+            rd.forward(request, response);
+        } else if (operacao.equalsIgnoreCase("deletar")) {
             int idPaciente = Integer.parseInt(request.getParameter("idPaciente"));
 
             List<Medida> dados = new Dao<Medida>(Medida.class).listById(idPaciente);
@@ -53,29 +57,18 @@ public class ServletPaciente extends HttpServlet {
             rd.forward(request, response);
         } else if (operacao.equalsIgnoreCase("acompanhar")) {
             int idPaciente = Integer.parseInt(request.getParameter("idPaciente"));
-
+            System.out.println("aqui");
             Paciente paciente = daoPaciente.get(idPaciente);
 
             request.setAttribute("paciente", paciente);
             rd = request.getRequestDispatcher("pacienteAcompanhar.jsp");
             rd.forward(request, response);
         } else if (operacao.equalsIgnoreCase("listar")) {
-            List<Paciente> pacientes = new DaoPaciente().list();
-            request.setAttribute("pacientes", pacientes);
-            
             rd = request.getRequestDispatcher("pacienteListar.jsp");
             rd.forward(request, response);
         } else if (operacao.equalsIgnoreCase("editar")) {
             int idPaciente = Integer.parseInt(request.getParameter("idPaciente"));
 
-            Paciente paciente = daoPaciente.get(idPaciente);
-            
-            request.setAttribute("paciente", paciente);
-
-            rd = request.getRequestDispatcher("pacienteEditar.jsp");
-            rd.forward(request, response);
-        } else if (operacao.equalsIgnoreCase("editar")) {
-            int idPaciente = Integer.parseInt(request.getParameter("idPaciente"));
             Paciente paciente = daoPaciente.get(idPaciente);
 
             request.setAttribute("paciente", paciente);
@@ -101,9 +94,9 @@ public class ServletPaciente extends HttpServlet {
                 sexo = request.getParameter("pesquisarSexo");
             }
 
-            List<Paciente> pacientesPesquisa = daoPaciente.listByAll(nomePaciente, nomePai, nomeMae, sexo, usuario);
+            List<Paciente> pacientes = daoPaciente.listByAll(nomePaciente, nomePai, nomeMae, sexo, usuario);
 
-            session.setAttribute("pacientesPesquisa", pacientesPesquisa);
+            request.setAttribute("pacientes", pacientes);
             rd = request.getRequestDispatcher("pacienteListar.jsp");
 
             rd.forward(request, response);
@@ -159,8 +152,11 @@ public class ServletPaciente extends HttpServlet {
         if (operacao.equalsIgnoreCase("cadastrar")) {
             Paciente paciente = new Paciente(nome, nomePai, nomeMae, estaturaPai, estaturaMae, dataNascimento, sexo, usuario);
             daoPaciente.insert(paciente);
-            session.setAttribute("paciente", paciente);
-            response.sendRedirect("pacienteAcompanhar.jsp");
+            System.out.println("******************************");
+            System.out.println("aqui");
+            System.out.println(operacao);
+            System.out.println("Paciente?operacao=acompanhar&idPaciente="+paciente.getId());
+            response.sendRedirect("Paciente?operacao=acompanhar&idPaciente="+paciente.getId());
 
         } else if (operacao.equalsIgnoreCase("editar")) {
             int pacienteId = Integer.parseInt(request.getParameter("pacienteId"));

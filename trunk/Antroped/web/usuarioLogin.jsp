@@ -45,7 +45,7 @@
                                 Entrar
                             </button>
                         </div>
-                        <a class="minor" href="ServletUsuario?operacao=esqueceuSenha">Esqueceu login/senha?</a>
+                        <a class="minor" href="ServletUsuario?operacao=recuperarSenha">Esqueceu login/senha?</a>
                 </form>
             </div>
 
