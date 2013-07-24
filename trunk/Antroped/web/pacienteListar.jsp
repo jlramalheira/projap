@@ -38,7 +38,7 @@
                             <input type="text" name="pesquisar" value=""
                                    id="nome" class="input-xxlarge"
                                    placeholder="Nome completo do paciente"
-                                   required/>
+                                   />
 
                             <div class="more-options">
                                 <label for="datanasc">Data de Nascimento:</label>
@@ -47,19 +47,19 @@
                                        title="Data de nascimento"
                                        pattern="([0-2][0-9]|3(0|1))/(0[0-9]|1[0-2])/([0-9]+)"
                                        placeholder="dd/mm/aaaa"
-                                       required/>
+                                       />
 
                                 <label>Sexo:</label>
                                 <label for="sexom" class="radio inline">
                                     <input type="radio" name="sexo" value="Masculino"
                                            id="sexom"
-                                           required/>
+                                           />
                                     Masculino
                                 </label>
                                 <label for="sexof" class="radio inline">
                                     <input type="radio" name="sexo" value="Feminino"
                                            id="sexof"
-                                           required=""/>
+                                           />
                                     Feminino
                                 </label><br/><br/>
 

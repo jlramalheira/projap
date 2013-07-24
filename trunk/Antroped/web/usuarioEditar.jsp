@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : usuarioEditar
     Created on : 09/03/2013, 11:38:31
     Author     : Joao Luiz e Max
@@ -10,7 +10,7 @@
     if ((usuario == null)) {
         response.sendRedirect("usuarioLogin.jsp");
     } else {
-        
+
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -24,29 +24,33 @@
             <%@include file="interfaceHeader.jsp" %>
             <%-- MAIN --%>
             <div class="main">
-                <form name="form" action="Usuario" method="POST" class="formulario formulariocadastro">
-                    <fieldset>
-                        <legend>Editar:</legend>
-                        <%
-                            if (session.getAttribute("mensagem") != null) {
-                                out.print("<p class=\"erro\">" + session.getAttribute("mensagem") + "</p>");
-                                session.removeAttribute("mensagem");
-                            }
-                        %>
-                        <label for="nome">Nome:</label><br/>
-                        <input type="text" name="nome" id="nome" value="<%=usuario.getNome()%>"/><br/>
-                        <label for="email">Email:</label><br/>
-                        <input type="text" name="email" id="email" value="<%=usuario.getEmail()%>"/><br/>
-                        <%--@TODO aparecer clicando em algo do tipo "alterar senha?"--%>
-                        <div>
-                            <label for="senhaAtual">Senha Atual:</label><br/>
-                            <input type="password" name="senhaAtual" id="senhaAtual"/><br/>
-                            <label for="senhaNova">Nova Senha:</label><br/>
-                            <input type="password" name="senhaNova" id="senhaNova"/><br/> 
-                        </div>
-                        <input type="submit" id="login" name="operacao"
-                               value="Editar" class="button" />
-                    </fieldset>
+                <h1>Editar dados cadastrais</h1>
+
+                <p>
+                    <a href="Usuario?operacao=editarSenha" title="Alterar sua senha"
+                       class="btn btn-large">
+                        Alterar senha
+                    </a>
+                </p>
+
+                <form action="Usuario" method="POST"
+                      class="form">
+                    <label for="nome">Nome:</label>
+                    <input type="text" name="nome" value="<%=usuario.getNome()%>"
+                           id="nome" class="input-xxlarge"/>
+
+                    <label for="email">Email:</label>
+                    <input type="text" name="email" value="<%=usuario.getEmail()%>"
+                           id="email" class="input-xlarge"/>
+
+                    <label for="senha">Senha:</label>
+                    <input type="password" name="senha"
+                           id="senha"/>
+
+                    <div class="form-actions">
+                        <input type="submit" name="operacao" value="Editar"
+                               id="login" class="btn btn-large btn-icon edit" />
+                    </div>
                 </form>
             </div>
             <!-- FOOTER -->
