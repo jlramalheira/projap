@@ -27,13 +27,6 @@
                 <h1>Editar dados cadastrais</h1>
                 <%@include file="interfaceMessages.jsp" %>
 
-                <p>
-                    <a href="Usuario?operacao=editarSenha" title="Alterar sua senha"
-                       class="btn btn-large">
-                        Alterar senha
-                    </a>
-                </p>
-
                 <form action="Usuario" method="POST"
                       class="form">
                     <label for="nome">Nome:</label>
@@ -51,6 +44,10 @@
                     <div class="form-actions">
                         <input type="submit" name="operacao" value="Editar"
                                id="login" class="btn btn-large btn-icon edit" />
+                        <a href="Usuario?operacao=editarSenha" title="Alterar sua senha"
+                           class="btn btn-large">
+                            Alterar senha
+                        </a>
                     </div>
                 </form>
             </div>
