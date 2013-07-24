@@ -16,6 +16,10 @@
         <p class="welcome">Olá,<br/>
             <span class="name"><%=usuario.getNome()%></span>
         </p>
-        <p class="logout"><a href="ServletUsuario?operacao=sair" title="Sair">Sair</a></p>
+        <p class="logout">
+            <a href="Usuario?operacao=sair" title="Sair">Sair</a>
+            -
+            <a href="Usuario?operacao=editar&idUsuario=<%=usuario.getId()%>" title="Editar">Editar</a>
+        </p>
     </section>
 </header>

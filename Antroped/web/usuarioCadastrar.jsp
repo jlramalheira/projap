@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : usuarioCadastrar
     Created on : 27/09/2012, 17:20:22
     Author     : João Luiz e Max
@@ -23,40 +23,49 @@
 
     <body lang="pt-br">
         <div class="container">
-            <!-- HEADER -->
-            <header>
-                <a class="logo" href="#">
-                    <img src="img/logoAntroped.png" alt="Logo Antroped"/>
-                </a>
-            </header>
+            <%@include file="interfaceHeader.jsp" %>
             <!-- MAIN -->
             <div class="main">
-                <form name="form" action="ServletUsuario" method="POST" class="formulario formulariocadastro">
-                    <fieldset>
-                        <legend>Cadastro:</legend>
-                        <%
-                            if (session.getAttribute("mensagem") != null) {
-                                out.print("<p class=\"erro\">" + session.getAttribute("mensagem") + "</p>");
-                                session.removeAttribute("mensagem");
-                            }
-                        %>
-                        <label for="nome">Nome:</label><br/>
-                        <input type="text" name="nome" id="nome"/><br/>
-                        <label for="email">Email:</label><br/>
-                        <input type="text" name="email" id="email"/><br/>
-                        <label for="login">Login:</label><br/>
-                        <input type="text" name="login" id="login"/><br/>
-                        <label for="senha">Senha:</label><br/>
-                        <input type="password" name="senha" id="senha"/><br/>                        
+                <h1>Cadastrar novo usuário</h1>
+                <form action="ServletUsuario" method="POST"
+                      class="form">
+                    <%
+                        if (session.getAttribute("mensagem") != null) {
+                            out.print("<p class=\"erro\">" + session.getAttribute("mensagem") + "</p>");
+                            session.removeAttribute("mensagem");
+                        }
+                    %>
+                    <label for="nome">Nome:</label>
+                    <input type="text" name="nome" value=""
+                           id="nome" class="input-xxlarge"
+                           placeholder="Nome completo do paciente"/>
+
+                    <label for="email">Email:</label>
+                    <input type="text" name="email"
+                           id="email" class="input-xlarge"
+                           placeholder="Utilize um e-mail válido"/>
+
+                    <label for="login">Login:</label>
+                    <input type="text" name="login"
+                           id="login"
+                           placeholder="Nome de usuário"/>
+
+                    <label for="senha">Senha:</label>
+                    <input type="password" name="senha"
+                           id="senha"
+                           placeholder="Senha de usuário"/>
+                    <br/>
+                    <input type="password" name="senha-2"
+                           id="senha-2"
+                           placeholder="Repita sua senha"/>
+
+                    <div class="form-actions">
                         <input type="submit" id="login" name="operacao"
-                               value="Cadastrar" class="button" />
-                    </fieldset>
+                               value="Cadastrar" class="btn btn-large" />
+                    </div>
                 </form>
             </div>
-            <!-- FOOTER -->
-            <footer>
-                <%@include file="interfaceFooter.jsp" %>
-            </footer>
+            <%@include file="interfaceFooter.jsp" %>
         </div>
     </body>
 </html>
