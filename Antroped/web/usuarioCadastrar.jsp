@@ -27,7 +27,7 @@
             <!-- MAIN -->
             <div class="main">
                 <h1>Cadastrar novo usuário</h1>
-                <form action="ServletUsuario" method="POST"
+                <form action="Usuario" method="POST"
                       class="form">
                     <%
                         if (session.getAttribute("mensagem") != null) {
@@ -38,7 +38,7 @@
                     <label for="nome">Nome:</label>
                     <input type="text" name="nome" value=""
                            id="nome" class="input-xxlarge"
-                           placeholder="Nome completo do paciente"/>
+                           placeholder="Nome completo do usuário"/>
 
                     <label for="email">Email:</label>
                     <input type="text" name="email"

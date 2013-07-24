@@ -18,17 +18,16 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
-    Paciente paciente = (Paciente) request.getAttribute("idPaciente");
-    if ((paciente == null)) {
-        response.sendRedirect("usuarioIndex.jsp");
+    Paciente paciente = (Paciente) request.getAttribute("paciente");
+    Usuario usuario = (Usuario) session.getAttribute("usuario");
+    if ((paciente == null) || (usuario == null) || (paciente.getUsuario().getId() != usuario.getId())) {
+        response.sendError(404);
     } else {
-        Usuario usuario = (Usuario) session.getAttribute("usuario");
         List<Medida> dados = new Dao<Medida>(Medida.class).listById(paciente.getId());
         List<Medida> paginados = new Dao<Medida>(Medida.class).listByIdPag(paciente.getId(), session.getAttribute("pag") != null ? (Integer) session.getAttribute("pag") : 1, Util.Util.ELEMENTOS_TABELA_GRAFICOS);
         if (session.getAttribute("pagina") == null) {
             session.setAttribute("pagina", 1);
         }
-        boolean corEscuraTabela = true;
 %>
 <html>
     <head>
@@ -159,7 +158,7 @@
                 <nav>
                     <ul class="breadcrumb">
                         <li>
-                            <a href="pacienteListar.jsp">Pacientes</a>
+                            <a href="Paciente?operacao=listar">Pacientes</a>
                             <span class="divider">/</span>
                         </li>
                         <li class="active">
@@ -194,7 +193,7 @@
                         </div>
                     </div>
                     <div class="span3">
-                        <a href="#" class="btn btn-large btn-block btn-icon edit margin-top">
+                        <a href="Paciente?operacao=editar?idPaciente=<%=paciente.getId()%>" class="btn btn-large btn-block btn-icon edit margin-top">
                             Editar dados
                         </a>
                         <button class="btn btn-large btn-block btn-icon nova-medida margin-top"

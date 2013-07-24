@@ -41,7 +41,7 @@ public class ServletUsuario extends HttpServlet {
             session.invalidate();
             
             response.sendRedirect("usuarioLogin.jsp");
-        } else if (operacao.equalsIgnoreCase("esqueceuSenha")) {
+        } else if (operacao.equalsIgnoreCase("recuperarSenha")) {
             rd = request.getRequestDispatcher("usuarioRecuperarLoginSenha.jsp");
             rd.forward(request, response);
         } else if (operacao.equalsIgnoreCase("logar")) {
@@ -50,9 +50,7 @@ public class ServletUsuario extends HttpServlet {
         } else if (operacao.equalsIgnoreCase("editar")) {
             int idUsuario = Integer.parseInt(request.getParameter("idUsuario"));
             
-            Usuario usuario = daoUsuario.get(idUsuario);
-            
-            request.setAttribute("usuario", usuario);
+            request.setAttribute("idUsuario", idUsuario);
             rd = request.getRequestDispatcher("usuarioEditar.jsp");
             rd.forward(request, response);
         } else {
@@ -86,7 +84,7 @@ public class ServletUsuario extends HttpServlet {
                 daoUsuario.insert(usuario);
                 
                 session.setAttribute("mensagem", "Usuario cadastrado com sucesso!");
-                response.sendRedirect("pacienteListar.jsp");
+                response.sendRedirect("Paciente?operacao=listar");
             }
         } else if (operacao.equalsIgnoreCase("logar")) {
             if (session.getAttribute("usuario") != null){
@@ -99,16 +97,15 @@ public class ServletUsuario extends HttpServlet {
             if ((daoUsuario.listByLogin(login)).isEmpty()) {
                 session.setAttribute("mensagem", "Login incorreto");
 
-                response.sendRedirect("usuarioLogin.jsp");
+                response.sendRedirect("Usuario?operacao=logar");
             } else {
                 Usuario usuario = (daoUsuario.listByLogin(login)).get(0);
                 if ((usuario != null) && (usuario.getSenha().equals(senha))) {
                     session.setAttribute("usuario", usuario);
-                    
                     response.sendRedirect("Paciente?operacao=listar");
                 } else {
                     session.setAttribute("mensagem", "Senha incorreta");
-                    response.sendRedirect("usuarioLogin.jsp");
+                    response.sendRedirect("Usuario?operacao=logar");
                 }
             }
         } else if (operacao.equalsIgnoreCase("recuperar")) {
@@ -137,10 +134,10 @@ public class ServletUsuario extends HttpServlet {
                     Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 session.setAttribute("mensagem", "Email de recuperação enviado com sucesso");
-                response.sendRedirect("usuarioLogin.jsp");
+                response.sendRedirect("Usuario?operacao=logar");
             } else {
                 session.setAttribute("mensagem", "Usuario não cadastrado");
-                response.sendRedirect("usuarioRecuperarLoginSenha.jsp");
+                response.sendRedirect("Usuario?operacao=recuperarSenha");
             }
         } else if (operacao.equalsIgnoreCase("editar")) {
             String nome = request.getParameter("nome");
@@ -160,7 +157,7 @@ public class ServletUsuario extends HttpServlet {
                 if (usuario.getSenha().equals(senhaAtual)) {
                     usuario.setEmail(email);
                     usuario.setNome(nome);
-                    usuario.setSenha(senhaNova);
+                    usuario.setSenha(Util.Util.criptografar(senhaNova));
                     
                     daoUsuario.update(usuario);
                     
@@ -168,10 +165,10 @@ public class ServletUsuario extends HttpServlet {
                     session.setAttribute("usuario", usuario);
                     
                     session.setAttribute("mensagem", "Sucesso na alteração!");
-                    response.sendRedirect("pacienteListar.jsp");
+                    response.sendRedirect("Usuario?operacao=listar");
                 } else {
                     session.setAttribute("mensagem", "Senha invalida");
-                    response.sendRedirect("usauarioEditar.jsp");
+                    response.sendRedirect("Usuario?operacao=editar");
                 }
             }
         }

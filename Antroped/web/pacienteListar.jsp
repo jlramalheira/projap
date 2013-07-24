@@ -11,10 +11,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     Usuario usuario = (Usuario) session.getAttribute("usuario");
-    if ((usuario == null) || request.getAttribute("pacientes") == null) {
+    if (usuario == null) {
         response.sendRedirect("usuarioLogin.jsp");
     } else {
-        List<Paciente> pacientes = (List<Paciente>) request.getAttribute("pacientes");
+
 %>
 <!DOCTYPE html>
 <html>
@@ -30,7 +30,7 @@
 
                 <h1>Pacientes</h1>
 
-                <form action="ServletPaciente" method="GET"
+                <form action="Paciente" method="GET"
                       class="form">
                     <div class="row">
                         <div class="span8">
@@ -83,7 +83,7 @@
                                     onclick="toggleMoreOptions(this)">
                                 Mais Opções
                             </button>
-                            <a href="pacienteCadastrar.jsp"
+                            <a href="Paciente?operacao=cadastrar"
                                class="btn btn-large btn-icon new-user">
                                 Adicionar Novo
                             </a>
@@ -97,7 +97,10 @@
 
                 </form>
 
-                <% if (!pacientes.isEmpty()) {%>
+                <% if (request.getAttribute("pacientes") != null) {
+                        List<Paciente> pacientes = (List<Paciente>) request.getAttribute("pacientes");
+
+                        if (!pacientes.isEmpty()) {%>
                 <table class="table table-bordered table-striped" id="dataTable">
                     <thead>
                         <tr>
@@ -126,9 +129,8 @@
 
                 <%} else {//caso nao encontra nenhum usuario com os parametros fornecidos%>
                 <h1>Nenhum resultado foi encontrado</h1>
-                <% }%>
-                <%
-                    session.removeAttribute("pacientesPesquisa");
+                <% }
+                    }
                 %>
             </div>
             <!-- FOOTER -->
