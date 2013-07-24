@@ -38,10 +38,12 @@ public class ServletUsuario extends HttpServlet {
         if (operacao.equalsIgnoreCase("sair")) {
             session.invalidate();
             
-            rd = request.getRequestDispatcher("usuarioLogin.jsp");
-            rd.forward(request, response);
+            response.sendRedirect("usuarioLogin.jsp");
         } else if (operacao.equalsIgnoreCase("esqueceuSenha")) {
             rd = request.getRequestDispatcher("usuarioRecuperarLoginSenha.jsp");
+            rd.forward(request, response);
+        } else if (operacao.equalsIgnoreCase("logar")) {
+            rd = request.getRequestDispatcher("usuarioLogin.jsp");
             rd.forward(request, response);
         } else if (operacao.equalsIgnoreCase("editar")) {
             int idUsuario = Integer.parseInt(request.getParameter("idUsuario"));
