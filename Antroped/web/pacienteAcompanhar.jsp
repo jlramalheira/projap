@@ -153,7 +153,7 @@
 
             <%-- MAIN --%>
             <div class="main">
-
+                <%@include file="interfaceMessages.jsp" %>
                 <%-- Navigation --%>
                 <nav>
                     <ul class="breadcrumb">

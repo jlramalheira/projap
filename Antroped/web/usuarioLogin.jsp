@@ -22,6 +22,7 @@
 
             <%-- MAIN --%>
             <div class="main">
+                <%@include file="interfaceMessages.jsp" %>
                 <form action="Usuario" method="post"
                       class="form login">
                         <label for="login">Login</label>
@@ -32,12 +33,6 @@
                         <input type="password" name="senha" value=""
                                id="senha" class="input-xlarge"
                                />
-                        <%
-                            if (session.getAttribute("mensagem") != null) {
-                                out.print("<p class=\"error\">" + session.getAttribute("mensagem") + "</p>");
-                                session.removeAttribute("mensagem");
-                            }
-                        %>
 
                         <div class="form-actions">
                             <button type="submit" name="operacao" value="logar"

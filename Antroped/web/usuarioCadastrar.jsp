@@ -26,15 +26,10 @@
             <%@include file="interfaceHeader.jsp" %>
             <!-- MAIN -->
             <div class="main">
+                <%@include file="interfaceMessages.jsp" %>
                 <h1>Cadastrar novo usuário</h1>
                 <form action="Usuario" method="POST"
                       class="form">
-                    <%
-                        if (session.getAttribute("mensagem") != null) {
-                            out.print("<p class=\"erro\">" + session.getAttribute("mensagem") + "</p>");
-                            session.removeAttribute("mensagem");
-                        }
-                    %>
                     <label for="nome">Nome:</label>
                     <input type="text" name="nome" value=""
                            id="nome" class="input-xxlarge"
