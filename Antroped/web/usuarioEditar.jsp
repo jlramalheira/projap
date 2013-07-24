@@ -10,7 +10,6 @@
     if ((usuario == null)) {
         response.sendRedirect("usuarioLogin.jsp");
     } else {
-
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -26,6 +25,7 @@
             <div class="main">
                 <%@include file="interfaceMessages.jsp" %>
                 <h1>Editar dados cadastrais</h1>
+                <%@include file="interfaceMessages.jsp" %>
 
                 <p>
                     <a href="Usuario?operacao=editarSenha" title="Alterar sua senha"

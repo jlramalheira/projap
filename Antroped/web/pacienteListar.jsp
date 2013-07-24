@@ -109,7 +109,7 @@
                             <th id="colunaSexo">Sexo</th>
                             <th id="colunaNomeMae">Mãe</th>
                             <th id="colunaNomePai">Pai</th>
-                            <th id="colunaOpções" colspan="2">Opções</th>
+                            <th id="colunaOpções">Opções</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -120,8 +120,7 @@
                             <td><%=p.getSexo()%></td>
                             <td><%=p.getPrimeiroNomeMae()%></td>
                             <td><%=p.getPrimeiroNomePai()%></td>
-                            <td><a href="ServletPaciente?pacienteId=<%=p.getId()%>&operacao=mostrar"> <img hint="Deletar" src=img/lookIco.png /></a></td>
-                            <td><a href="ServletPaciente?pacienteId=<%=p.getId()%>&operacao=deletar"> <img hint="Deletar" src=img/deleteIco.png /> </a></td>
+                            <td><a href="Paciente?idPaciente=<%=p.getId()%>&operacao=acompanhar"> <img hint="Verificar" src=img/lookIco.png /></a></td>
                         </tr>
                         <% }%>
                     </tbody>
