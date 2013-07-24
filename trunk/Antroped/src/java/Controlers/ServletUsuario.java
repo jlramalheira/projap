@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,32 +23,45 @@ import javax.servlet.http.HttpSession;
  *
  * @author Max
  */
-@WebServlet(name = "ServletUsuario", urlPatterns = {"/ServletUsuario"})
+@WebServlet(name = "Usuario", urlPatterns = {"/Usuario"})
 public class ServletUsuario extends HttpServlet {
 
+    DaoUsuario daoUsuario = new DaoUsuario();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession(true);
         String operacao = request.getParameter("operacao");
+        RequestDispatcher rd ;
 
         if (operacao.equalsIgnoreCase("sair")) {
             session.invalidate();
-            response.sendRedirect("usuarioLogin.jsp");
+            
+            rd = request.getRequestDispatcher("usuarioLogin.jsp");
+            rd.forward(request, response);
         } else if (operacao.equalsIgnoreCase("esqueceuSenha")) {
-            response.sendRedirect("usuarioRecuperarLoginSenha.jsp");
+            rd = request.getRequestDispatcher("usuarioRecuperarLoginSenha.jsp");
+            rd.forward(request, response);
+        } else if (operacao.equalsIgnoreCase("editar")) {
+            int idUsuario = Integer.parseInt(request.getParameter("idUsuario"));
+            
+            Usuario usuario = daoUsuario.get(idUsuario);
+            
+            request.setAttribute("usuario", usuario);
+            rd = request.getRequestDispatcher("usuarioEditar.jsp");
+            rd.forward(request, response);
+        } else {
+            response.sendError(404);
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        DaoUsuario daoUsuario = new DaoUsuario();
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession(true);
-        String operacao;
-        operacao = request.getParameter("operacao");
+        String operacao = request.getParameter("operacao");
 
         if (operacao.equalsIgnoreCase("cadastrar")) {
             String nome = request.getParameter("nome");
@@ -68,7 +82,7 @@ public class ServletUsuario extends HttpServlet {
                 daoUsuario.insert(usuario);
                 
                 session.setAttribute("mensagem", "Usuario cadastrado com sucesso!");
-                response.sendRedirect("usuarioIndex.jsp");
+                response.sendRedirect("pacienteListar.jsp");
             }
         } else if (operacao.equalsIgnoreCase("entrar")) {
             String login = request.getParameter("login");
@@ -83,7 +97,7 @@ public class ServletUsuario extends HttpServlet {
                 Usuario usuario = (daoUsuario.listByLogin(login)).get(0);
                 if ((usuario != null) && (usuario.getSenha().equals(senha))) {
                     session.setAttribute("usuario", usuario);
-                    response.sendRedirect("usuarioIndex.jsp");
+                    response.sendRedirect("pacienteListar.jsp");
                 } else {
                     session.setAttribute("mensagem", "Senha incorreta");
                     response.sendRedirect("usuarioLogin.jsp");
@@ -141,8 +155,12 @@ public class ServletUsuario extends HttpServlet {
                     usuario.setSenha(senhaNova);
                     
                     daoUsuario.update(usuario);
+                    
+                    session.removeAttribute("usuario");
+                    session.setAttribute("usuario", usuario);
+                    
                     session.setAttribute("mensagem", "Sucesso na alteração!");
-                    response.sendRedirect("usuarioIndex.jsp");
+                    response.sendRedirect("pacienteListar.jsp");
                 } else {
                     session.setAttribute("mensagem", "Senha invalida");
                     response.sendRedirect("usauarioEditar.jsp");
