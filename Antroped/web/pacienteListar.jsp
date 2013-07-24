@@ -35,41 +35,34 @@
                     <div class="row">
                         <div class="span8">
                             <label for="nome">Nome:</label>
-                            <input type="text" name="pesquisar" value=""
+                            <input type="text" name="pesquisar" value="<%=request.getAttribute("nomePaciente") == null ? "" : request.getAttribute("nomePaciente") %>"
                                    id="nome" class="input-xxlarge"
                                    placeholder="Nome completo do paciente"
                                    />
 
                             <div class="more-options">
-                                <label for="datanasc">Data de Nascimento:</label>
-                                <input type="text" name="dataNascimento" value=""
-                                       id="datanasc" class="date"
-                                       title="Data de nascimento"
-                                       pattern="([0-2][0-9]|3(0|1))/(0[0-9]|1[0-2])/([0-9]+)"
-                                       placeholder="dd/mm/aaaa"
-                                       />
 
                                 <label>Sexo:</label>
                                 <label for="sexom" class="radio inline">
                                     <input type="radio" name="sexo" value="Masculino"
-                                           id="sexom"
+                                           id="sexom" <%=request.getAttribute("sexo") == null ? "" : request.getAttribute("sexo").equals("Masculino") ? "checked=\"checked\"" : "" %>
                                            />
                                     Masculino
                                 </label>
                                 <label for="sexof" class="radio inline">
                                     <input type="radio" name="sexo" value="Feminino"
-                                           id="sexof"
+                                           id="sexof" <%=request.getAttribute("sexo") == null ? "" : request.getAttribute("sexo").equals("Feminino") ? "checked=\"checked\"" : "" %>
                                            />
                                     Feminino
                                 </label><br/><br/>
 
                                 <label for="nomepai">Nome do Pai:</label>
-                                <input type="text" name="nomePai" value=""
+                                <input type="text" name="nomePai" value="<%=request.getAttribute("nomePai") == null ? "" : request.getAttribute("nomePai") %>"
                                        id="nomepai" class="input-xxlarge"
                                        placeholder="Nome completo do pai"/>
 
                                 <label for="nomemae">Nome da Mãe:</label>
-                                <input type="text" name="nomeMae" value=""
+                                <input type="text" name="nomeMae" value="<%=request.getAttribute("nomeMae") == null ? "" : request.getAttribute("nomeMae") %>"
                                        id="nomemae" class="input-xxlarge"
                                        placeholder="Nome completo da mãe"/>
                             </div>
