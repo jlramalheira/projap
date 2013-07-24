@@ -16,7 +16,7 @@
         <div class="container">
             <%-- HEADER --%>
             <header>
-                <a class="logo" href="Paciente?operacao=listar">
+                <a class="logo">
                     <img src="img/logoAntroped.png" alt="Logo Antroped"/>
                 </a>
             </header>
