@@ -18,19 +18,13 @@
             </header>
             <!-- MAIN -->
             <div class="main">
+                <%@include file="interfaceMessages.jsp" %>
                 <h1>Recuperar Login e Senha</h1>
                 <p>
                     Insira seu e-mail cadastrado, você irá receber um email em breve com informações para recuperar senha.
                 </p>
                 <form action="ServletUsuario" method="POST"
                       class="form login">
-                    <%
-                        if (session.getAttribute("mensagem") != null) {
-                            out.print("<p class=\"erro\">" + session.getAttribute("mensagem") + "</p>");
-                            session.removeAttribute("mensagem");
-                        }
-                    %>
-
                     <label for="email">Email:</label>
                     <input type="text" name="email"
                            id="email" class="input-xlarge"/>

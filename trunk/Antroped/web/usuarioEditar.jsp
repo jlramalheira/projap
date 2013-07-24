@@ -24,6 +24,7 @@
             <%@include file="interfaceHeader.jsp" %>
             <%-- MAIN --%>
             <div class="main">
+                <%@include file="interfaceMessages.jsp" %>
                 <h1>Editar dados cadastrais</h1>
 
                 <p>

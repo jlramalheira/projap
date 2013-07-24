@@ -27,7 +27,7 @@
             <%@include file="interfaceHeader.jsp" %>
             <%-- MAIN --%>
             <div class="main">
-
+                <%@include file="interfaceMessages.jsp" %>
                 <h1>Pacientes</h1>
 
                 <form action="Paciente" method="GET"

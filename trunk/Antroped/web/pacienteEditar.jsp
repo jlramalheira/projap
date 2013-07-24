@@ -44,6 +44,7 @@
             <%@include file="interfaceHeader.jsp" %>
             <%-- MAIN --%>
             <div class="main">
+                <%@include file="interfaceMessages.jsp" %>
                 <!-- Formulário para adicionar um paciente novo -->
                 <form name="form" action="ServletPaciente" method="POST" class="formulario formularionovopaciente">
                     <fieldset>
