@@ -5,7 +5,14 @@
     Description:
         Esse documento JSP é utilizado para página de erro.
 --%>
+<%@page import="Model.Usuario"%>
+<%
+    Usuario usuario = (Usuario) session.getAttribute("usuario");
+    if ((usuario == null)) {
+        response.sendRedirect("usuarioLogin.jsp");
+    } else {
 
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -23,16 +30,16 @@
 
                 <form action="Usuario" method="post"
                       class="form">
-                    
-                        <label for="senhaAtual">Senha Atual:</label>
-                        <input type="password" name="senhaAtual" id="senhaAtual"/>
 
-                        <label for="senhaNova">Nova Senha:</label>
-                        <input type="password" name="senhaNova" id="senhaNova"/>
+                    <label for="senhaAtual">Senha Atual:</label>
+                    <input type="password" name="senhaAtual" id="senhaAtual"/>
 
-                        <label for="senhaNova2">Nova Senha:</label>
-                        <input type="password" name="senhaNova2"
-                               id="senhaNova2"/>
+                    <label for="senhaNova">Nova Senha:</label>
+                    <input type="password" name="senhaNova" id="senhaNova"/>
+
+                    <label for="senhaNova2">Nova Senha:</label>
+                    <input type="password" name="senhaNova2"
+                           id="senhaNova2"/>
                 </form>
 
             </div>
@@ -41,3 +48,4 @@
         </div>
     </body>
 </html>
+<%}%>
