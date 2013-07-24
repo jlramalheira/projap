@@ -89,12 +89,16 @@ public class ServletPaciente extends HttpServlet {
             if (request.getParameter("pesquisarNomePai") != null) {
                 nomePai = request.getParameter("pesquisarNomePai");
             }
-            if (request.getParameter("pesquisarSexo") != null) {
-                sexo = request.getParameter("pesquisarSexo");
+            if (request.getParameter("sexo") != null) {
+                sexo = request.getParameter("sexo");
             }
 
             List<Paciente> pacientes = daoPaciente.listByAll(nomePaciente, nomePai, nomeMae, sexo, usuario);
 
+            request.setAttribute("nomePaciente", nomePaciente);
+            request.setAttribute("nomePai", nomePai);
+            request.setAttribute("nomeMae", nomeMae);
+            request.setAttribute("sexo", sexo);
             request.setAttribute("pacientes", pacientes);
             rd = request.getRequestDispatcher("pacienteListar.jsp");
 
