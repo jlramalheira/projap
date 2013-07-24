@@ -9,8 +9,10 @@ import Dao.DaoPaciente;
 import Model.Medida;
 import Model.Paciente;
 import Model.Usuario;
+import Util.Message;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -108,6 +110,7 @@ public class ServletPaciente extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession(true);
+        ArrayList<Message> messages = new ArrayList<Message>();
 
         String operacao = request.getParameter("operacao");
         String nome = "";
@@ -120,7 +123,7 @@ public class ServletPaciente extends HttpServlet {
 
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         if ((usuario == null)) {
-            response.sendRedirect("usuarioLogin.jsp");
+            response.sendRedirect("Usuario?operacao=logar");
         }
 
         if (!request.getParameter("nome").isEmpty()) {
@@ -149,15 +152,16 @@ public class ServletPaciente extends HttpServlet {
         if (operacao.equalsIgnoreCase("cadastrar")) {
             Paciente paciente = new Paciente(nome, nomePai, nomeMae, estaturaPai, estaturaMae, dataNascimento, sexo, usuario);
             daoPaciente.insert(paciente);
-            System.out.println("******************************");
-            System.out.println("aqui");
-            System.out.println(operacao);
-            System.out.println("Paciente?operacao=acompanhar&idPaciente="+paciente.getId());
+            
+            Message message = new Message("Paciente cadastrado com sucesso!", Message.TYPE_SUCCESS);
+            messages.add(message);
+            
+            session.setAttribute("messages", messages);
             response.sendRedirect("Paciente?operacao=acompanhar&idPaciente="+paciente.getId());
 
         } else if (operacao.equalsIgnoreCase("editar")) {
-            int pacienteId = Integer.parseInt(request.getParameter("pacienteId"));
-            Paciente paciente = daoPaciente.get(pacienteId);
+            int idPaciente = Integer.parseInt(request.getParameter("idPaciente"));
+            Paciente paciente = daoPaciente.get(idPaciente);
             paciente.setNome(nome);
             paciente.setSexo(sexo);
             paciente.setNomePai(nomePai);
@@ -167,12 +171,16 @@ public class ServletPaciente extends HttpServlet {
             paciente.setDataNascimento(dataNascimento);
 
             daoPaciente.update(paciente);
-
-            session.removeAttribute("paciente");
-            session.setAttribute("paciente", paciente);
-            response.sendRedirect("pacienteAcompanhar.jsp");
+            
+            Message message = new Message("Paciente editado com sucesso!", Message.TYPE_SUCCESS);
+            messages.add(message);
+            
+            session.setAttribute("messages", messages);
+            response.sendRedirect("Paciente?operacao=acompanhar&idPaciente="+paciente.getId());
         } else if (operacao.equalsIgnoreCase("cancelar")) {
-            response.sendRedirect("pacienteListar.jsp");
+            int idPaciente = Integer.parseInt(request.getParameter("idPaciente"));
+            
+            response.sendRedirect("Paciente?operacao=acompanhar&idPaciente="+idPaciente);
         }
     }
 }
