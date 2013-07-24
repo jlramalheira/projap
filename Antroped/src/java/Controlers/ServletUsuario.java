@@ -51,6 +51,19 @@ public class ServletUsuario extends HttpServlet {
         } else if (operacao.equalsIgnoreCase("logar")) {
             rd = request.getRequestDispatcher("usuarioLogin.jsp");
             rd.forward(request, response);
+        }else if (operacao.equalsIgnoreCase("listar")) {
+            rd = request.getRequestDispatcher("usuarioListar.jsp");
+            rd.forward(request, response);
+        }else if (operacao.equalsIgnoreCase("pesquisar")) {
+            String nome = request.getParameter("nome");
+            String email = request.getParameter("email");
+            String login = request.getParameter("login");
+            
+            List<Usuario> usuarios = daoUsuario.listByAll(nome, login, email);
+            
+            request.setAttribute("usuarios", usuarios);
+            rd = request.getRequestDispatcher("usuarioListar.jsp");
+            rd.forward(request, response);
         } else if (operacao.equalsIgnoreCase("editar")) {
             int idUsuario = Integer.parseInt(request.getParameter("idUsuario"));
 

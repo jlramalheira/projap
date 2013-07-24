@@ -9,9 +9,8 @@
 <%
     Usuario usuario = (Usuario) session.getAttribute("usuario");
     if ((usuario == null)) {
-        response.sendRedirect("usuarioLogin.jsp");
-    } else {
-
+        response.sendRedirect("Usuario?operacao=logar");
+    }
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -59,4 +58,3 @@
         </div>
     </body>
 </html>
-<%}%>

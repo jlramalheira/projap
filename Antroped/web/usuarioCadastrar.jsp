@@ -9,10 +9,10 @@
 <%
     Usuario usuario = (Usuario) session.getAttribute("usuario");
     if ((usuario == null)) {
-        response.sendRedirect("usuarioLogin.jsp");
+        response.sendRedirect("Usuario?operacao=logar");
     } else if (!usuario.isAdministrador()) { //Caso o usuario não seja o Administrador, não permite cadastrar novo usuario
-        response.sendRedirect("usuarioIndex.jsp");
-    } else {
+        response.sendRedirect("Paciente?operacao=listar");
+    } 
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -64,4 +64,3 @@
         </div>
     </body>
 </html>
-<%}%>

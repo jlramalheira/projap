@@ -13,8 +13,8 @@
 <%
     Usuario usuario = (Usuario) session.getAttribute("usuario");
     if ((usuario == null) || ((Paciente) request.getAttribute("paciente") == null)) {
-        response.sendRedirect("usuarioLogin.jsp");
-    } else {
+        response.sendRedirect("Usuario?operacao=logar");
+    } 
         Paciente paciente = (Paciente) request.getAttribute("paciente");
 %>
 <!DOCTYPE html>
@@ -88,6 +88,3 @@
         </div>
     </body>
 </html>
-<%
-    }
-%>
