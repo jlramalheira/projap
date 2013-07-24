@@ -25,21 +25,32 @@
             <%@include file="interfaceHeader.jsp" %>
             <%-- MAIN --%>
             <div class="main">
-                <h1>Hello World!</h1>
+                <h1>Alterar senha</h1>
                 <%@include file="interfaceMessages.jsp" %>
 
                 <form action="Usuario" method="post"
                       class="form">
 
                     <label for="senhaAtual">Senha Atual:</label>
-                    <input type="password" name="senhaAtual" id="senhaAtual"/>
+                    <input type="password" name="senhaAtual"
+                           id="senhaAtual" class="input-xlarge"
+                           placeholder="Digite sua senha atual"/>
 
                     <label for="senhaNova">Nova Senha:</label>
-                    <input type="password" name="senhaNova" id="senhaNova"/>
-
-                    <label for="senhaNova2">Nova Senha:</label>
+                    <input type="password" name="senhaNova"
+                           id="senhaNova" class="input-xlarge"
+                           placeholder="Digite sua nova senha"/>
+                    <br/>
                     <input type="password" name="senhaNova2"
-                           id="senhaNova2"/>
+                           id="senhaNova2" class="input-xlarge"
+                           placeholder="Digite sua nova senha novamente"/>
+
+                    <div>
+                        <button type="submit" name="operacao" value="EditarSenha"
+                                class="btn btn-large btn-icon edit">
+                            Editar
+                        </button>
+                    </div>
                 </form>
 
             </div>

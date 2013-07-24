@@ -21,22 +21,6 @@
 <html>
     <head>
         <%@include file="interfaceHead.jsp" %>
-        <script src="js/jquery.maskedinput-1.3.min.js" type="text/javascript"></script>
-        <script type="text/javascript">
-            $(function(){
-                $('#datanasc').mask("99/99/9999");
-                
-                $("#estaturapai").keyup(function() {  
-                    var valor = $("#estaturapai").val().replace(/[^0-9.]+/g,'');  
-                    $("#estaturapai").val(valor);  
-                });
-                
-                $("#estaturamae").keyup(function() {  
-                    var valor = $("#estaturamae").val().replace(/[^0-9.]+/g,'');  
-                    $("#estaturamae").val(valor);  
-                });
-            });
-        </script>
     </head>
     <body lang="pt-br">
         <div class="container">
@@ -44,53 +28,57 @@
             <%@include file="interfaceHeader.jsp" %>
             <%-- MAIN --%>
             <div class="main">
+                <h1>Editar dados do paciente</h1>
                 <%@include file="interfaceMessages.jsp" %>
                 <!-- Formulário para adicionar um paciente novo -->
-                <form name="form" action="ServletPaciente" method="POST" class="formulario formularionovopaciente">
-                    <fieldset>
-                        <legend>Editar Paciente:</legend>
-                        <input type="hidden" name="idPaciente" value="<%=(paciente).getId()%>" />
-                        <label for="nome">Nome:</label><br/>
-                        <input type="text" name="nome" id="nome" maxlength="40"
-                               value="<%=paciente.getNome()%>"/><br/>
-                        
-                        <label for="datanasc">Data de Nascimento:</label><br/>
-                        <input type="text" name="dataNascimento" id="datanasc"
-                               value="<%=Util.Util.dateToString(paciente.getDataNascimento())%>"/><br/>
+                <form action="Paciente" method="POST"
+                      class="form">
+                    <input type="hidden" name="idPaciente" value="<%=(paciente).getId()%>" />
 
-                        <label>Sexo:</label><br/>
-                        <input type="radio" name="sexo" value="Masculino" id="sexom" checked="checked"/>
-                        <label for="sexom" class="radiolabel">Masculino</label>                        
-                        <input type="radio" name="sexo" value="Feminino" id="sexof"
-                               <%=(paciente).getSexo().equalsIgnoreCase("feminino") ? "checked=\"checked\"" : ""%>/>
-                        <label for="sexof" class="radiolabel">Feminino</label><br/>
+                    <label for="nome">Nome:</label>
+                    <input type="text" name="nome" value="<%=paciente.getNome()%>"
+                           id="nome" class="input-xxlarge"/>
 
-                        <label for="nomepai">Nome do Pai:</label><br/>
-                        <input type="text" name="nomePai" id="nomepai"
-                               value="<%=paciente.getNomePai()%>"/><br/>
+                    <label for="datanasc">Data de Nascimento:</label>
+                    <input type="text" name="dataNascimento" value="<%=Util.Util.dateToString(paciente.getDataNascimento())%>"
+                           id="datanasc"/>
 
-                        <label for="nomemae">Nome da Mãe:</label><br/>
-                        <input type="text" name="nomeMae" id="nomemae"
-                               value="<%=paciente.getNomeMae()%>"/><br/>
+                    <label>Sexo:</label>
+                    <label for="sexo-masculino" class="radio inline">
+                        <input type="radio" name="sexo" value="Masculino"
+                               id="sexo-masculino"
+                               checked="checked"/>
+                        Masculino
+                    </label>
+                    <label for="sexo-feminino" class="radio inline">
+                        <input type="radio" name="sexo" value="Feminino"
+                               id="sexo-feminino"
+                               <%=(paciente).getSexo().equalsIgnoreCase("feminino") ? "checked=\"checked\"" : ""%>
+                               />
+                        Feminino
+                    </label>
+                    <br/><br/>
 
-                        <p class="estatura">
-                            <label for="estaturapai">Estatura do Pai (cm):</label><br/>                        
-                            <input type="text" name="estaturaPai" id="estaturapai"
-                                   value="<%=paciente.getEstaturaPai()%>"/>
-                        </p>
+                    <label for="nomepai">Nome do Pai:</label>
+                    <input type="text" name="nomePai" value="<%=paciente.getNomePai()%>"
+                           id="nomepai" class="input-xxlarge"/>
 
-                        <p class="estatura">
-                            <label for="estaturamae">Estatura da Mãe (cm):</label><br/>
-                            <input type="text" name="estaturaMae" id="estaturamae"
-                                   value="<%=paciente.getEstaturaMae()%>"/>
-                        </p> 
-                                       
-                        <input type="submit" value="Cadastrar" name="operacao"
-                               class="button enviar"/>
-                        <input type="submit" value="Cancelar" name="operacao"
-                               class="button cancelar" 
-                               onclick=""/>
-                    </fieldset>
+                    <label for="nomemae">Nome da Mãe:</label>
+                    <input type="text" name="nomeMae" value="<%=paciente.getNomeMae()%>"
+                           id="nomemae" class="input-xxlarge"/>
+
+                    <label for="estaturapai">Estatura do Pai:</label>
+                    <input type="text" name="estaturaPai" value="<%=paciente.getEstaturaPai()%>"
+                           id="estaturapai"/>
+
+                    <label for="estaturamae">Estatura da Mãe:</label>
+                    <input type="text" name="estaturaMae" value="<%=paciente.getEstaturaMae()%>"
+                           id="estaturamae"/>
+
+                    <div class="form-actions">
+                        <input type="submit" value="Editar" name="operacao"
+                               class="btn btn-large btn-icon edit"/>
+                    </div>
                 </form>
             </div>
             <!-- FOOTER -->
@@ -100,3 +88,6 @@
         </div>
     </body>
 </html>
+<%
+    }
+%>
