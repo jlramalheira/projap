@@ -85,9 +85,6 @@
 
                         </div>
                     </div>
-
-
-
                 </form>
 
                 <% if (request.getAttribute("pacientes") != null) {
