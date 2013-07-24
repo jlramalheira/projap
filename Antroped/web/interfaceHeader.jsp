@@ -8,7 +8,7 @@
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <header>
-    <a class="logo" href="#">
+    <a class="logo" href="Paciente?operacao=listar">
         <img src="img/logoAntroped.png" alt="Logo Antroped"/>
     </a>
     <section class="user">
