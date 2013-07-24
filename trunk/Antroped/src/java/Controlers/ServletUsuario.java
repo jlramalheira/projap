@@ -105,7 +105,7 @@ public class ServletUsuario extends HttpServlet {
                 if ((usuario != null) && (usuario.getSenha().equals(senha))) {
                     session.setAttribute("usuario", usuario);
                     
-                    response.sendRedirect("pacienteListar.jsp");
+                    response.sendRedirect("Paciente?operacao=listar");
                 } else {
                     session.setAttribute("mensagem", "Senha incorreta");
                     response.sendRedirect("usuarioLogin.jsp");
