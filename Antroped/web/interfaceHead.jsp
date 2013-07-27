@@ -10,4 +10,7 @@
 <meta charset="utf-8">
 <title>ANTROPED :: Antropometria Pediátrica</title>
 <link href="css/bootstrap.css" type="text/css" rel="stylesheet"/>
+<link href="css/jasny-bootstrap.css" type="text/css" rel="stylesheet"/>
+<link href="css/datepicker.css" type="text/css" rel="stylesheet"/>
+
 <link href="css/styles2.css" type="text/css" rel="stylesheet"/>

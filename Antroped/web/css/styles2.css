@@ -9,25 +9,25 @@
   ============================================================================*/
 @font-face {
     font-family: "Segoe";
-    src: url("fonts/segoeui.ttf");
+    src: url("../font/segoeui.ttf");
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: "Segoe Italic";
-    src: url("fonts/segoeuii.ttf");
+    src: url("../font/segoeuii.ttf");
     font-weight: normal;
     font-style: italic;
 }
 @font-face {
     font-family: "Segoe Light";
-    src: url("fonts/segoeuil.ttf");
+    src: url("../font/segoeuil.ttf");
     font-weight: lighter;
     font-style: normal;
 }
 @font-face {
     font-family: "Segoe Bold";
-    src: url("fonts/seguisb.ttf");
+    src: url("../font/seguisb.ttf");
     font-weight: bold;
     font-style: normal;
 }
@@ -218,9 +218,9 @@ input[type="color"],
 .uneditable-input {
     display: inline-block;
     height: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     padding: 4px 6px;
-    border: none;
+    border: #d1cadc solid 1px;
     background-color: #ffffff;
     font-family: "Segoe";
     font-size: inherit;
@@ -255,15 +255,27 @@ input[type="color"]:focus,
 .uneditable-input:focus {
     outline: 0;
     outline: thin dotted \9;
+    border-color: #9987b7;
     /* IE6-9 */
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #9987b7;
     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #9987b7;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #9987b7;
 }
 
+input[type="radio"],
+input[type="checkbox"]{
+    margin-bottom: 10px;
+}
+
 .form-actions{
     padding: 0;
     background-color: transparent;
+}
+
+.help-block{
+    margin-top: -10px;
+    margin-bottom: 3px;
+    font-size: 0.813em;
 }
 
 .more-options{

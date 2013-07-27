@@ -277,51 +277,107 @@
 
                 <%-- Form Nova Medida --%>
                 <form action="ServletMedidas" method="POST"
-                      class="form hide" id="medida-create" >
+                      class="form hide" id="medida-create"
+                      data-validation="on">
                     <fieldset>
                         <legend>Nova Medida</legend>
                         <div class="row">
                             <div class="span4">
-                                <label for="medidaData">Data</label>
-                                <input type="text" name="data" value=""
-                                       id="medidaData" class="input-large"
-                                       />
+                                <div class="control-group">
+                                    <label class="control-label" for="medidaData">
+                                        Data
+                                    </label>
+                                    <div class="controls">
+                                        <input type="text" name="data" value=""
+                                               id="medidaData" class="input-large"
+                                               placeholder="dd/mm/aaaa"
+                                               data-validation="required date"
+                                               />
+                                    </div>
+                                </div>
 
-                                <label for="medidaPeso">Peso (kg)</label>
-                                <input type="text" name="peso" value=""
-                                       id="medidaPeso" class="input-medium"
-                                       />
+                                <div class="control-group">
+                                    <label class="control-label" for="medidaPeso">
+                                        Peso
+                                    </label>
+                                    <div class="controls">
+                                        <input type="text" name="peso" value=""
+                                               id="medidaPeso" class="input-medium"
+                                               placeholder="Em kilogramas"
+                                               data-validation="required number positive"
+                                               />
+                                    </div>
+                                </div>
 
-                                <label for="medidaEstatura">Estatura (cm)</label>
-                                <input type="text" name="estatura" value=""
-                                       id="medidaEstatura" class="input-medium"
-                                       placeholder="A estatura que foi medida"/>
+                                <div class="control-group">
+                                    <label class="control-label" for="medidaEstatura">
+                                        Estatura
+                                    </label>
+                                    <div class="controls">
+                                        <input type="text" name="estatura" value=""
+                                               id="medidaEstatura" class="input-medium"
+                                               placeholder="Em centímetros"
+                                               data-validation="required number positive"/>
+                                    </div>
+                                </div>
+
+
+
+
                             </div>
 
                             <div class="span3">
-                                <label for="idadeOsseaAnos">Idade Óssea atribuída</label>
-                                <input type="text" name="idadeOsseaAnos" value=""
-                                       id="idadeOsseaAnos" class="input-small"
-                                       placeholder="Anos" />
+                                <div class="control-group">
+                                    <label class="control-label">
+                                        Idade Óssea atribuída
+                                    </label>
+                                    <div class="controls">
+                                        <input type="text" name="idadeOsseaAnos" value=""
+                                               id="idadeOsseaAnos" class="input-small"
+                                               placeholder="Anos"
+                                               data-validation="required year"/>
+                                    </div>
+                                    <div class="controls">
+                                        <input type="text" name="idadeOsseaMeses" value=""
+                                               id="idadeOsseaMeses" class="input-small"
+                                               placeholder="Meses"
+                                               data-validation="required month"
+                                               />
+                                    </div>
+                                </div>
 
-                                <input type="text" name="idadeOsseaMeses" value=""
-                                       id="idadeOsseaMeses" class="input-small"
-                                       placeholder="Meses" />
+                                <div class="control-group">
+                                    <label class="control-label" for="medidaPerimetroCefalico">
+                                        Perímetro Cefálico
+                                    </label>
+                                    <div class="controls">
+                                        <input type="text" name="perimetroCefalico" value=""
+                                               id="medidaPerimetroCefalico"
+                                               placeholder="Perímetro em centímetros"
+                                               data-validation="required number positive"/>
+                                    </div>
+                                </div>
 
-                                <label for="medidaPerimetroCefalico">Perímetro Cefálico (cm)</label>
-                                <input type="text" name="perimetroCefalico" value=""
-                                       id="medidaPerimetroCefalico"
-                                       placeholder="O perímetro cefálico que foi medido"/>
+                                <div class="control-group">
+                                    <label class="control-label">
+                                        Posição
+                                    </label>
+                                    <div class="controls">
+                                        <label class="radio inline">
+                                            <input type="radio" name="posicao" value="decubito"
+                                                   id="medidaPosicaoDecubito"
+                                                   checked="checked"
+                                                   />
+                                            Decúbito
+                                        </label>
+                                        <label class="radio inline">
+                                            <input type="radio" name="posicao" value="ortostatismo"
+                                                   id="medidaPosicaoOrtosttismo"/>
+                                            Ortostatismo
+                                        </label>
+                                    </div>
+                                </div>
 
-                                <label>Posição</label>
-                                <label class="radio inline">
-                                    <input type="radio" name="posicao" value="decubito" id="medidaPosicaoDecubito"/>
-                                    Decúbito
-                                </label>
-                                <label class="radio inline">
-                                    <input type="radio" name="posicao" value="ortostatismo" id="medidaPosicaoOrtosttismo" />
-                                    Ortostatismo
-                                </label>
                             </div>
 
                             <div class="span3 pull-right">
