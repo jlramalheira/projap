@@ -13,7 +13,7 @@
     Usuario usuario = (Usuario) session.getAttribute("usuario");
     if (usuario == null) {
         response.sendRedirect("Usuario?operacao=logar");
-    } 
+    }
 
 %>
 <!DOCTYPE html>
@@ -35,7 +35,7 @@
                     <div class="row">
                         <div class="span8">
                             <label for="nome">Nome:</label>
-                            <input type="text" name="pesquisar" value="<%=request.getAttribute("nomePaciente") == null ? "" : request.getAttribute("nomePaciente") %>"
+                            <input type="text" name="pesquisar" value="<%=request.getAttribute("nomePaciente") == null ? "" : request.getAttribute("nomePaciente")%>"
                                    id="nome" class="input-xxlarge"
                                    placeholder="Nome completo do paciente"
                                    />
@@ -45,41 +45,46 @@
                                 <label>Sexo:</label>
                                 <label for="sexom" class="radio inline">
                                     <input type="radio" name="sexo" value="Masculino"
-                                           id="sexom" <%=request.getAttribute("sexo") == null ? "" : request.getAttribute("sexo").equals("Masculino") ? "checked=\"checked\"" : "" %>
+                                           id="sexom" <%=request.getAttribute("sexo") == null ? "" : request.getAttribute("sexo").equals("Masculino") ? "checked=\"checked\"" : ""%>
                                            />
                                     Masculino
                                 </label>
                                 <label for="sexof" class="radio inline">
                                     <input type="radio" name="sexo" value="Feminino"
-                                           id="sexof" <%=request.getAttribute("sexo") == null ? "" : request.getAttribute("sexo").equals("Feminino") ? "checked=\"checked\"" : "" %>
+                                           id="sexof" <%=request.getAttribute("sexo") == null ? "" : request.getAttribute("sexo").equals("Feminino") ? "checked=\"checked\"" : ""%>
                                            />
                                     Feminino
                                 </label><br/><br/>
 
                                 <label for="nomepai">Nome do Pai:</label>
-                                <input type="text" name="nomePai" value="<%=request.getAttribute("nomePai") == null ? "" : request.getAttribute("nomePai") %>"
+                                <input type="text" name="nomePai" value="<%=request.getAttribute("nomePai") == null ? "" : request.getAttribute("nomePai")%>"
                                        id="nomepai" class="input-xxlarge"
                                        placeholder="Nome completo do pai"/>
 
                                 <label for="nomemae">Nome da Mãe:</label>
-                                <input type="text" name="nomeMae" value="<%=request.getAttribute("nomeMae") == null ? "" : request.getAttribute("nomeMae") %>"
+                                <input type="text" name="nomeMae" value="<%=request.getAttribute("nomeMae") == null ? "" : request.getAttribute("nomeMae")%>"
                                        id="nomemae" class="input-xxlarge"
                                        placeholder="Nome completo da mãe"/>
                             </div>
 
-                            <button type="submit" name="operacao" value="Pesquisar"
-                                    class="btn btn-large btn-icon search">
-                                Pesquisar
-                            </button>
-                            <button type="button"
-                                    class="btn btn-large btn-icon more"
-                                    onclick="toggleMoreOptions(this)">
-                                Mais Opções
-                            </button>
-                            <a href="Paciente?operacao=cadastrar"
-                               class="btn btn-large btn-icon new-user">
-                                Adicionar Novo
-                            </a>
+                            <div class="form-actions">
+                                <button type="submit" name="operacao" value="Pesquisar"
+                                        class="btn btn-large btn-icon search">
+                                    Pesquisar
+                                </button>
+                                <button type="button"
+                                        class="btn btn-large btn-icon more"
+                                        onclick="toggleMoreOptions(this)">
+                                    Mais Opções
+                                </button>
+                                <a href="Paciente?operacao=cadastrar"
+                                   class="btn btn-large btn-icon new-user">
+                                    Adicionar Novo
+                                </a>
+                            </div>
+
+
+
                         </div>
                         <div class="span3 pull-right">
 
@@ -91,26 +96,32 @@
                         List<Paciente> pacientes = (List<Paciente>) request.getAttribute("pacientes");
 
                         if (!pacientes.isEmpty()) {%>
-                <table class="table table-bordered table-striped" id="dataTable">
+                <table class="table table-bordered table-striped"
+                       id="dataTable"
+                       data-provides="rowlink">
                     <thead>
                         <tr>
                             <th id="colunaNome">Nome</th>
                             <th id="colunaDataNascimento">Data Nascimento</th>
-                            <th id="colunaSexo">Sexo</th>
                             <th id="colunaNomeMae">Mãe</th>
                             <th id="colunaNomePai">Pai</th>
-                            <th id="colunaOpções">Opções</th>
                         </tr>
                     </thead>
                     <tbody>
                         <%for (Paciente p : pacientes) {%>
                         <tr>
-                            <td><%=p.getNome()%></td>
-                            <td><%=Util.Util.dateToString(p.getDataNascimento())%></td>
-                            <td><%=p.getSexo()%></td>
-                            <td><%=p.getPrimeiroNomeMae()%></td>
-                            <td><%=p.getPrimeiroNomePai()%></td>
-                            <td><a href="Paciente?idPaciente=<%=p.getId()%>&operacao=acompanhar"> <img hint="Verificar" src=img/lookIco.png /></a></td>
+                            <td>
+                                <a href="Paciente?idPaciente=<%=p.getId()%>&operacao=acompanhar"><%=p.getNome()%></a>
+                            </td>
+                            <td>
+                                <%=Util.Util.dateToString(p.getDataNascimento())%>
+                            </td>
+                            <td>
+                                <%=p.getPrimeiroNomeMae()%>
+                            </td>
+                            <td>
+                                <%=p.getPrimeiroNomePai()%>
+                            </td>
                         </tr>
                         <% }%>
                     </tbody>

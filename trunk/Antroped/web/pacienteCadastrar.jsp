@@ -14,28 +14,12 @@
     Usuario usuario = (Usuario) session.getAttribute("usuario");
     if ((usuario == null)) {
         response.sendRedirect("Usuario?operacao=logar");
-    } 
+    }
 %>
 <!DOCTYPE html>
 <html>
     <head>
         <%@include file="interfaceHead.jsp" %>
-        <script src="js/jquery.maskedinput-1.3.min.js" type="text/javascript"></script>
-        <script type="text/javascript">
-            $(function(){
-                $('#datanasc').mask("99/99/9999");
-
-                $("#estaturapai").keyup(function() {
-                    var valor = $("#estaturapai").val().replace(/[^0-9.]+/g,'');
-                    $("#estaturapai").val(valor);
-                });
-
-                $("#estaturamae").keyup(function() {
-                    var valor = $("#estaturamae").val().replace(/[^0-9.]+/g,'');
-                    $("#estaturamae").val(valor);
-                });
-            });
-        </script>
     </head>
     <body lang="pt-br">
         <div class="container">
@@ -58,60 +42,88 @@
                 </nav>
 
                 <h1>Cadastrar paciente</h1>
-                <form action="Paciente" method="POST"
-                      class="form">
+                <form action="" method="POST"
+                      class="form form-validate"
+                      data-validation="on">
                     <fieldset>
-                        <label for="nome">Nome:</label>
-                        <input type="text" name="nome" value=""
-                               id="nome" class="input-xxlarge"
-                               placeholder="Nome completo do paciente"
-                               required/>
+                        <div class="control-group">
+                            <label for="nome" class="control-label">
+                                Nome
+                            </label>
+                            <div class="controls">
+                                <input type="text" name="nome" value=""
+                                       id="nome" class="input-xxlarge"
+                                       placeholder="Nome completo do paciente"
+                                       data-validation="required"
+                                       />
+                            </div>
+                        </div>
 
-                        <label for="datanasc">Data de Nascimento:</label>
-                        <input type="text" name="dataNascimento" value=""
-                               id="datanasc" class="date"
-                               title="Data de nascimento"
-                               pattern="([0-2][0-9]|3(0|1))/(0[0-9]|1[0-2])/([0-9]+)"
-                               placeholder="dd/mm/aaaa"
-                               required/>
+                        <div class="control-group">
+                            <label for="datanasc" class="control-label">
+                                Data de Nascimento
+                            </label>
+                            <div class="controls">
+                                <input type="text" name="dataNascimento" value=""
+                                       id="datanasc"
+                                       placeholder="dd/mm/aaaa"
+                                       data-validation="required date"/>
+                            </div>
+                        </div>
 
-                        <label>Sexo:</label>
-                        <label for="sexom" class="radio inline">
-                            <input type="radio" name="sexo" value="Masculino"
-                                   id="sexom"
-                                   required/>
-                            Masculino
-                        </label>
-                        <label for="sexof" class="radio inline">
-                            <input type="radio" name="sexo" value="Feminino"
-                                   id="sexof"
-                                   required=""/>
-                            Feminino
-                        </label><br/><br/>
+                        <div class="control-group">
+                            <label class="control-label">
+                                Sexo
+                            </label>
+                            <div class="controls">
+                                <label for="sexom" class="radio inline">
+                                    <input type="radio" name="sexo" value="Masculino"
+                                           checked="checked"
+                                           id="sexom"/>
+                                    Masculino
+                                </label>
+                                <label for="sexof" class="radio inline">
+                                    <input type="radio" name="sexo" value="Feminino"
+                                           id="sexof"/>
+                                    Feminino
+                                </label>
+                            </div>
+                        </div>
 
-                        <label for="nomepai">Nome do Pai:</label>
-                        <input type="text" name="nomePai" value=""
-                               id="nomepai" class="input-xxlarge"
-                               placeholder="Nome completo do pai"/>
+                        <div class="control-group">
+                            <label for="nomemae" class="control-label">
+                                Mãe
+                            </label>
+                            <div class="controls">
+                                <input type="text" name="nomeMae" value=""
+                                       id="nomemae" class="input-xxlarge"
+                                       placeholder="Nome completo da mãe"/>
+                                <br/>
+                                <input type="text" name="estaturaMae"
+                                       id="estaturamae" class="input-xlarge"
+                                       placeholder="Estatura da mãe em centímetros"
+                                       data-validation="required number positive"/>
+                            </div>
+                        </div>
 
-                        <label for="nomemae">Nome da Mãe:</label>
-                        <input type="text" name="nomeMae" value=""
-                               id="nomemae" class="input-xxlarge"
-                               placeholder="Nome completo da mãe"/>
-
-
-                        <label for="estaturapai">Estatura do Pai:</label>
-                        <input type="text" name="estaturaPai" value=""
-                               id="estaturapai" class="input-xlarge"
-                               placeholder="Estatura do pai em centímetros"/>
-
-                        <label for="estaturamae">Estatura da Mãe:</label>
-                        <input type="text" name="estaturaMae"
-                               id="estaturamae" class="input-xlarge"
-                               placeholder="Estatura da mãe em centímetros"/>
+                        <div class="control-group">
+                            <label for="nomepai" class="control-label">
+                                Pai
+                            </label>
+                            <div class="controls">
+                                <input type="text" name="nomePai" value=""
+                                       id="nomepai" class="input-xxlarge"
+                                       placeholder="Nome completo do pai"/>
+                                <br/>
+                                <input type="text" name="estaturaPai" value=""
+                                       id="estaturapai" class="input-xlarge"
+                                       placeholder="Estatura do pai em centímetros"
+                                       data-validation="required number positive"/>
+                            </div>
+                        </div>
 
                         <div class="form-actions">
-                            <button type="submit" value="Cadastrar" name="operacao"
+                            <button type="submit" value="" name=""
                                     class="btn btn-large btn-icon new-user">
                                 Cadastrar
                             </button>

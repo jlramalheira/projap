@@ -137,92 +137,6 @@
                         drawLineTroughCircle(pontosImc519, stageImc519);
                     });
         </script>
-        <!-- Codigo do jquery do botao submit, a, button -->
-        <script type="text/javascript">
-            $(function() {
-                $( "input:submit, a, button, reset", "#formulario" ).button();
-                $( "a", "#formulario" ).click(function() { return false; });
-            });
-        </script>
-        <!-- Janela popup para mais detalhes do paciente -->
-        <script type="text/javascript">
-            function abrePopUp(id){
-                window.open('medidaMostrar.jsp?id='+id,'page','toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=500,height=500');
-            }
-        </script>
-        <!-- Script tabela jquery -->
-        <script type="text/javascript">
-            function() {
-                $('#dataTable').dataTable();
-            };
-        </script>
-        <!--Calendario -->
-        <script type="text/javascript">
-            $(function() {
-                $( "#datepicker" ).datepicker();
-            });
-        </script>
-        <!--Mostra o formulario de nova medida-->
-        <script type="text/javascript">
-            function escondeTabela(){
-                $("#dataTable").css({display:"none"});
-                $("#formularioNovaMedida").css({display:"block"});
-                $("#novaMedida").css({display:"none"});
-            };
-            function mostraTabela(){
-                $("#dataTable").css({display:"block"});
-                $("#formularioNovaMedida").css({display:"none"});
-                $("#novaMedida").css({display:"block"})
-                resetForm();
-            }
-            function resetForm(){
-                document.getElementById("datepicker").value = "";
-                document.getElementById("peso").value = "";
-                document.getElementById("altura").value = "";
-                document.getElementById("perimetrocefalico").value = "";
-            }
-            $(function(){
-                if(<%= (session.getAttribute("dado") != null) ? "true" : "false"%>){
-                    escondeTabela();
-                }
-                $("#datepicker").mask("99/99/9999");
-
-                $("#peso").keyup(function() {
-                    var valor = $("#peso").val().replace(/[^0-9.]+/g,'');
-                    $("#peso").val(valor);
-                });
-
-                $("#altura").keyup(function() {
-                    var valor = $("#altura").val().replace(/[^0-9.]+/g,'');
-                    $("#altura").val(valor);
-                });
-
-                $("#perimetrocefalico").keyup(function() {
-                    var valor = $("#perimetrocefalico").val().replace(/[^0-9.]+/g,'');
-                    $("#perimetrocefalico").val(valor);
-                });
-            });
-        </script>
-        <!--Muda o texto conforme as abas são selecionadas-->
-        <script type="text/javascript">
-            function mudaTexto(tab){
-                if (tab=='peso05'){
-                    $('.relatorio').html('<%=dados.size() > 0 ? dados.get(0).getTextoAtual("peso05", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
-                }else if(tab=='peso519'){
-                    $('.relatorio').html('Não há nenhuma avaliação disponível para este tipo de gráfico.');
-                }else if(tab=='estatura05'){
-                    $('.relatorio').html('<%=dados.size() > 0 ? dados.get(0).getTextoAtual("estatura05", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
-                }else if(tab=='estatura519'){
-                    $('.relatorio').html('Não há nenhuma avaliação disponível para este tipo de gráfico.');
-                }else if(tab=='imc05'){
-                    $('.relatorio').html('<%=dados.size() > 0 ? dados.get(0).getTextoAtual("imc05", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
-                }else if(tab=='imc519'){
-                    $('.relatorio').html('Não há nenhuma avaliação disponível para este tipo de gráfico.');
-                }else if(tab=='pc05'){
-                    $('.relatorio').html('Não há nenhuma avaliação disponível para este tipo de gráfico.');
-                }
-            }
-        </script>
     </head>
     <body>
         <div class="container">
@@ -293,7 +207,7 @@
                         <input type="text" name="idadeOssea" id="idadeOssea"
                                value="<%=(session.getAttribute("dado") == null)
                                        ? ""
-                                       : ((Medida) session.getAttribute("dado")).getIdadeOssea()%>"/>
+                                       : ((Medida) session.getAttribute("dado")).getIdadeOsseaExtenso()%>"/>
                         <br/>
                     </fieldset>
                 </form>
@@ -328,7 +242,7 @@
                                 out.print("<td>" + d.getAltura() + " cm</td>");
                                 out.print("<td>" + d.getIMC() + " Kg/m²</td>");
                                 out.print("<td>" + d.getPerimetroCefalico() + " cm</td>");
-                                out.print("<td>"+ d.getIdadeOssea()+"</td>");
+                                out.print("<td>" + d.getIdadeOsseaExtenso()+ "</td>");
                                 out.print("<td> - </td>");
                                 out.print("<td><a href=\"ServletMedidas?operacao=editar&id=" + d.getId() + "\"> <img hint=\"Editar\" src=img/editIcon.png /> </a></td>");
                                 out.print("<td><a href=\"ServletMedidas?operacao=deletar&id=" + d.getId() + "\"> <img hint=\"Deletar\" src=img/deleteIco.png /> </a></td>");

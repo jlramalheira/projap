@@ -51,3 +51,40 @@ function showGrafico519(button){
     }
 
 }
+
+/* Métodos de validação */
+
+
+/* VALIDAÇÃO DE FORMULARIOS */
+/* var metrics = [
+['[data-validation*="required"]', 'presence', 'Preencha esse campo'],
+['[data-validation*="number"]', function(x) {
+    var re = /\d/;
+    return re.test(x);
+}, 'Preencha com um número'],
+['[data-validation*="date"]', function(x) {
+    var check = false;
+    var re = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
+    if( re.test(x)) {
+        var adata = x.split('/');
+        var gg = parseInt(adata[0],10);
+        var mm = parseInt(adata[1],10);
+        var aaaa = parseInt(adata[2],10);
+        var xdata = new Date(aaaa,mm-1,gg);
+        if ( ( xdata.getFullYear() === aaaa ) && ( xdata.getMonth() === mm - 1 ) && ( xdata.getDate() === gg ) ){
+            check = true;
+        } else {
+            check = false;
+        }
+    } else {
+        check = false;
+    }
+    return check;
+}, 'Preencha uma data válida']
+];
+
+var options = {
+    'helpSpanDisplay' : 'help-block'
+};
+
+$('[data-validation="on"]').nod(metrics,options); */
