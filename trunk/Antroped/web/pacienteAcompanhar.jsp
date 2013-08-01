@@ -241,8 +241,7 @@
                                class="btn btn-large btn-block btn-icon cancel">
                                 Excluir medida
                             </a>
-                            <a href="Medidas?operacao=editar&idMedida="
-                               class="btn btn-large btn-block btn-icon confirm">
+                            <a data-close="#medida-view" class="btn btn-large btn-block btn-icon confirm">
                                 Confirmar
                             </a>
                         </div>
