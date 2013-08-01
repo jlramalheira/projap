@@ -276,7 +276,7 @@
                 </div>
 
                 <%-- Form Nova Medida --%>
-                <form action="ServletMedidas" method="POST"
+                <form action="Medidas" method="POST"
                       class="form hide" id="medida-create"
                       data-validation="on">
                     <fieldset>
@@ -284,6 +284,7 @@
                         <div class="row">
                             <div class="span4">
                                 <div class="control-group">
+                                    <input type="hidden" name="idPaciente" value="<%=paciente.getId()%>"/> 
                                     <label class="control-label" for="medidaData">
                                         Data
                                     </label>
