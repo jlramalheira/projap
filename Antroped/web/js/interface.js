@@ -56,14 +56,12 @@ function showGrafico519(button){
 $('table[data-provides*="ajax"] tr').click(function(){
     medidaId = $(this).attr("data-id");
 
-    medidaId = 'operacao=ver&idMedida=' + medidaId;
-
     $.ajax({
         url: 'Medidas',
         type: 'GET',
-        data: medidaId,
+        data: 'operacao=ver&idMedida=' + medidaId,
         dataType: 'json',
-        sucess: function(json){
+        success: function(json){
             var html = "<h3>Detalhes da medida de "+json.data+"</h3>";
             html += "<div class=\"row\">";
             html += "<div class=\"span8\">";
