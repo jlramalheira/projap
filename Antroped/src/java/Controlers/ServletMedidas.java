@@ -60,9 +60,11 @@ public class ServletMedidas extends HttpServlet {
             json += "\"data\" : \"" + Util.Util.dateToString(medida.getData()) + "\" , ";
             json += "\"idade\" : \"" + medida.idadeToExtenso() + "\" , ";
             json += "\"peso\" : \"" + medida.getPeso() + "\" , ";
-            json += "\"altura\" : \"" + medida.getAltura() +" "+ medida.getPosicaoAbreviado() + "\" , ";
+            json += "\"estatura\" : \"" + medida.getAltura() +" "+ medida.getPosicaoAbreviado() + "\" , ";
             json += "\"pc\" : \"" + medida.getPerimetroCefalico() + "\" , ";
             json += "\"imc\" : \"" + medida.getIMC() + "\" , ";
+            json += "\"idadeOssoa\" : \"" + medida.getIdadeOsseaExtenso() + "\" , ";
+            json += "\"previsaoEstatura\" : \"" + medida.getPrevisaoEstatura(medida.getPaciente().getSexo()) + "\" , ";
             if (medida.getIdade() > 0 && medida.getIdade() < 1825) {
                 json += "\"textoPesoIdade\" : \"" + medida.getTextoEspecifico("peso05", medida.getPaciente().getSexo()) + "\" , ";
                 json += "\"textoEstaturaIdade\" : \"" + medida.getTextoEspecifico("estatura05", medida.getPaciente().getSexo()) + "\" , ";
