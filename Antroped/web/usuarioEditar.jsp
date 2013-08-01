@@ -2,7 +2,7 @@
     Document   : usuarioEditar
     Created on : 09/03/2013, 11:38:31
     Author     : Joao Luiz e Max
-    Description: Pagina para o usuario alterar sua senha
+    Description: Pagina para o usuario alterar seus dados
 --%>
 <%@page import="Model.Usuario"%>
 <%
@@ -25,7 +25,6 @@
             <div class="main">
                 <%@include file="interfaceMessages.jsp" %>
                 <h1>Editar dados cadastrais</h1>
-                <%@include file="interfaceMessages.jsp" %>
 
                 <form action="Usuario" method="POST"
                       class="form">

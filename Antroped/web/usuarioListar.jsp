@@ -32,19 +32,19 @@
                 <form action="Usuario" method="GET"
                       class="form">
                     <label for="nome">Nome:</label>
-                    <input type="text" name="nome" value=""
+                    <input type="text" name="nome" value="<%=request.getAttribute("nome") == null ? "" : request.getAttribute("nome") %>"
                            id="nome" class="input-xxlarge"
                            placeholder="Nome completo do usuario"
                            />
 
                     <div class="more-options">
                         <label for="email">Email:</label>
-                        <input type="text" name="email"
+                        <input type="text" name="email" value="<%=request.getAttribute("email") == null ? "" : request.getAttribute("email") %>"
                                id="email" class="input-xlarge"
                                placeholder="E-mail usuario"/>
 
                         <label for="login">Login:</label>
-                        <input type="text" name="login"
+                        <input type="text" name="login" value="<%=request.getAttribute("login") == null ? "" : request.getAttribute("login") %>"
                                id="login"
                                placeholder="login do usuário"/>
                     </div>
