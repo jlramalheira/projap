@@ -61,6 +61,9 @@ public class ServletUsuario extends HttpServlet {
             
             List<Usuario> usuarios = daoUsuario.listByAll(nome, login, email);
             
+            request.setAttribute("nome", nome);
+            request.setAttribute("email", email);
+            request.setAttribute("login", login);
             request.setAttribute("usuarios", usuarios);
             rd = request.getRequestDispatcher("usuarioListar.jsp");
             rd.forward(request, response);
@@ -119,7 +122,7 @@ public class ServletUsuario extends HttpServlet {
                     messages.add(message);
 
                     session.setAttribute("messages", messages);
-                    response.sendRedirect("Paciente?operacao=listar");
+                    response.sendRedirect("Usuario?operacao=listar");
                 }
             }
         } else if (operacao.equalsIgnoreCase("logar")) {
