@@ -63,7 +63,7 @@ public class ServletMedidas extends HttpServlet {
             json += "\"estatura\" : \"" + medida.getAltura() +" "+ medida.getPosicaoAbreviado() + "\" , ";
             json += "\"pc\" : \"" + medida.getPerimetroCefalico() + "\" , ";
             json += "\"imc\" : \"" + medida.getIMC() + "\" , ";
-            json += "\"idadeOssoa\" : \"" + medida.getIdadeOsseaExtenso() + "\" , ";
+            json += "\"idadeOssea\" : \"" + medida.getIdadeOsseaExtenso() + "\" , ";
             json += "\"previsaoEstatura\" : \"" + medida.getPrevisaoEstatura(medida.getPaciente().getSexo()) + "\" , ";
             if (medida.getIdade() > 0 && medida.getIdade() < 1825) {
                 json += "\"textoPesoIdade\" : \"" + medida.getTextoEspecifico("peso05", medida.getPaciente().getSexo()) + "\" , ";
