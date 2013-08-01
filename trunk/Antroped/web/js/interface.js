@@ -62,7 +62,47 @@ $('table[data-provides*="ajax"] tr').click(function(){
         data: 'operacao=ver&idMedida=' + medidaId,
         dataType: 'json',
         sucess: function(json){
-            html = "";
+            html = "<h3>Detalhes da medida de "+json.data+"</h3>";
+            html += "<div class=\"row\">";
+            html += "<div class=\"span8\">";
+            html += "<span class=\"label\">Idade:</span> "+json.idade;
+            html += "<div class=\"row\">";
+            html += "<div class=\"span4\">";
+            html += "<span class=\"label\">Peso:</span> "+json.peso+"<br/>";
+            html += "<span class=\"label\">IMC:</span> "+json.imc+"<br/>";
+            html += "<span class=\"label\">Idade óssea:</span> "+json.idadeOssea;
+            html += "</div>";
+            html += "<div class=\"span4\">";
+            html += "<span class=\"label\">Estatura:</span> "+json.estrutura+"<br/>";
+            html += "<span class=\"label\">Perímetro Cefálico:</span> "+json.pc+"<br/>";
+            html += "<span class=\"label\">Previsão de estatura:</span> "+json.previsaoEstatura;
+            html += "</div>";
+            html += "</div>";
+            html += "<h3>Avaliação</h3>";
+            html += "<h4>Peso</h4>";
+            html += "<p>"+json.textoPesoIdade+"</p>";
+            html += "<h4>Estatura</h4>";
+            html += "<p>"+json.textoEstaturaIdade+"</p>";
+            html += "<h4>IMC</h4>";
+            html += "<p>"+json.textoImc+"</p>";
+            html += "</div>";
+            html += "<div class=\"span3 pull-right\">";
+            html += "<a href=\"Medidas?operacao=editar&idMedida=\""+json.idMedida;
+            html += "class=\"btn btn-large btn-block btn-icon edit\">";
+            html += "Editar medida";
+            html += "</a>";
+            html += "<a href=\"Medidas?operacao=excluir&idMedida=\""+json.idMedida;
+            html += "class=\"btn btn-large btn-block btn-icon cancel\">";
+            html += "Excluir medida";
+            html += "<a href=\"#\"";
+            html += "class=\"btn btn-large btn-block btn-icon confirm\">";
+            html += "Confirmar";
+            html += "</a>";
+            html += "</div>";
+            html += "</div>";
+            
+            
+            //colocar html
         }
     });
 });
