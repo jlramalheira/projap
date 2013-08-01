@@ -206,8 +206,53 @@
 
                 <hr/>
 
+                <section id="medida-view"
+                         class="form margin-bottom">
+                    <h3>Detalhes da medida de 88/88/2013</h3>
+                    <div class="row">
+                        <div class="span8">
+                            <span class="label">Idade:</span> 69 anos e 62 meses
+                            <div class="row">
+                                <div class="span4">
+                                    <span class="label">Peso:</span> 999<br/>
+                                    <span class="label">IMC:</span> 88/88/2013<br/>
+                                    <span class="label">Idade óssea:</span> 88/88/2013
+                                </div>
+                                <div class="span4">
+                                    <span class="label">Estatura:</span> 982<br/>
+                                    <span class="label">Perímetro Cefálico:</span> 88/88/2013<br/>
+                                    <span class="label">Previsão de estatura:</span> 88/88/2013
+                                </div>
+                            </div>
+                            <h3>Avaliação</h3>
+                            <h4>Peso</h4>
+                            <p></p>
+                            <h4>Estatura</h4>
+                            <p></p>
+                            <h4>IMC</h4>
+                            <p></p>
+                        </div>
+                        <div class="span3 pull-right">
+                            <a href="Medidas?operacao=editar&idMedida="
+                               class="btn btn-large btn-block btn-icon edit">
+                                Editar medida
+                            </a>
+                            <a href="Medidas?operacao=editar&idMedida="
+                               class="btn btn-large btn-block btn-icon cancel">
+                                Excluir medida
+                            </a>
+                            <a href="Medidas?operacao=editar&idMedida="
+                               class="btn btn-large btn-block btn-icon confirm">
+                                Confirmar
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
                 <%-- Medidas table --%>
-                <table id="medida-table" class="table table-bordered table-striped">
+                <table id="medida-table"
+                       class="table table-bordered table-striped table-hover"
+                       data-provides="ajax">
                     <thead>
                         <tr>
                             <th>
@@ -236,15 +281,14 @@
                             <th>
                                 Prev. de Estatura<br/><span class="minor">(cm)</span>
                             </th>
-                            <th>
-                                Opções
-                            </th>
                         </tr>
                     </thead>
                     <tbody>
                         <%for (Medida medida : paginados) {%>
                         <tr>
-                            <td class="data"><%=medida.getDataStr()%></td>
+                            <td class="data">
+                                <%=medida.getDataStr()%>
+                            </td>
                             <td class="idade"><%=medida.idadeToExtenso()%></td>
                             <td class="peso"><%=medida.getPeso()%></td>
                             <td class="estatura"><%=medida.getAltura()%><span class="minor"> <%=medida.getPosicaoAbreviado()%></span></td>
@@ -252,17 +296,12 @@
                             <td class="perimetroCefalico"><%=medida.getPerimetroCefalico()%></td>
                             <td class="idadeOssea"><%=medida.getIdadeOsseaExtenso()%></td>
                             <td class="previsaoEstatura"><%=medida.getPrevisaoEstatura(paciente.getSexo())%></td>
-                            <td class="opcoes">
+                            <%--<td class="opcoes">
                                 <a href="#" title="Detalhes da medida">
                                     <img src="css/images/medidaDetails.svg" alt="Ícone Detalhes da medida" class="icon"/>
                                 </a>
-                                <a href="#" title="Editar medida">
-                                    <img src="css/images/medidaEdit.svg" alt="Ícone Editar medida" class="icon"/>
-                                </a>
-                                <a href="ServletMedidas?operacao=deletar&id=<%=medida.getId()%>" title="Excluir medida">
-                                    <img src="css/images/medidaDelete.svg" alt="Ícone Deletar medida" class="icon"/>
-                                </a>
-                            </td>
+
+                            </td>--%>
                         </tr>
                         <%}%>
                     </tbody>
@@ -284,7 +323,7 @@
                         <div class="row">
                             <div class="span4">
                                 <div class="control-group">
-                                    <input type="hidden" name="idPaciente" value="<%=paciente.getId()%>"/> 
+                                    <input type="hidden" name="idPaciente" value="<%=paciente.getId()%>"/>
                                     <label class="control-label" for="medidaData">
                                         Data
                                     </label>

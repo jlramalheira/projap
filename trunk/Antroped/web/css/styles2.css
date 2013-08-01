@@ -186,7 +186,7 @@ a:hover{
 
 /* Formularios
 ------------------------------------------------------------------------------*/
-form.form{
+.form{
     padding: 20px;
     background-color: #e5e2eb;
 }
