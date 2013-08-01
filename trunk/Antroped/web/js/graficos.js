@@ -122,7 +122,7 @@ function drawLineTroughCircle (pontos, stage) {
 
         var line = new Kinetic.Line({
             points: points,
-            stroke: "green",
+            stroke: "purple",
             strokeWidth: 2
         });
         line.move(0, 0);
