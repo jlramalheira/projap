@@ -204,6 +204,38 @@ public class Medida implements Serializable {
             } else if (this.getScoreZ(grafico, sexo) >= -2) {
                 texto = Util.Util.TEXTO_ESTATURA05_ADEQUADA_ESPECIFICA;
             }
+        } else if (grafico.equals("peso519")) {
+            if (this.getScoreZ(grafico, sexo) < -3) {
+                texto = Util.Util.TEXTO_PESO519_MUITOBAIXO_ESPECIFICA;
+            } else if (this.getScoreZ(grafico, sexo) >= -3 && this.getScoreZ(grafico, sexo) < -2) {
+                texto = Util.Util.TEXTO_PESO519_BAIXO_ESPECIFICA;
+            } else if (this.getScoreZ(grafico, sexo) >= -2 && this.getScoreZ(grafico, sexo) <= 2) {
+                texto = Util.Util.TEXTO_PESO519_ADEQUADO_ESPECIFICA;
+            } else if (this.getScoreZ(grafico, sexo) > 2) {
+                texto = Util.Util.TEXTO_PESO519_ELEVADO_ESPECIFICA;
+            }
+        } else if (grafico.equals("estatura519")) {
+            if (this.getScoreZ(grafico, sexo) < -3) {
+                texto = Util.Util.TEXTO_ESTATURA519_MUITOBAIXA_ESPECIFICA;
+            } else if (this.getScoreZ(grafico, sexo) >= -3 && this.getScoreZ(grafico, sexo) < -2) {
+                texto = Util.Util.TEXTO_ESTATURA519_BAIXA_ESPECIFICA;
+            } else if (this.getScoreZ(grafico, sexo) >= -2) {
+                texto = Util.Util.TEXTO_ESTATURA519_ADEQUADA_ESPECIFICA;
+            }
+        } else if (grafico.equals("imc519")) {
+            if (this.getScoreZ(grafico, sexo) < -3) {
+                texto = Util.Util.TEXTO_IMC519_MAGREZAACENTUADA_ESPECIFICA;
+            } else if (this.getScoreZ(grafico, sexo) >= -3 && this.getScoreZ(grafico, sexo) < -2) {
+                texto = Util.Util.TEXTO_IMC519_MAGREZA_ESPECIFICA;
+            } else if (this.getScoreZ(grafico, sexo) >= -2 && this.getScoreZ(grafico, sexo) <= 1) {
+                texto = Util.Util.TEXTO_IMC519_EUTROFIA_ESPECIFICA;
+            } else if (this.getScoreZ(grafico, sexo) > 1 && this.getScoreZ(grafico, sexo) <= 2) {
+                texto = Util.Util.TEXTO_IMC519_SOBREPESO_ESPECIFICA;
+            } else if (this.getScoreZ(grafico, sexo) > 2 && this.getScoreZ(grafico, sexo) <= 3) {
+                texto = Util.Util.TEXTO_IMC519_OBESIDADE_ESPECIFICA;
+            } else if (this.getScoreZ(grafico, sexo) > 3) {
+                texto = Util.Util.TEXTO_IMC519_OBESIDADEGRAVE_ESPECIFICA;
+            }
         }
         return texto;
     }
@@ -222,7 +254,7 @@ public class Medida implements Serializable {
                     case 0: //valores mais proximos do mes 0, consulta tabela mes 0
                     case 1: {
                         TabelaPrevisaoAltura previsaoAltura = new DaoTabelaPrevisaoAltura().GetByGraficoSexoMes(sexo, 0, anosIdadeOssea);
-                       double fracao = previsaoAltura.getCompativel();
+                        double fracao = previsaoAltura.getCompativel();
                         if (fracao > 0) {
                             texto = Math.round(this.getAltura() / fracao) + "";
                             break;

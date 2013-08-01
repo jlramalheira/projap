@@ -11,6 +11,7 @@ import Model.Paciente;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,23 +26,68 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "Medidas", urlPatterns = {"/Medidas"})
 public class ServletMedidas extends HttpServlet {
 
+    Dao<Medida> daoMedida = new Dao<Medida>(Medida.class);
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession(true);
         String operacao = request.getParameter("operacao");
+        RequestDispatcher rd;
 
         if (operacao.equalsIgnoreCase("deletar")) {
-            int id = Integer.parseInt(request.getParameter("id"));
-            new Dao<Medida>(Medida.class).remove(id);
+            int idMedida = Integer.parseInt(request.getParameter("idMedida"));
 
+            Medida medida = daoMedida.get(idMedida);
+            int idPaciete = medida.getPaciente().getId();
+            Paciente paciente = new DaoPaciente().get(idPaciete);
+
+            daoMedida.remove(idMedida);
+
+            request.setAttribute("paciente", paciente);
+
+            rd = request.getRequestDispatcher("pacienteAcompanhar.jsp");
+            rd.forward(request, response);
         } else if (operacao.equalsIgnoreCase("editar")) {
-            int id = Integer.parseInt(request.getParameter("id"));
-            Medida medida = new Dao<Medida>(Medida.class).get(id);
-            session.setAttribute("medida", medida);
+            //toDo
+        } else if (operacao.equalsIgnoreCase("ver")) {
+            int idMedida = Integer.parseInt(request.getParameter("idMedida"));
+            Medida medida = daoMedida.get(idMedida);
+
+            String json = "{";
+            json += "\"idMedida\" : \"" + medida.getId() + "\" , ";
+            json += "\"data\" : \"" + Util.Util.dateToString(medida.getData()) + "\" , ";
+            json += "\"idade\" : \"" + medida.idadeToExtenso() + "\" , ";
+            json += "\"peso\" : \"" + medida.getPeso() + "\" , ";
+            json += "\"altura\" : \"" + medida.getAltura() +" "+ medida.getPosicaoAbreviado() + "\" , ";
+            json += "\"pc\" : \"" + medida.getPerimetroCefalico() + "\" , ";
+            json += "\"imc\" : \"" + medida.getIMC() + "\" , ";
+            if (medida.getIdade() > 0 && medida.getIdade() < 1825) {
+                json += "\"textoPesoIdade\" : \"" + medida.getTextoEspecifico("peso05", medida.getPaciente().getSexo()) + "\" , ";
+                json += "\"textoEstaturaIdade\" : \"" + medida.getTextoEspecifico("estatura05", medida.getPaciente().getSexo()) + "\" , ";
+                json += "\"textoImc\" : \"" + medida.getTextoEspecifico("imc05", medida.getPaciente().getSexo()) + "\" ";
+            } else if (medida.getIdade() >= 1825 && medida.getIdade() < 6935){
+                if (medida.getIdade() < 3650){
+                    json += "\"textoPesoIdade\" : \"" + medida.getTextoEspecifico("peso519", medida.getPaciente().getSexo()) + "\" , ";
+                } else {
+                    json += "\"textoPesoIdade\" : \"Não há nenhuma avaliação disponível para este tipo de gráfico.\" , ";
+                }
+                json += "\"textoEstaturaIdade\" : \"" + medida.getTextoEspecifico("estatura519", medida.getPaciente().getSexo()) + "\" , ";
+                json += "\"textoImc\" : \"" + medida.getTextoEspecifico("imc519", medida.getPaciente().getSexo()) + "\" ";
+            } else {
+                json += "\"textoPesoIdade\" : \"Não há nenhuma avaliação disponível para este tipo de gráfico.\" , ";
+                json += "\"textoEstaturaIdade\" : \"Não há nenhuma avaliação disponível para este tipo de gráfico.\" , ";
+                json += "\"textoImc\" : \"Não há nenhuma avaliação disponível para este tipo de gráfico.\" ";
+            }
+
+            json += "}";
+
+            response.setContentType("application/json");
+            PrintWriter out = response.getWriter();
+            out.print(json);
+            out.flush();
         }
-        response.sendRedirect("pacienteAcompanhar.jsp");
     }
 
     @Override
@@ -85,13 +131,11 @@ public class ServletMedidas extends HttpServlet {
         if (!request.getParameter("idadeOsseaMeses").isEmpty()) {
             idadeOsseaMeses = Double.parseDouble(request.getParameter("idadeOsseaMeses"));
         }
-        System.out.println("***************************************");
-        System.out.println(data);
-        System.out.println(paciente.getDataNascimento());
+
         int total = Util.Util.getDiferencaDatas(paciente.getDataNascimento(), data);
         if (operacao.equalsIgnoreCase("cadastrar")) {
 
-            new Dao<Medida>(Medida.class).insert(new Medida(posicao, data, paciente, total, peso, perimetroCefalico, estatura, idadeOsseaAnos, idadeOsseaMeses));
+            daoMedida.insert(new Medida(posicao, data, paciente, total, peso, perimetroCefalico, estatura, idadeOsseaAnos, idadeOsseaMeses));
             response.sendRedirect("Paciente?operacao=acompanhar&idPaciente=" + idPaciente);
 
         } else if (operacao.equalsIgnoreCase("editar")) {
@@ -105,7 +149,7 @@ public class ServletMedidas extends HttpServlet {
             medida.setIdadeOsseaAnos(idadeOsseaAnos);
             medida.setIdadeOsseaMeses(idadeOsseaMeses);
 
-            new Dao<Medida>(Medida.class).update(medida);
+            daoMedida.update(medida);
             session.removeAttribute("medida");
             response.sendRedirect("Paciente?operacao=acompanhar&idPaciente=" + idPaciente);
         }
