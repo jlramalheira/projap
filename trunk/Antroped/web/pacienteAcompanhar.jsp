@@ -207,7 +207,7 @@
                 <hr/>
 
                 <section id="medida-view"
-                         class="form margin-bottom">
+                         class="form hide margin-bottom">
                     <h3>Detalhes da medida de 88/88/2013</h3>
                     <div class="row">
                         <div class="span8">
@@ -285,7 +285,7 @@
                     </thead>
                     <tbody>
                         <%for (Medida medida : paginados) {%>
-                        <tr>
+                        <tr data-id="<%=medida.getId()%>">
                             <td class="data">
                                 <%=medida.getDataStr()%>
                             </td>
