@@ -67,3 +67,4 @@ $('[data-validation*="month"]').each(function(){
         max : 12
     });
 });
+

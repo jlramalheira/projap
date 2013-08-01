@@ -56,13 +56,15 @@ function showGrafico519(button){
 $('table[data-provides*="ajax"] tr').click(function(){
     medidaId = $(this).attr("data-id");
 
+    medidaId = 'operacao=ver&idMedida=' + medidaId;
+
     $.ajax({
         url: 'Medidas',
         type: 'GET',
-        data: 'operacao=ver&idMedida=' + medidaId,
+        data: medidaId,
         dataType: 'json',
         sucess: function(json){
-            html = "<h3>Detalhes da medida de "+json.data+"</h3>";
+            var html = "<h3>Detalhes da medida de "+json.data+"</h3>";
             html += "<div class=\"row\">";
             html += "<div class=\"span8\">";
             html += "<span class=\"label\">Idade:</span> "+json.idade;
@@ -100,9 +102,18 @@ $('table[data-provides*="ajax"] tr').click(function(){
             html += "</a>";
             html += "</div>";
             html += "</div>";
-            
-            
-            //colocar html
+
+            $("#medida-view").html(html);
+            $("#medida-table").hide(300);
+            $("#medida-pagination").hide(300);
+            $("#medida-view").show(300);
         }
     });
 });
+
+$('[data-close]').click(function(){
+    var item = $(this).attr('data-close');
+    $(item).hide(300);
+    $("#medida-table").show(300);
+    $("#medida-pagination").show(300);
+})
