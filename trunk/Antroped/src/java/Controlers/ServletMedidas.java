@@ -5,6 +5,7 @@
 package Controlers;
 
 import Dao.Dao;
+import Dao.DaoPaciente;
 import Model.Medida;
 import Model.Paciente;
 import java.io.IOException;
@@ -48,9 +49,11 @@ public class ServletMedidas extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession(true);
-        Paciente paciente = (Paciente) session.getAttribute("paciente");
-        if ((paciente == null)) {
-            response.sendRedirect("index.jsp");
+        int idPaciente = Integer.parseInt(request.getParameter("idPaciente"));
+        Paciente paciente = new DaoPaciente().get(idPaciente);
+
+        if (paciente == null) { //caso seja alterado hidden id
+            response.sendError(404);
         }
         String operacao = request.getParameter("operacao");
         double peso = 0;
@@ -82,12 +85,14 @@ public class ServletMedidas extends HttpServlet {
         if (!request.getParameter("idadeOsseaMeses").isEmpty()) {
             idadeOsseaMeses = Double.parseDouble(request.getParameter("idadeOsseaMeses"));
         }
+        System.out.println("***************************************");
+        System.out.println(data);
+        System.out.println(paciente.getDataNascimento());
         int total = Util.Util.getDiferencaDatas(paciente.getDataNascimento(), data);
         if (operacao.equalsIgnoreCase("cadastrar")) {
 
-            System.out.println("aqui");
             new Dao<Medida>(Medida.class).insert(new Medida(posicao, data, paciente, total, peso, perimetroCefalico, estatura, idadeOsseaAnos, idadeOsseaMeses));
-            System.out.println("aqui");
+            response.sendRedirect("Paciente?operacao=acompanhar&idPaciente=" + idPaciente);
 
         } else if (operacao.equalsIgnoreCase("editar")) {
             Medida medida = (Medida) session.getAttribute("medida");
@@ -102,8 +107,8 @@ public class ServletMedidas extends HttpServlet {
 
             new Dao<Medida>(Medida.class).update(medida);
             session.removeAttribute("medida");
+            response.sendRedirect("Paciente?operacao=acompanhar&idPaciente=" + idPaciente);
         }
-        response.sendRedirect("pacienteAcompanhar.jsp");
     }
 
     /**
