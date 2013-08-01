@@ -18,19 +18,21 @@ function toggleMoreOptions(button){
 /* Esconder na interface objetos que possam interferir
  * no cadastramento de uma nova medida*/
 function showFormMedidaCreate(){
-    $("#medida-table").toggle(300);
-    $("#medida-pagination").toggle(300);
-    $("#medida-create").toggle(300);
-    $("#medida-button").toggleClass("active");
+    $("#medida-table").hide(300);
+    $("#medida-pagination").hide(300);
+    $("#medida-create").show(300);
+    $("#medida-view").hide(300);
+    $("#medida-button").addClass("active");
 }
 
 /* Remostrar na interface objetos que possam interferir
  * no cadastramento de uma nova medida*/
 function hideFormMedidaCreate(){
-    $("#medida-table").toggle(300);
-    $("#medida-pagination").toggle(300);
-    $("#medida-create").toggle(300);
-    $("#medida-button").toggleClass("active");
+    $("#medida-table").show(300);
+    $("#medida-pagination").show(300);
+    $("#medida-view").hide(300);
+    $("#medida-create").hide(300);
+    $("#medida-button").removeClass("active");
 }
 
 function showGrafico05(button){
@@ -73,7 +75,7 @@ $('table[data-provides*="ajax"] tr').click(function(){
             html += "<span class=\"label\">Idade óssea:</span> "+json.idadeOssea;
             html += "</div>";
             html += "<div class=\"span4\">";
-            html += "<span class=\"label\">Estatura:</span> "+json.estrutura+"<br/>";
+            html += "<span class=\"label\">Estatura:</span> "+json.estatura+"<br/>";
             html += "<span class=\"label\">Perímetro Cefálico:</span> "+json.pc+"<br/>";
             html += "<span class=\"label\">Previsão de estatura:</span> "+json.previsaoEstatura;
             html += "</div>";
@@ -87,14 +89,14 @@ $('table[data-provides*="ajax"] tr').click(function(){
             html += "<p>"+json.textoImc+"</p>";
             html += "</div>";
             html += "<div class=\"span3 pull-right\">";
-            html += "<a href=\"Medidas?operacao=editar&idMedida=\""+json.idMedida;
+            html += "<a href=\"Medidas?operacao=editar&idMedida="+json.idMedida+ "\"";
             html += "class=\"btn btn-large btn-block btn-icon edit\">";
             html += "Editar medida";
             html += "</a>";
-            html += "<a href=\"Medidas?operacao=excluir&idMedida=\""+json.idMedida;
+            html += "<a href=\"Medidas?operacao=excluir&idMedida="+json.idMedida+ "\"";
             html += "class=\"btn btn-large btn-block btn-icon cancel\">";
             html += "Excluir medida";
-            html += "<a href=\"#\"";
+            html += "<a onclick=\"closeMedidaView()\" ";
             html += "class=\"btn btn-large btn-block btn-icon confirm\">";
             html += "Confirmar";
             html += "</a>";
@@ -109,9 +111,8 @@ $('table[data-provides*="ajax"] tr').click(function(){
     });
 });
 
-$('[data-close]').click(function(){
-    var item = $(this).attr('data-close');
-    $(item).hide(300);
+function closeMedidaView(){
+    $("#medida-view").hide(300);
     $("#medida-table").show(300);
     $("#medida-pagination").show(300);
-})
+}
