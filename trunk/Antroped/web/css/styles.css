@@ -1,471 +1,478 @@
 @charset "UTF-8";
 /*
-  Nome: Styles.css
-  Descrição: Arquivo de stylesheet para o Projeto
-  Data: 03 de outubro de 2012
+    Document   : styles2
+    Created on : 21/02/2013, 11:01:33
+    Author     : Max
+    Description: Arquivo de stylesheet para o Projeto
 */
-/*CSS RESET
+/*FONTES
   ============================================================================*/
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, font, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    font-weight: inherit;
-    font-style: inherit;
-    font-size: 100%;
-    font-family: inherit;
-    vertical-align: baseline;
-}
-:focus {
-    outline: 0;
-}
-body {
-    line-height: 1;
-    color: black;
-    background: white;
-}
-ol, ul {
-    list-style: none;
-}
-table {
-    border-collapse: separate;
-    border-spacing: 0;
-}
-caption, th, td {
-    text-align: left;
+@font-face {
+    font-family: "Segoe";
+    src: url("../font/segoeui.ttf");
     font-weight: normal;
+    font-style: normal;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-    content: "";
+@font-face {
+    font-family: "Segoe Italic";
+    src: url("../font/segoeuii.ttf");
+    font-weight: normal;
+    font-style: italic;
 }
-blockquote, q {
-    quotes: "" "";
+@font-face {
+    font-family: "Segoe Light";
+    src: url("../font/segoeuil.ttf");
+    font-weight: lighter;
+    font-style: normal;
 }
-/*MAIN
+@font-face {
+    font-family: "Segoe Bold";
+    src: url("../font/seguisb.ttf");
+    font-weight: bold;
+    font-style: normal;
+}
+
+/*ESTRUTURAL
   ============================================================================*/
-body{
-    font-size: 1em;
-    font-family: Helvetica, Arial, sans-serif;
-    background-color: #c3bbd3;
-    -webkit-font-smoothing: antialiased;
-    -moz-font-smoothing: antialiased;
-    -o-font-smoothing: antialiased;
-    -ms-font-smoothing: antialiased;
-    font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-}
-.container{
-    width: 960px;
+html, body {
     height: 100%;
-    margin: 0 auto;
-    min-height: 400px;
-    box-shadow: rgba(255,255,255,0.5) 0 0 50px;
-}
-/*CONTENT
-  ============================================================================*/
-.main{
-    width: available;
-    min-height: 300px;
-    padding: 15px 15px;
-    background-color: #fafafa;
-}
-section.dadospaciente{
-    width: available;
-    margin: 0 600px 0 0;
-    font: normal normal normal 1em Helvetica, Arial, sans-serif;
-}
-
-section.dadospaciente .linkeditar{
-    color: #699075;
-}
-
-section.dadospaciente ul li{
-    margin: 0 0 8px 0;
-}
-
-section.dadospaciente h2{
-    color: #65A87A;
-    font: normal normal normal 18pt "Capriola", Helvetica, Arial, sans-serif;
-    margin: 0 0 10px 0;
-}
-section.dadospaciente span{
-    display: inline-block;
-    margin: 0 10px 0 0;
-    text-align: left;
-    font-weight: bold;
-}
-a.button {
-    display: inline-block;
-    width: 80px;
-    padding: 5px 0;
-    border: #7B9E85 solid 1px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    border-top: none;
-    background-color: #9bcfab;
-    color: #3C5E46;
-    text-align: center;
-    text-decoration: none;
-    font: normal normal bold 10pt Helvetica, Arial, sans-serif;    
-}
-a.button:hover{
-    color: #699075;
-    background-color: #c3e6cd;
-    border-color: #65A87A;
-}
-
-/*Tabelas
-  ============================================================================*/
-table.tabela{
-    display: block;
-    float: right;    
-    background-color: rgba(0,255,0,0.1);
-    border-top: #9bcfab dotted 1px;
-}
-table.tabela thead{
-    background-color: rgba(0, 200, 0, 0.1);
-}
-table.tabela thead th{
-    color: #699075;
-    padding: 5px;        
-    text-align: center;
-    font-weight: bold;
-    vertical-align: middle;
-}
-table.tabela td{
-    padding: 5px;
-    border-bottom: #9bcfab dotted 1px;
-    vertical-align: middle;
-}
-table.tabela tfoot{
-    background-color: #fafafa;
-}
-table.tabelamedidas{
-    margin: 0 0 15px 0;
-    width: 600px;
-    font-size: 10.5pt;
-}
-table.tabelamedidas thead th{        
-    width: 100px;
-}
-table.tabelamedidas thead th.data{
-    width: 75px;
-}
-table.tabelamedidas thead th.peso{
-    width: 60px;
-}
-table.tabelamedidas thead th.idade{
-    width: 165px;
-}
-table.tabelamedidas thead th.imc{
-    width: 75px;
-}
-
-table.tabelapaciente{
-    float: right;
-    width: 520px;
-    background-color: rgba(0,255,0,0.1);
-}
-table.tabelapaciente #colunaNome {
-    width: 360px;
-}
-/*Formularios
-  ============================================================================*/
-form.formulario{
-    padding: 15px;
-    background-color: #c3bbd3;
-    font-size: 0.938em;
-}
-.formulario legend{
-    color: #614c85;
-    font: normal normal normal 18pt "Capriola", Helvetica, Arial, sans-serif;
-    margin: 0 0 10px 0;
-}
-.formulario label{
-    display: inline-block;
-    margin: 10px 0 5px 0;
-    color: #3C5E46;
-}
-.formulario .radiolabel{
-    width: 100px;
-}
-.formulario input[type="text"]{
-    width: 248px;
-    padding: 5px;
-    margin: 0;
-    font-family: Helvetica, Arial, sans-serif;
-    font-size: 1em;
-    border: #7B9E85 solid 1px;
-    border-radius: 3px;
-    color: #3C5E46;
-}
-.formulario input[type="radio"]{
-    padding: 0;
-    margin: 2px;
-}
-.formulario .button{
-    float:right;
-    color: #666;
-    font-family: "Capriola";
+    background-color: #ffffff;
     font-size: 12pt;
+    font-family: "Segoe";
 }
-.formulario select{
-    padding: 2px;
-    margin: 0;        
-}
-.formularionovopaciente{
-    width: 365px;
-}
-.formularionovopaciente input[type="text"]{
-    width: 350px;
-}
-.formularionovopaciente .button{
-    padding: 10px 25px;
-    margin: 10px 0 0 0;
-}
-.formularionovopaciente .estatura{
-    display: inline-block;
-}
-.formularionovopaciente .estatura input[type="text"]{
-    width: 167px;
-}
-.formularionovopaciente .button{
-    width: 125px;
-    margin: 10px 0 0 10px;
-}
-.formulariodadospaciente{
-    display: none;
-    width: 555px;
-    float: right;
-}
-.formulariodadospaciente .button{
-    clear: right;
-    margin: 10px 0 0 0;
-    width: 125px;
-    height: 50px;
-}
-.formulariodadospaciente input[type="text"]{
-    width: 400px;
-}
-
-.formulariologin{
-    float: none;
-    width: 210px;
-}
-.formulariologin label{
-    color: #4b425a;
-}
-.formulariologin .erro{
-    color: #bf150e;
-}
-.formulariologin .button{
-    display: block;
-    float: none;
-    margin: 15px auto 0 auto;
-    width: 100px;
-    height: 50px;
-}
-.formulariologin input[type="text"]{
-    width: 200px;
-    padding: 5px;
-    border: #7B9E85 solid 1px;
-    border-radius: 3px;
-}
-.formulariologin input[type="password"]{
-    width: 200px;
-    padding: 5px;
-    border: #7B9E85 solid 1px;
-    border-radius: 3px;
-}
-
-.formulariorecuperar{
-    float: none;
-    width: 350px;
-}
-.formulariorecuperar label{
-    color: #4b425a;
-}
-.formulariorecuperar .erro{
-    color: #bf150e;
-}
-.formulariorecuperar .button{
-    display: block;
-    float: none;
-    margin: 15px auto 0 auto;
-    width: 100px;
-    height: 50px;
-}
-.formulariorecuperar input[type="text"]{
-    width: 250px;
-    padding: 5px;
-    border: #7B9E85 solid 1px;
-    border-radius: 3px;
-}
-
-.formulariocadastro{
-    float: none;
-    width: 300px;
-}
-.formulariocadastro label{
-    color: #3C5E46;
-}
-.formulariocadastro .erro{
-    color: #bf150e;
-}
-.formulariocadastro .button{
-    display: block;
-    float: none;
-    margin: 15px auto 0 auto;
-    width: 100px;
-    height: 50px;
-}
-.formulariocadastro input[type="text"]{
-    width: 290px;
-    padding: 5px;
-    border: #7B9E85 solid 1px;
-    border-radius: 3px;
-}
-.formulariocadastro input[type="password"]{
-    width: 290px;
-    padding: 5px;
-    border: #7B9E85 solid 1px;
-    border-radius: 3px;
-}
-.botao {
-    float: right;
-    clear: both;
-    padding: 10px 20px;
-    color: #666;
-    font-family: "Capriola";
-    font-size: 12pt;
-}
-#novaMedida{
-    margin-top: 30px;
-}
-.relatorio {
-    text-align: justify;
-    line-height: 2em;
-    text-indent: 50px;
-}
-/*Avaliação
-  ============================================================================*/
-section.avaliacao{
-    height: 200px;
-    width: 100%;
-    padding: 15px 0;
-    margin: 10px 0;
-    border-bottom: #65A87A dotted 1px;
-    border-top: #3C5E46 dotted 1px;
-}
-section.avaliacao h1{
-    color: #65A87A;
-    font: normal normal normal 18pt "Capriola", Helvetica, Arial, sans-serif;
-    margin: 0 0 10px 0;
-}
-
-/*Gráficos e Abas
-  ============================================================================*/
-.graficos{
-    height: 675px;
-}
-.grafico{
-    float:left;
-    width:960px;
-    height:640px;
+.container {
     position: relative;
+    width: 940px;
+    min-height: 100%;
+    background-color: #fff;
+    margin: 0 auto;
+    margin-bottom: -150px;
+}
+*::selection{
+    background-color: #9987b7;
+    color: #fff;
+}
+div.main{
+    padding-bottom: 170px; /*É preciso que seja o height do FOOTER + padding do normal main*/
+}
+
+/* MAIN
+ =============================================================================*/
+h1, h2, h3, h4, h5, h6{
+    font-family: "Segoe";
+    font-weight: normal;
+    color: #463366;
+}
+h1{
+    font-size: 2.00em;
+}
+h2{
+    font-size: 1.75em;
+}
+h3{
+    font-size: 1.50em
+}
+h4{
+    font-size: 1.25em
+}
+
+a{
+    color: inherit;
+    text-decoration: none;
+}
+a:hover{
+    color: inherit;
+    text-decoration: underline;
+}
+
+/* Labels
+------------------------------------------------------------------------------*/
+.label{
+    display: inline-block;
+    padding: 0;
+    font-size: 1em;
+    font-family: "Segoe Bold";
+    font-weight: normal;
+    line-height: inherit;
+    color: inherit;
+    text-shadow: none;
+    white-space: nowrap;
+    vertical-align: baseline;
+    background-color: transparent;
+}
+
+/* Buttons
+------------------------------------------------------------------------------*/
+.btn{
+    padding: 8px 15px;
+    border: none;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    background-color: #76619a;
+    background-image: none;
+    color: #ffffff;
+    font-family: "Segoe";
+    font-size: 1em;
+    text-shadow: none;
+    vertical-align: middle;
+}
+.btn:hover,
+.btn:focus,
+.btn:active,
+.btn.active,
+.btn.disabled,
+.btn[disabled] {
+    background-color: #614c85;
+    color: #ffffff;
+}
+.btn.active,
+.btn:active {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    background-color: #463366;
+}
+
+.btn-large{
+    padding: 20px 35px;
+}
+
+.btn-block{
+    margin-bottom: 15px;
+}
+
+.btn-icon{
+    padding-left: 55px;
+    background-position: 15px center;
+    background-repeat: no-repeat;
+    background-size: 30px;
+    text-align: left;
+}
+.btn-icon:hover,
+.btn-icon:focus{
+    padding-left: 55px;
+    background-position: 15px center;
+    background-repeat: no-repeat;
+    background-size: 30px;
+    text-align: left;
+}
+
+/* Icon's buttons '*/
+.btn-icon.edit{
+    background-image: url(images/pacienteEdit.svg);
+}
+.btn-icon.nova-medida{
+    background-image: url("images/medidaNew.svg");
+}
+.btn-icon.confirm{
+    background-image: url("images/formConfirm.svg");
+}
+.btn-icon.cancel{
+    background-image: url("images/formCancel.svg");
+}
+.btn-icon.login{
+    background-image: url("images/userLogin.svg");
+}
+.btn-icon.new-user{
+    background-image: url("images/icon-new-user.svg");
+}
+.btn-icon.search{
+    background-image: url("images/icon-search.svg");
+}
+.btn-icon.more{
+    background-image: url("images/icon-more.svg");
+}
+
+/* Formularios
+------------------------------------------------------------------------------*/
+.form{
+    padding: 20px;
+    background-color: #e5e2eb;
+}
+
+legend{
+    margin-bottom: 10px;
+}
+
+label{
+    font-size: 1em;
+}
+
+select,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input {
+    display: inline-block;
+    height: 20px;
+    margin-bottom: 10px;
+    padding: 4px 6px;
+    border: #d1cadc solid 1px;
+    background-color: #ffffff;
+    font-family: "Segoe";
+    font-size: inherit;
+    color: #5a5662;
+    vertical-align: middle;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+    -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+    -o-transition: border linear 0.2s, box-shadow linear 0.2s;
+    transition: border linear 0.2s, box-shadow linear 0.2s;
+}
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {
+    outline: 0;
+    outline: thin dotted \9;
+    border-color: #9987b7;
+    /* IE6-9 */
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #9987b7;
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #9987b7;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #9987b7;
+}
+
+input[type="radio"],
+input[type="checkbox"]{
+    margin-bottom: 10px;
+}
+
+.form-actions{
+    padding: 0;
+    background-color: transparent;
+}
+
+.help-block{
+    margin-top: -10px;
+    margin-bottom: 3px;
+    font-size: 0.813em;
+}
+
+.more-options{
+    display: none;
+}
+
+/*Login*/
+form.login{
+    width: 310px;
+    margin: 0 auto;
+}
+
+/* Table
+------------------------------------------------------------------------------*/
+.table thead th{
+    background-color: #76619a;
+    text-align: center;
+    color: #ffffff;
+    font-family: "Segoe";
+    font-weight: normal;
+    vertical-align: middle;
+}
+
+.table tbody th,
+.table tbody td{
+    vertical-align: middle;
+}
+
+table .icon{
+    width: 25px;
+}
+
+/* Tabs
+------------------------------------------------------------------------------*/
+.tab-content{
+    overflow: hidden;
+}
+
+#graficos-tabs{
+    margin-bottom: 0;
+}
+
+/* Gráficos
+------------------------------------------------------------------------------*/
+.control{
+    padding: 10px;
+    background-color: #d1cadc;
+    color: #454150;
+}
+.avaliacao{
     clear: left;
 }
+.grafico{
+    width:940px;
+    height:640px;
+    position: relative;
+    left: 20px;
+    clear: both;
+}
 .hint {
-    border: 1px solid #333;
-    font-family: Arial, Helvetica, sans-serif;
-    color:#333;
-    font-size: 12px;
-    padding: 3px;
-    position: absolute;
     display: none;
-    background: #FFF;
-}
-div.wrap{
-    float:left;
-    position:relative;
-    margin: 0 0 40px -15px;
-    clear:left;
-}
-.wrap .pane{
-    background:#fff;
-    display:none;
+    position: absolute;
+    padding: 5px;
+    border: 1px solid #76619a;
+    background-color: #e5e2eb;
+    color: #454150;
+    font-family: "Segoe";
+    font-size: 14px;
 
-    border:1px solid #999;
-    border-top:0;
-    border-left:0;
-    font-size:14px;
-    font-size:18px;
-    color:#456;
+}
+section.graficos hr.bar{
+    width: 100%;
+    height: 5px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background-color: #76619a;
+}
+section.graficos div.grafico{
+    width: 960px;
+    height: 640px;
+    margin: 0 0 0 -20px;
+    background: #76619a url("../img/peso05masc.png") no-repeat scroll bottom center;
+}
+section.graficos .minor{
+    color: #5a5662;
+    font: normal normal normal 0.750em "Segoe Bold", sans-serif;
+}
 
-    background-image:none;
+
+/*Navigation
+  ============================================================================*/
+.navbar-inner {
+    min-height: 40px;
+    padding-right: 20px;
+    padding-left: 20px;
+    background-color: #e5e2eb ;
+    background-image: none;
+    border: none;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    filter: none;
+    *zoom: 1;
+    -webkit-box-shadow: none;
+    -moz-box-shadow:none;
+    box-shadow: none;
 }
-.wrap .pane p{
-    font-size:12px;
-    margin:-3px 0 -20px 0;
-    text-align:left;
-    color:#000;
+.navbar .nav > li > a {
+    color: #76619a;
+    text-decoration: none;
+    text-shadow: none;
 }
-ul.tabs li{
-    margin: 0 0 0 15px;
+.navbar .nav > li > a:hover ,
+.navbar .nav > li > a:focus {
+    color: #ffffff;
+    background-color: #AFA2C6;
+}
+.navbar .nav > li.active > a {
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #AFA2C6;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+.navbar .nav > li.active > a,
+.navbar .nav > li.active > a:hover,
+.navbar .nav > li.active > a:focus {
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #AFA2C6;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
 }
 
 /*HEADER
   ============================================================================*/
-header{
-    width: available;
-    height: 120px;
-    background-color: #76619a;
-    padding: 10px 15px;
-}
-
-header h1{
-    float: left;
-    margin: 20px 0 0 0;
-    color: #FFF;
-    font: normal normal normal 3em "Capriola", sans-serif;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-}
-
-header .usuario{
-    float: right;
-    width: 220px;
+header {
+    width: 900px;
     height: 80px;
-    margin: 20px 15px;
+    background-color: #76619a;
+    padding: 20px;
+}
+header a.logo{
+    display: block;
+    float: left;
+    margin-top: 5px;
+}
+header .user{
+    display: block;
+    float: right;
+    width: 180px;
+    height: 60px;
+    padding: 10px;
     background-color: #614c85;
-    color: #FFF;
-    font: normal normal normal 0.8em "Segoe UI", sans-serif;
+    color: #fff;
+    font: normal normal normal 0.688em "Segoe Light", sans-serif;
 }
-
-header img{
-    margin: 20px 20px;
+header .user .photo{
+    display:block;
+    float: right;
+    width: 60px;
+    height: 60px;
+    background-color: #9987b7;
 }
-header a{
-    color: #FFF;
-    margin: 10px 0px;
-    font: normal normal normal 1em "Segoe UI", sans-serif;
+header .user .welcome{
+    height: 45px;
+    overflow: hidden;
+    margin: 0 70px 0 0;
+    line-height: 1.3em;
 }
-
+header .user .logout{
+    margin: 3px 0 0 0;
+    font-family: "Segoe Bold";
+}
 
 /*FOOTER
   ============================================================================*/
 footer{
-    width: available;
-    height: 150px;
-    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 150px; /*É preciso que seja o padding-bottom do CONTAINER*/
     background-color: #76619a;
+}
+
+/* LIB
+==============================================================================*/
+.margin-top{
+    margin-top: 20px;
+}
+.no-margin-bottom{
+    margin-bottom: 0;
+}
+.minor{
+    font-size: 0.75em;
 }
 

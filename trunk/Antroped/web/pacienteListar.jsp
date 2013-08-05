@@ -28,7 +28,7 @@
             <%-- MAIN --%>
             <div class="main">
                 <%@include file="interfaceMessages.jsp" %>
-                <h1>Pacientes</h1>
+                <h1>Pesquisar Pacientes</h1>
 
                 <form action="Paciente" method="GET"
                       class="form">
@@ -68,26 +68,23 @@
                             </div>
 
                             <div class="form-actions">
-                                <button type="submit" name="operacao" value="Pesquisar"
-                                        class="btn btn-large btn-icon search">
-                                    Pesquisar
-                                </button>
-                                <button type="button"
-                                        class="btn btn-large btn-icon more"
-                                        onclick="toggleMoreOptions(this)">
-                                    Mais Opções
-                                </button>
-                                <a href="Paciente?operacao=cadastrar"
-                                   class="btn btn-large btn-icon new-user">
-                                    Adicionar Novo
-                                </a>
+
+
                             </div>
 
 
 
                         </div>
                         <div class="span3 pull-right">
-
+                            <button type="submit" name="operacao" value="Pesquisar"
+                                    class="btn btn-large btn-block btn-icon search">
+                                Pesquisar
+                            </button>
+                            <button type="reset"
+                                    class="btn btn-large btn-block btn-icon more"
+                                    onclick="toggleMoreOptions(this)">
+                                Busca Avançada
+                            </button>
                         </div>
                     </div>
                 </form>
@@ -99,6 +96,9 @@
                 <table class="table table-bordered table-striped"
                        id="dataTable"
                        data-provides="rowlink">
+                    <caption class="lead text-left">
+                        Resultados da pesquisa
+                    </caption>
                     <thead>
                         <tr>
                             <th id="colunaNome">Nome</th>

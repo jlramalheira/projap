@@ -154,18 +154,6 @@
             <%-- MAIN --%>
             <div class="main">
                 <%@include file="interfaceMessages.jsp" %>
-                <%-- Navigation --%>
-                <nav>
-                    <ul class="breadcrumb">
-                        <li>
-                            <a href="Paciente?operacao=listar">Pacientes</a>
-                            <span class="divider">/</span>
-                        </li>
-                        <li class="active">
-                            Acompanhar Paciente
-                        </li>
-                    </ul>
-                </nav>
 
                 <%-- Paciente Data --%>
                 <section class="row">
@@ -203,8 +191,75 @@
                         </button>
                     </div>
                 </section>
-
                 <hr/>
+
+                <%-- Medidas table --%>
+                <h3>Últimas medidas</h3>
+                <p>Clique sobre uma linha para visualizar mais detalhes da medida</p>
+                <table id="medida-table"
+                       class="table table-bordered table-striped table-hover"
+                       data-provides="ajax">
+                    <thead>
+                        <tr>
+                            <th>
+                                Data
+                            </th>
+                            <th>
+                                Idade
+                            </th>
+                            <th>
+                                Peso<br/>
+                                <span class="minor">(kg)</span>
+                            </th>
+                            <th>
+                                Estatura<br/>
+                                <span class="minor">(cm)</span>
+                            </th>
+                            <th>
+                                IMC<br/><span class="minor">(kg/m²)</span>
+                            </th>
+                            <th>
+                                Per. Cefálico<br/><span class="minor">(cm)</span>
+                            </th>
+                            <th>
+                                Idade Óssea<br/><span class="minor"></span>
+                            </th>
+                            <th>
+                                Prev. de Estatura<br/><span class="minor">(cm)</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%for (Medida medida : paginados) {%>
+                        <tr data-id="<%=medida.getId()%>"
+                            title="Clique para detalhes">
+                            <td class="data">
+                                <%=medida.getDataStr()%>
+                            </td>
+                            <td class="idade"><%=medida.idadeToExtenso()%></td>
+                            <td class="peso"><%=medida.getPeso()%></td>
+                            <td class="estatura"><%=medida.getAltura()%><span class="minor"> <%=medida.getPosicaoAbreviado()%></span></td>
+                            <td class="imc"><%=medida.getIMC()%></td>
+                            <td class="perimetroCefalico"><%=medida.getPerimetroCefalico()%></td>
+                            <td class="idadeOssea"><%=medida.getIdadeOsseaExtenso()%></td>
+                            <td class="previsaoEstatura"><%=medida.getPrevisaoEstatura(paciente.getSexo())%></td>
+                            <%--<td class="opcoes">
+                                <a href="#" title="Detalhes da medida">
+                                    <img src="css/images/medidaDetails.svg" alt="Ícone Detalhes da medida" class="icon"/>
+                                </a>
+
+                            </td>--%>
+                        </tr>
+                        <%}%>
+                    </tbody>
+                </table>
+
+                <div id="medida-pagination" class="pagination text-center">
+                    <ul>
+                        <li><a href="#">Medidas Anteriores</a></li>
+                        <li><a href="#">Medidas Posteriores</a></li>
+                    </ul>
+                </div>
 
                 <section id="medida-view"
                          class="form hide margin-bottom">
@@ -248,71 +303,6 @@
                     </div>
                 </section>
 
-                <%-- Medidas table --%>
-                <table id="medida-table"
-                       class="table table-bordered table-striped table-hover"
-                       data-provides="ajax">
-                    <thead>
-                        <tr>
-                            <th>
-                                Data
-                            </th>
-                            <th>
-                                Idade
-                            </th>
-                            <th>
-                                Peso<br/>
-                                <span class="minor">(kg)</span>
-                            </th>
-                            <th>
-                                Estatura<br/>
-                                <span class="minor">(cm)</span>
-                            </th>
-                            <th>
-                                IMC<br/><span class="minor">(kg/m²)</span>
-                            </th>
-                            <th>
-                                Per. Cefálico<br/><span class="minor">(cm)</span>
-                            </th>
-                            <th>
-                                Idade Óssea<br/><span class="minor"></span>
-                            </th>
-                            <th>
-                                Prev. de Estatura<br/><span class="minor">(cm)</span>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <%for (Medida medida : paginados) {%>
-                        <tr data-id="<%=medida.getId()%>">
-                            <td class="data">
-                                <%=medida.getDataStr()%>
-                            </td>
-                            <td class="idade"><%=medida.idadeToExtenso()%></td>
-                            <td class="peso"><%=medida.getPeso()%></td>
-                            <td class="estatura"><%=medida.getAltura()%><span class="minor"> <%=medida.getPosicaoAbreviado()%></span></td>
-                            <td class="imc"><%=medida.getIMC()%></td>
-                            <td class="perimetroCefalico"><%=medida.getPerimetroCefalico()%></td>
-                            <td class="idadeOssea"><%=medida.getIdadeOsseaExtenso()%></td>
-                            <td class="previsaoEstatura"><%=medida.getPrevisaoEstatura(paciente.getSexo())%></td>
-                            <%--<td class="opcoes">
-                                <a href="#" title="Detalhes da medida">
-                                    <img src="css/images/medidaDetails.svg" alt="Ícone Detalhes da medida" class="icon"/>
-                                </a>
-
-                            </td>--%>
-                        </tr>
-                        <%}%>
-                    </tbody>
-                </table>
-
-                <div id="medida-pagination" class="pagination text-center">
-                    <ul>
-                        <li><a href="#">Medidas Anteriores</a></li>
-                        <li><a href="#">Medidas Posteriores</a></li>
-                    </ul>
-                </div>
-
                 <%-- Form Nova Medida --%>
                 <form action="Medidas" method="POST"
                       class="form hide" id="medida-create"
@@ -337,7 +327,7 @@
 
                                 <div class="control-group">
                                     <label class="control-label" for="medidaPeso">
-                                        Peso
+                                        Peso (kg)
                                     </label>
                                     <div class="controls">
                                         <input type="text" name="peso" value=""
@@ -350,7 +340,7 @@
 
                                 <div class="control-group">
                                     <label class="control-label" for="medidaEstatura">
-                                        Estatura
+                                        Estatura (cm)
                                     </label>
                                     <div class="controls">
                                         <input type="text" name="estatura" value=""
@@ -359,41 +349,37 @@
                                                data-validation="required number positive"/>
                                     </div>
                                 </div>
-
-
-
-
                             </div>
 
                             <div class="span3">
                                 <div class="control-group">
                                     <label class="control-label">
-                                        Idade Óssea atribuída
+                                        Idade Óssea
                                     </label>
                                     <div class="controls">
                                         <input type="text" name="idadeOsseaAnos" value=""
                                                id="idadeOsseaAnos" class="input-small"
                                                placeholder="Anos"
-                                               data-validation="required year"/>
+                                               data-validation="year"/>
                                     </div>
                                     <div class="controls">
                                         <input type="text" name="idadeOsseaMeses" value=""
                                                id="idadeOsseaMeses" class="input-small"
                                                placeholder="Meses"
-                                               data-validation="required month"
+                                               data-validation="month"
                                                />
                                     </div>
                                 </div>
 
                                 <div class="control-group">
                                     <label class="control-label" for="medidaPerimetroCefalico">
-                                        Perímetro Cefálico
+                                        Perímetro Cefálico (cm)
                                     </label>
                                     <div class="controls">
                                         <input type="text" name="perimetroCefalico" value=""
                                                id="medidaPerimetroCefalico"
                                                placeholder="Perímetro em centímetros"
-                                               data-validation="required number positive"/>
+                                               data-validation="number positive"/>
                                     </div>
                                 </div>
 
