@@ -20,7 +20,19 @@
             <a href="Usuario?operacao=editar&idUsuario=<%=usuario.getId()%>" title="Editar">Editar</a>
             -
             <a href="Usuario?operacao=sair" title="Sair">Sair</a>
-            
+
         </p>
     </section>
 </header>
+<nav class="navbar">
+    <div class="navbar-inner">
+        <ul class="nav">
+            <li>
+                <a href="Paciente?operacao=pesquisar">Pesquisar paciente</a>
+            </li>
+            <li>
+                <a href="Paciente?operacao=cadastrar">Cadastrar paciente</a>
+            </li>
+        </ul>
+    </div>
+</nav>
