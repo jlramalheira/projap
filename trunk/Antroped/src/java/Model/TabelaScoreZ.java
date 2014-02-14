@@ -15,6 +15,7 @@ public class TabelaScoreZ implements Serializable {
     private String grafico;
     private String sexo;
     private int meses;
+    private double desvioPadrao;
     private double primeiro;
     private double segundo;
     private double terceiro;
@@ -26,10 +27,11 @@ public class TabelaScoreZ implements Serializable {
     public TabelaScoreZ() {
     }
 
-    public TabelaScoreZ(String grafico, String sexo, int meses, double primeiro, double segundo, double terceiro, double quarto, double quinto, double sexto, double setimo) {
+    public TabelaScoreZ(String grafico, String sexo, int meses,double desvioPadrao, double primeiro, double segundo, double terceiro, double quarto, double quinto, double sexto, double setimo) {
         this.grafico = grafico;
         this.sexo = sexo;
         this.meses = meses;
+        this.desvioPadrao = desvioPadrao;
         this.primeiro = primeiro;
         this.segundo = segundo;
         this.terceiro = terceiro;
@@ -61,6 +63,14 @@ public class TabelaScoreZ implements Serializable {
 
     public void setMeses(int meses) {
         this.meses = meses;
+    }
+
+    public double getDesvioPadrao() {
+        return desvioPadrao;
+    }
+
+    public void setDesvioPadrao(double desvioPadrao) {
+        this.desvioPadrao = desvioPadrao;
     }
 
     public double getPrimeiro() {
