@@ -107,6 +107,8 @@ public class Util {
     public static String TEXTO_PESO519_BAIXO_ESPECIFICA = "De acordo com a Organização Mundial de Saúde (OMS) e conforme esta medida antropométrica, a criança encontra-se com o peso baixo para a idade.";
     public static String TEXTO_PESO519_ADEQUADO_ESPECIFICA = "De acordo com a Organização Mundial de Saúde (OMS) e conforme esta medida antropométrica, a criança encontra-se com o peso adequado para a idade.";
     public static String TEXTO_PESO519_ELEVADO_ESPECIFICA = "De acordo com a Organização Mundial de Saúde (OMS) e conforme esta medida antropométrica, a criança encontra-se com o peso elevado para a idade.";
+   
+    
     public static String dateToString(Date data) {
         return dateFormat.format(data);
     }
