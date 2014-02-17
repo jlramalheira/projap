@@ -58,43 +58,19 @@ public class Medida implements Serializable {
     public double getScoreZ(String grafico, String sexo) {
         double imc = this.getPeso() / ((this.getAltura() / 100) * (this.getAltura() / 100));
         int meses = (int) (this.getIdade() / 30);
-        double mediana = (new DaoTabelaScoreZ().GetByGraficoSexoMes(grafico, this.getPaciente().getSexo(), meses)).getQuarto();
+        TabelaScoreZ valorPadrao = new DaoTabelaScoreZ().GetByGraficoSexoMes(grafico, this.getPaciente().getSexo(), meses);
         if (grafico.equalsIgnoreCase("imc05")) {
-            if (sexo.equalsIgnoreCase("masculino")) {
-                return (imc - mediana) / Util.Util.DESVIO_PADRAO_MASC_IMC05;
-            } else {
-                return (imc - mediana) / Util.Util.DESVIO_PADRAO_FEM_IMC05;
-            }
+            return (imc - valorPadrao.getQuarto()) / valorPadrao.getDesvioPadrao();
         } else if (grafico.equalsIgnoreCase("peso05")) {
-            if (sexo.equalsIgnoreCase("masculino")) {
-                return (this.peso - mediana) / Util.Util.DESVIO_PADRAO_MASC_PESO05;
-            } else {
-                return (this.peso - mediana) / Util.Util.DESVIO_PADRAO_FEM_PESO05;
-            }
+            return (this.peso - valorPadrao.getQuarto()) / valorPadrao.getDesvioPadrao();
         } else if (grafico.equalsIgnoreCase("estatura05")) {
-            if (sexo.equalsIgnoreCase("masculino")) {
-                return (this.altura - mediana) / Util.Util.DESVIO_PADRAO_MASC_ESTATURA05;
-            } else {
-                return (this.altura - mediana) / Util.Util.DESVIO_PADRAO_FEM_ESTATURA05;
-            }
+            return (this.altura - valorPadrao.getQuarto()) / valorPadrao.getDesvioPadrao();
         } else if (grafico.equalsIgnoreCase("imc519")) {
-            if (sexo.equalsIgnoreCase("masculino")) {
-                return (imc - mediana) / Util.Util.DESVIO_PADRAO_MASC_IMC519;
-            } else {
-                return (imc - mediana) / Util.Util.DESVIO_PADRAO_FEM_IMC519;
-            }
+            return (imc - valorPadrao.getQuarto()) / valorPadrao.getDesvioPadrao();
         } else if (grafico.equalsIgnoreCase("peso519")) {
-            if (sexo.equalsIgnoreCase("masculino")) {
-                return (this.peso - mediana) / Util.Util.DESVIO_PADRAO_MASC_PESO519;
-            } else {
-                return (this.peso - mediana) / Util.Util.DESVIO_PADRAO_FEM_PESO519;
-            }
+            return (this.peso - valorPadrao.getQuarto()) / valorPadrao.getDesvioPadrao();
         } else if (grafico.equalsIgnoreCase("estatura519")) {
-            if (sexo.equalsIgnoreCase("masculino")) {
-                return (this.altura - mediana) / Util.Util.DESVIO_PADRAO_MASC_ESTATURA519;
-            } else {
-                return (this.altura - mediana) / Util.Util.DESVIO_PADRAO_FEM_ESTATURA519;
-            }
+            return (this.altura - valorPadrao.getQuarto()) / valorPadrao.getDesvioPadrao();
         } else {
             return 0;
         }

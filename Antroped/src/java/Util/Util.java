@@ -21,28 +21,28 @@ public class Util {
 
     private static SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     public static int ELEMENTOS_TABELA_GRAFICOS = 7;
-    //public static double DESVIO_PADRAO_MASC_IMC05 = 0.9902626022190686;
-    //public static double DESVIO_PADRAO_FEM_IMC05 = 0.9902626022190686;
-    public static double DESVIO_PADRAO_MASC_IMC05 = 0.990262;
-    public static double DESVIO_PADRAO_FEM_IMC05 = 0.828723;
-    
-    public static double DESVIO_PADRAO_MASC_PESO05 = 0.979605;
-    public static double DESVIO_PADRAO_FEM_PESO05 = 0.730985;
-    
-    public static double DESVIO_PADRAO_MASC_ESTATURA05 = 0.978690;
-    public static double DESVIO_PADRAO_FEM_ESTATURA05 = 1.424478;
-    
-    public static double DESVIO_PADRAO_MASC_PC05 = 0.925044;
-    public static double DESVIO_PADRAO_FEM_PC05 = 0.934567;
-    
-    public static double DESVIO_PADRAO_MASC_IMC519 = 0.73089;
-    public static double DESVIO_PADRAO_FEM_IMC519 = 0.73309;
-    
-    public static double DESVIO_PADRAO_MASC_PESO519 = 2.098701;
-    public static double DESVIO_PADRAO_FEM_PESO519 = 1.788095;
-    
-    public static double DESVIO_PADRAO_MASC_ESTATURA519 = 2.641411;
-    public static double DESVIO_PADRAO_FEM_ESTATURA519 = 2.638188;
+//    public static double DESVIO_PADRAO_MASC_IMC05 = 0.9902626022190686;
+//    public static double DESVIO_PADRAO_FEM_IMC05 = 0.9902626022190686;
+//    public static double DESVIO_PADRAO_MASC_IMC05 = 0.990262;
+//    public static double DESVIO_PADRAO_FEM_IMC05 = 0.828723;
+//    
+//    public static double DESVIO_PADRAO_MASC_PESO05 = 0.979605;
+//    public static double DESVIO_PADRAO_FEM_PESO05 = 0.730985;
+//    
+//    public static double DESVIO_PADRAO_MASC_ESTATURA05 = 0.978690;
+//    public static double DESVIO_PADRAO_FEM_ESTATURA05 = 1.424478;
+//    
+//    public static double DESVIO_PADRAO_MASC_PC05 = 0.925044;
+//    public static double DESVIO_PADRAO_FEM_PC05 = 0.934567;
+//    
+//    public static double DESVIO_PADRAO_MASC_IMC519 = 0.73089;
+//    public static double DESVIO_PADRAO_FEM_IMC519 = 0.73309;
+//    
+//    public static double DESVIO_PADRAO_MASC_PESO519 = 2.098701;
+//    public static double DESVIO_PADRAO_FEM_PESO519 = 1.788095;
+//    
+//    public static double DESVIO_PADRAO_MASC_ESTATURA519 = 2.641411;
+//    public static double DESVIO_PADRAO_FEM_ESTATURA519 = 2.638188;
     
     public static String TEXTO_IMC05_MAGREZAACENTUADA_ATUAL = "De acordo com a Organização Mundial de Saúde (OMS) e conforme a última medida antropométrica, a criança encontra-se em Magreza Acentuada. Obs: Este até pode ser um biotipo familiar, no entanto, há um maior de risco de estar relacionado a alguma doença.";
     public static String TEXTO_IMC05_MAGREZA_ATUAL = "De acordo com a Organização Mundial de Saúde (OMS) e conforme a última medida antropométrica, a criança encontra-se em Magreza, que pode ser um biotipo familiar ou indicar uma doença. É importante o acompanhamento médico.";
