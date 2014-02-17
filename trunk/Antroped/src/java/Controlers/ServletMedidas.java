@@ -36,7 +36,7 @@ public class ServletMedidas extends HttpServlet {
         String operacao = request.getParameter("operacao");
         RequestDispatcher rd;
 
-        if (operacao.equalsIgnoreCase("deletar")) {
+        if (operacao.equalsIgnoreCase("excluir")) {
             int idMedida = Integer.parseInt(request.getParameter("idMedida"));
 
             Medida medida = daoMedida.get(idMedida);
