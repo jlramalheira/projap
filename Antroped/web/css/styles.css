@@ -184,6 +184,13 @@ a:hover{
     background-image: url("images/icon-more.svg");
 }
 
+/* Alerts
+------------------------------------------------------------------------------*/
+.alert{
+    border-radius: 0;
+    border: none;
+}
+
 /* Formularios
 ------------------------------------------------------------------------------*/
 .form{
@@ -304,6 +311,10 @@ form.login{
     vertical-align: middle;
 }
 
+.table tbody td{
+    color: #454150;
+}
+
 table .icon{
     width: 25px;
 }
@@ -370,8 +381,7 @@ section.graficos .minor{
   ============================================================================*/
 .navbar-inner {
     min-height: 40px;
-    padding-right: 20px;
-    padding-left: 20px;
+    padding: 0;
     background-color: #e5e2eb ;
     background-image: none;
     border: none;

@@ -398,7 +398,7 @@
                                         <label class="radio inline">
                                             <input type="radio" name="posicao" value="ortostatismo"
                                                    id="medidaPosicaoOrtosttismo"/>
-                                            Ortostatismo
+                                            Ortostática
                                         </label>
                                     </div>
                                 </div>
