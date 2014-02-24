@@ -15,6 +15,7 @@
         <link type="text/css" rel="stylesheet" href="CSS/styles.css"/>
     </head>
     <body>
+        
         <%int idDado = Integer.parseInt(request.getParameter("id"));
         Medida medida = new Dao<Medida>(Medida.class).get(idDado);
         %>      
