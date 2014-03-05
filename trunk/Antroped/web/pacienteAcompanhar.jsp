@@ -17,8 +17,7 @@
 <%@page import="Model.Medida"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<%
-    Paciente paciente = (Paciente) request.getAttribute("paciente");
+<%    Paciente paciente = (Paciente) request.getAttribute("paciente");
     Usuario usuario = (Usuario) session.getAttribute("usuario");
     if ((paciente == null) || (usuario == null) || (paciente.getUsuario().getId() != usuario.getId())) {
         response.sendError(404);
@@ -35,7 +34,7 @@
         <script src="js/kinetic-v3.10.0.min.js" type="text/javascript"></script>
         <script src="js/graficos.js" type="text/javascript"></script>
         <script type="text/javascript">
-            function grafico(){
+            function grafico() {
                 init();
                 pontosPeso05 = [];
                 pontosEstatura05 = [];
@@ -46,103 +45,103 @@
                 pontosImc519 = [];
             <% for (Medida d : dados) {
                     if ((d.getIdade() >= 0 && d.getIdade() < 1826) && (d.getPeso() >= 1 && d.getPeso() <= 25)) {%>
-                            pontosPeso05.push(drawCircle(<%=(d.getIdade())%>, <%=d.getPeso()%>, 3, '000', '000', 1,"<%=d.getHint()%>", stagePeso05, 'graficoPeso05', 'Masculino'));
+                pontosPeso05.push(drawCircle(<%=(d.getIdade())%>, <%=d.getPeso()%>, 3, '000', '000', 1, "<%=d.getHint()%>", stagePeso05, 'graficoPeso05', 'Masculino'));
             <% }%>
-                    if ($("#pacienteSexo").text() == 'Masculino'){
+                if ($("#pacienteSexo").text() == 'Masculino') {
             <%
                 if ((d.getIdade() >= 0 && d.getIdade() < 1826) && (d.getAltura() >= 43 && d.getAltura() <= 122)) {%>
-                            pontosEstatura05.push(drawCircle(<%=(d.getIdade())%>, <%=(d.getAltura())%>, 3, '000', '000', 1, "<%=d.getHint()%>", stageEstatura05, 'graficoEstatura05', 'Masculino'));
+                    pontosEstatura05.push(drawCircle(<%=(d.getIdade())%>, <%=(d.getAltura())%>, 3, '000', '000', 1, "<%=d.getHint()%>", stageEstatura05, 'graficoEstatura05', 'Masculino'));
             <% }%>
-                    } else {
+                } else {
             <%
                 if ((d.getIdade() >= 0 && d.getIdade() < 1826) && (d.getAltura() >= 43 && d.getAltura() <= 122)) {%>
-                            pontosEstatura05.push(drawCircle(<%=(d.getIdade())%>, <%=(d.getAltura())%>, 3, '000', '000', 1, "<%=d.getHint()%>", stageEstatura05, 'graficoEstatura05', 'Feminino'));
+                    pontosEstatura05.push(drawCircle(<%=(d.getIdade())%>, <%=(d.getAltura())%>, 3, '000', '000', 1, "<%=d.getHint()%>", stageEstatura05, 'graficoEstatura05', 'Feminino'));
             <% }%>
-                    }
+                }
             <%
                 if ((d.getIdade() >= 0 && d.getIdade() < 1826) && ((d.getPeso() / ((d.getAltura() / 100) * (d.getAltura() / 100))) >= 9.6 && ((d.getPeso() / ((d.getAltura() / 100) * (d.getAltura() / 100)))) <= 21.2)) {%>
-                        pontosImc05.push(drawCircle(<%=(d.getIdade())%>, <%=(d.getPeso() / ((d.getAltura() / 100) * (d.getAltura() / 100)))%>, 3, '000', '000', 1, "<%=d.getHint()%>", stageImc05, 'graficoImc05', 'Masculino'));
+                pontosImc05.push(drawCircle(<%=(d.getIdade())%>, <%=(d.getPeso() / ((d.getAltura() / 100) * (d.getAltura() / 100)))%>, 3, '000', '000', 1, "<%=d.getHint()%>", stageImc05, 'graficoImc05', 'Masculino'));
             <% }%>
-                    if ($("#pacienteSexo").text() == 'Masculino') {
+                if ($("#pacienteSexo").text() == 'Masculino') {
             <%
                 if ((d.getIdade() >= 0 && d.getIdade() < 1826) && (d.getPerimetroCefalico() >= 32 && d.getPerimetroCefalico() <= 54.5)) {%>
-                            pontosPc05.push(drawCircle(<%=(d.getIdade())%>, <%=d.getPerimetroCefalico()%>, 3, '000', '000', 1, "<%=d.getHint()%>", stagePc05, 'graficoPc05', 'Masculino'));
+                    pontosPc05.push(drawCircle(<%=(d.getIdade())%>, <%=d.getPerimetroCefalico()%>, 3, '000', '000', 1, "<%=d.getHint()%>", stagePc05, 'graficoPc05', 'Masculino'));
             <% }%>
-                    } else {
+                } else {
             <%
                 if ((d.getIdade() >= 0 && d.getIdade() < 1826) && (d.getPerimetroCefalico() >= 31 && d.getPerimetroCefalico() <= 53.5)) {%>
-                            pontosPc05.push(drawCircle(<%=(d.getIdade())%>, <%=d.getPerimetroCefalico()%>, 3, '000', '000', 1, "<%=d.getHint()%>", stagePc05, 'graficoPc05', 'Feminino'));
+                    pontosPc05.push(drawCircle(<%=(d.getIdade())%>, <%=d.getPerimetroCefalico()%>, 3, '000', '000', 1, "<%=d.getHint()%>", stagePc05, 'graficoPc05', 'Feminino'));
             <% }%>
-                    }
-                    if ($("#pacienteSexo").text() == 'Masculino'){
+                }
+                if ($("#pacienteSexo").text() == 'Masculino') {
             <%
                 if ((d.getIdade() >= 1825 && d.getIdade() < 6936) && (d.getPeso() >= 13 && d.getPeso() <= 45)) {%>
-                            pontosPeso519.push(drawCircle(<%=(d.getIdade())%>, <%=d.getPeso()%>, 3, '000', '000', 1, "<%=d.getHint()%>", stagePeso519, 'graficoPeso519', 'Masculino'));
+                    pontosPeso519.push(drawCircle(<%=(d.getIdade())%>, <%=d.getPeso()%>, 3, '000', '000', 1, "<%=d.getHint()%>", stagePeso519, 'graficoPeso519', 'Masculino'));
             <% }%>
-                    } else {
+                } else {
             <%
                 if ((d.getIdade() >= 1825 && d.getIdade() < 6936) && (d.getPeso() >= 13 && d.getPeso() <= 47)) {%>
-                            pontosPeso519.push(drawCircle(<%=(d.getIdade())%>, <%=d.getPeso()%>, 3, '000', '000', 1, "<%=d.getHint()%>", stagePeso519, 'graficoPeso519', 'Feminino'));
+                    pontosPeso519.push(drawCircle(<%=(d.getIdade())%>, <%=d.getPeso()%>, 3, '000', '000', 1, "<%=d.getHint()%>", stagePeso519, 'graficoPeso519', 'Feminino'));
             <% }%>
-                    }
-                    if ($("#pacienteSexo").text() == 'Masculino'){
+                }
+                if ($("#pacienteSexo").text() == 'Masculino') {
             <%
                 if ((d.getIdade() >= 1825 && d.getIdade() < 6936) && (d.getAltura() >= 1 && d.getAltura() <= 195)) {%>
-                            pontosEstatura519.push(drawCircle(<%=(d.getIdade())%>, <%=d.getAltura()%>, 3, '000', '000', 1, "<%=d.getHint()%>", stageEstatura519, 'graficoEstatura519', 'Masculino'));
+                    pontosEstatura519.push(drawCircle(<%=(d.getIdade())%>, <%=d.getAltura()%>, 3, '000', '000', 1, "<%=d.getHint()%>", stageEstatura519, 'graficoEstatura519', 'Masculino'));
             <% }%>
-                    } else {
+                } else {
             <%
                 if ((d.getIdade() >= 1825 && d.getIdade() < 6936) && (d.getAltura() >= 105 && d.getAltura() <= 180)) {%>
-                            pontosEstatura519.push(drawCircle(<%=(d.getIdade())%>, <%=d.getAltura()%>, 3, '000', '000', 1,"<%=d.getHint()%>", stageEstatura519, 'graficoEstatura519', 'Feminino'));
+                    pontosEstatura519.push(drawCircle(<%=(d.getIdade())%>, <%=d.getAltura()%>, 3, '000', '000', 1, "<%=d.getHint()%>", stageEstatura519, 'graficoEstatura519', 'Feminino'));
             <% }%>
-                    }
-                    if ($("#pacienteSexo").text() == 'Masculino'){
+                }
+                if ($("#pacienteSexo").text() == 'Masculino') {
             <%
                 if ((d.getIdade() >= 1825 && d.getIdade() < 6936) && ((d.getPeso() / ((d.getAltura() / 100) * (d.getAltura() / 100))) >= 12 && ((d.getPeso() / ((d.getAltura() / 100) * (d.getAltura() / 100)))) <= 30)) {%>
-                            pontosImc519.push(drawCircle(<%=(d.getIdade())%>, <%=(d.getPeso() / ((d.getAltura() / 100) * (d.getAltura() / 100)))%>, 3, '000', '000', 1, "<%=d.getHint()%>", stageImc519, 'graficoImc519', 'Masculino'));
+                    pontosImc519.push(drawCircle(<%=(d.getIdade())%>, <%=(d.getPeso() / ((d.getAltura() / 100) * (d.getAltura() / 100)))%>, 3, '000', '000', 1, "<%=d.getHint()%>", stageImc519, 'graficoImc519', 'Masculino'));
             <% }%>
-                    } else {
+                } else {
             <%
                 if ((d.getIdade() >= 1825 && d.getIdade() < 6936) && ((d.getPeso() / ((d.getAltura() / 100) * (d.getAltura() / 100))) >= 12 && ((d.getPeso() / ((d.getAltura() / 100) * (d.getAltura() / 100)))) <= 29.5)) {%>
-                            pontosImc519.push(drawCircle(<%=(d.getIdade())%>, <%=(d.getPeso() / ((d.getAltura() / 100) * (d.getAltura() / 100)))%>, 3, '000', '000', 1, "<%=d.getHint()%>", stageImc519, 'graficoImc519', 'Feminino'));
+                    pontosImc519.push(drawCircle(<%=(d.getIdade())%>, <%=(d.getPeso() / ((d.getAltura() / 100) * (d.getAltura() / 100)))%>, 3, '000', '000', 1, "<%=d.getHint()%>", stageImc519, 'graficoImc519', 'Feminino'));
             <% }%>
-                    }
+                }
             <%
                 }%>
 
-                        drawLineTroughCircle(pontosPeso05, stagePeso05);
-                        drawLineTroughCircle(pontosEstatura05, stageEstatura05);
-                        drawLineTroughCircle(pontosImc05, stageImc05);
-                        drawLineTroughCircle(pontosPc05, stagePc05);
+                drawLineTroughCircle(pontosPeso05, stagePeso05);
+                drawLineTroughCircle(pontosEstatura05, stageEstatura05);
+                drawLineTroughCircle(pontosImc05, stageImc05);
+                drawLineTroughCircle(pontosPc05, stagePc05);
 
-                        drawLineTroughCircle(pontosPeso519, stagePeso519);
-                        drawLineTroughCircle(pontosEstatura519, stageEstatura519);
-                        drawLineTroughCircle(pontosImc519, stageImc519);
+                drawLineTroughCircle(pontosPeso519, stagePeso519);
+                drawLineTroughCircle(pontosEstatura519, stageEstatura519);
+                drawLineTroughCircle(pontosImc519, stageImc519);
 
-                    }
+            }
         </script>
         <script type="text/javascript">
-            function mudaTexto(tab){
-                if (tab=='peso05'){
+            function mudaTexto(tab) {
+                if (tab == 'peso05') {
                     $('.report').html('<%=((dados.size() > 0) && (dados.get(0).getIdade() < 1825))
                             ? dados.get(0).getTextoAtual("peso05", paciente.getSexo())
                             : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
-                                    }else if(tab=='peso519'){
-                                        $('.report').html('<%=((dados.size() > 0) && (dados.get(0).getIdade() >= 1825) && (dados.get(0).getIdade() < 3650))
+                } else if (tab == 'peso519') {
+                    $('.report').html('<%=((dados.size() > 0) && (dados.get(0).getIdade() >= 1825) && (dados.get(0).getIdade() < 3650))
                                                 ? dados.get(0).getTextoAtual("peso519", paciente.getSexo())
                                                 : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
-                                                        }else if(tab=='estatura05'){
-                                                            $('.report').html('<%=((dados.size() > 0) && (dados.get(0).getIdade() < 1825)) ? dados.get(0).getTextoAtual("estatura05", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
-                                                        }else if(tab=='estatura519'){
-                                                            $('.report').html('<%=((dados.size() > 0) && (dados.get(0).getIdade() >= 1825) && (dados.get(0).getIdade() < 6935)) ? dados.get(0).getTextoAtual("estatura519", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
-                                                        }else if(tab=='imc05'){
-                                                            $('.report').html('<%=((dados.size() > 0) && (dados.get(0).getIdade() < 1825)) ? dados.get(0).getTextoAtual("imc05", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
-                                                        }else if(tab=='imc519'){
-                                                            $('.report').html('<%=((dados.size() > 0) && (dados.get(0).getIdade() >= 1825) && (dados.get(0).getIdade() < 6935)) ? dados.get(0).getTextoAtual("imc519", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
-                                                        }else if(tab=='pc05'){
-                                                            $('.report').html('Não há nenhuma avaliação disponível para este tipo de gráfico.');
-                                                        }
-                                                    }
+                } else if (tab == 'estatura05') {
+                    $('.report').html('<%=((dados.size() > 0) && (dados.get(0).getIdade() < 1825)) ? dados.get(0).getTextoAtual("estatura05", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
+                } else if (tab == 'estatura519') {
+                    $('.report').html('<%=((dados.size() > 0) && (dados.get(0).getIdade() >= 1825) && (dados.get(0).getIdade() < 6935)) ? dados.get(0).getTextoAtual("estatura519", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
+                } else if (tab == 'imc05') {
+                    $('.report').html('<%=((dados.size() > 0) && (dados.get(0).getIdade() < 1825)) ? dados.get(0).getTextoAtual("imc05", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
+                } else if (tab == 'imc519') {
+                    $('.report').html('<%=((dados.size() > 0) && (dados.get(0).getIdade() >= 1825) && (dados.get(0).getIdade() < 6935)) ? dados.get(0).getTextoAtual("imc519", paciente.getSexo()) : "Não há nenhuma avaliação disponível para este tipo de gráfico."%>');
+                } else if (tab == 'pc05') {
+                    $('.report').html('Não há nenhuma avaliação disponível para este tipo de gráfico.');
+                }
+            }
         </script>
     </head>
 
@@ -321,6 +320,123 @@
                                                id="medidaData" class="input-large"
                                                placeholder="dd/mm/aaaa"
                                                data-validation="required date"
+                                               />
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label" for="medidaPeso">
+                                        Peso (kg)
+                                    </label>
+                                    <div class="controls">
+                                        <input type="text" name="peso" value=""
+                                               id="medidaPeso" class="input-medium"
+                                               placeholder="Em kilogramas"
+                                               data-validation="required number positive"
+                                               />
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label" for="medidaEstatura">
+                                        Estatura (cm)
+                                    </label>
+                                    <div class="controls">
+                                        <input type="text" name="estatura" value=""
+                                               id="medidaEstatura" class="input-medium"
+                                               placeholder="Em centímetros"
+                                               data-validation="required number positive"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="span3">
+                                <div class="control-group">
+                                    <label class="control-label">
+                                        Idade Óssea
+                                    </label>
+                                    <div class="controls">
+                                        <input type="text" name="idadeOsseaAnos" value=""
+                                               id="idadeOsseaAnos" class="input-small"
+                                               placeholder="Anos"
+                                               data-validation="year"/>
+                                    </div>
+                                    <div class="controls">
+                                        <input type="text" name="idadeOsseaMeses" value=""
+                                               id="idadeOsseaMeses" class="input-small"
+                                               placeholder="Meses"
+                                               data-validation="month"
+                                               />
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label" for="medidaPerimetroCefalico">
+                                        Perímetro Cefálico (cm)
+                                    </label>
+                                    <div class="controls">
+                                        <input type="text" name="perimetroCefalico" value=""
+                                               id="medidaPerimetroCefalico"
+                                               placeholder="Perímetro em centímetros"
+                                               data-validation="number positive"/>
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label">
+                                        Posição
+                                    </label>
+                                    <div class="controls">
+                                        <label class="radio inline">
+                                            <input type="radio" name="posicao" value="decubito"
+                                                   id="medidaPosicaoDecubito"
+                                                   checked="checked"
+                                                   />
+                                            Decúbito
+                                        </label>
+                                        <label class="radio inline">
+                                            <input type="radio" name="posicao" value="ortostatismo"
+                                                   id="medidaPosicaoOrtosttismo"/>
+                                            Ortostática
+                                        </label>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="span3 pull-right">
+                                <button type="submit" name="operacao" value="Cadastrar"
+                                        class="btn btn-large btn-block btn-icon confirm ">
+                                    Cadastrar
+                                </button>
+                                <button type="reset"
+                                        class="btn btn-large btn-block btn-icon cancel margin-top"
+                                        onclick="hideFormMedidaCreate()()">
+                                    Cancelar
+                                </button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+
+                <form action="Medidas" method="POST"
+                      class="form hide" id="medida-update"
+                      data-validation="on">
+                    <fieldset>
+                        <legend>Editar Medida</legend>
+                        <div class="row">
+                            <div class="span4">
+                                <div class="control-group">
+                                    <input type="hidden" name="idPaciente" value="<%=paciente.getId()%>"/>
+                                    <label class="control-label" for="medidaData">
+                                        Data
+                                    </label>
+                                    <div class="controls">
+                                        <input type="text" name="data" value=""
+                                               id="medidaData" class="input-large"
+                                               placeholder="dd/mm/aaaa"
+                                               data-validation="required date"                                               
+                                               disabled="disabled"
                                                />
                                     </div>
                                 </div>

@@ -35,6 +35,18 @@ function hideFormMedidaCreate(){
     $("#medida-button").removeClass("active");
 }
 
+/* Traz do servidor informações sobre a medida selecionada, preenche o formulário
+ * e fornece o formulário de edição da medida.*/
+function showFormMedidaUpdate(){
+    //@TODO Trazer informações do servidor
+    $("#medida-table").hide(300);
+    $("#medida-pagination").hide(300);
+    $("#medida-create").show(300);
+    $("#medida-view").hide(300);
+    $("#medida-button").addClass("active");
+    
+}
+
 function showGrafico05(button){
     if(!$(button).hasClass("active")){
         $(".grafico-05").toggle(300);
